@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<actions>
+    <group name="album">
+        <action name="GetAlbumList">
+            <path>albums/GetAlbumListAction</path>
+            <parameters>
+                <response>
+                    <param name="__activeElement">'albums'</param>
+                </response>
+            </parameters>
+        </action>
+        <action name="SaveAlbum">
+            <path>albums/SaveAlbumAction</path>
+            <redirects>
+                <redirect name="success" path="vt://albums/"/>
+            </redirects>
+        </action>
+        <action name="DeleteAlbum">
+            <path>albums/SaveAlbumAction</path>
+            <parameters>
+                <request>
+                    <param name="action">'delete'</param>
+                </request>
+            </parameters>
+        </action>
+    </group>
+    <group name="photo">
+        <action name="GetPhotoList">
+            <path>photos/GetPhotoListAction</path>
+            <parameters>
+                <response>
+                    <param name="__activeElement">'photos'</param>
+                </response>
+            </parameters>
+        </action>
+        <action name="SavePhoto">
+            <path>photos/SavePhotoAction</path>
+            <redirects>
+                <redirect name="success" path="vt://photos/"/>
+            </redirects>
+        </action>
+        <action name="DeletePhoto">
+            <path>photos/SavePhotoAction</path>
+            <parameters>
+                <request>
+                    <param name="action">'delete'</param>
+                </request>
+            </parameters>
+        </action>
+    </group>
+</actions>

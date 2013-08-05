@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sites>
+    <site name="eazyphoto">
+        <pages>
+            <pageGroup name="fe" boot="EazyPhoto.Site.GetSiteParams" shutdown="EazyPhoto.Site.GetMetaDetails, EazyPhoto.Site.GetNavigations">
+                <page uri="/">
+                    <actions>EazyPhoto.Site.GetAlbums</actions>
+                    <template>tmpl://fe/index.tmpl.php</template>
+                </page>
+                <page uri="/([0-9]{4})/">
+                    <actions>EazyPhoto.Site.GetAlbums</actions>
+                    <template>tmpl://fe/index.tmpl.php</template>
+                </page>
+                <page uri="/([0-9]{4})/([^?]+)/">
+                    <actions>EazyPhoto.Site.GetAlbum</actions>
+                    <template>tmpl://fe/album.tmpl.php</template>
+                </page>
+            </pageGroup>
+			
+            <pageGroup name="vt" boot="EazyPhoto.Common.CheckAuth">
+                <page uri="vt://login" boot="">
+                    <template>tmpl://vt/login.tmpl.php</template>
+                    <actions>EazyPhoto.Common.Login</actions>
+                </page>
+                <page uri="vt://">
+                    <template>tmpl://vt/index.tmpl.php</template>
+                </page>
+				
+                <pageGroup name="EazyPhoto.Common">
+                    <pageGroup name="siteParam">
+                        <page uri="vt://site-params/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetSiteParamList, EazyPhoto.Common.SetSiteParamsMenu</actions>
+                            <template>tmpl://vt/site-params/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://site-params/add">
+                            <actions>EazyPhoto.Common.SaveSiteParam</actions>
+                            <template>tmpl://vt/site-params/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://site-params/delete/([0-9]+)">
+                            <actions>EazyPhoto.Common.DeleteSiteParam</actions>
+                        </page>
+                        <page uri="vt://site-params/edit/([0-9]+)">
+                            <actions>EazyPhoto.Common.SaveSiteParam</actions>
+                            <template>tmpl://vt/site-params/edit.tmpl.php</template>
+                        </page>
+                    </pageGroup>
+                    <pageGroup name="metaDetail">
+                        <page uri="vt://meta-details/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetMetaDetailList</actions>
+                            <template>tmpl://vt/meta-details/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://meta-details/add">
+                            <actions>EazyPhoto.Common.SaveMetaDetail</actions>
+                            <template>tmpl://vt/meta-details/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://meta-details/delete/([0-9]+)">
+                            <actions>EazyPhoto.Common.DeleteMetaDetail</actions>
+                        </page>
+                        <page uri="vt://meta-details/edit/([0-9]+)">
+                            <actions>EazyPhoto.Common.SaveMetaDetail</actions>
+                            <template>tmpl://vt/meta-details/edit.tmpl.php</template>
+                        </page>
+                    </pageGroup>
+                    <pageGroup name="user">
+                        <page uri="vt://users/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetUserList</actions>
+                            <template>tmpl://vt/users/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://users/add">
+                            <actions>EazyPhoto.Common.SaveUser</actions>
+                            <template>tmpl://vt/users/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://users/delete/([0-9]+)">
+                            <actions>EazyPhoto.Common.DeleteUser</actions>
+                        </page>
+                        <page uri="vt://users/edit/([0-9]+)">
+                            <actions>EazyPhoto.Common.SaveUser</actions>
+                            <template>tmpl://vt/users/edit.tmpl.php</template>
+                        </page>
+                    </pageGroup>
+                    <pageGroup name="staticPage">
+                        <page uri="vt://static-pages/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetStaticPageList, EazyPhoto.Common.SetStaticPagesMenu</actions>
+                            <template>tmpl://vt/static-pages/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://static-pages/add">
+                            <actions>EazyPhoto.Common.SaveStaticPage</actions>
+                            <template>tmpl://vt/static-pages/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://static-pages/delete/([0-9]+)">
+                            <actions>EazyPhoto.Common.DeleteStaticPage</actions>
+                        </page>
+                        <page uri="vt://static-pages/edit/([0-9]+)">
+                            <actions>EazyPhoto.Common.SaveStaticPage</actions>
+                            <template>tmpl://vt/static-pages/edit.tmpl.php</template>
+                        </page>
+                    </pageGroup>
+                    <pageGroup name="navigationType">
+                        <page uri="vt://navigations/types/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetNavigationTypeList</actions>
+                            <template>tmpl://vt/navigations/types/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://navigations/types/add">
+                            <actions>EazyPhoto.Common.SaveNavigationType</actions>
+                            <template>tmpl://vt/navigations/types/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://navigations/types/delete/([0-9]+)">
+                            <actions>EazyPhoto.Common.DeleteNavigationType</actions>
+                        </page>
+                        <page uri="vt://navigations/types/edit/([0-9]+)">
+                            <actions>EazyPhoto.Common.SaveNavigationType</actions>
+                            <template>tmpl://vt/navigations/types/edit.tmpl.php</template>
+                        </page>
+                    </pageGroup>
+                    <pageGroup name="navigation">
+                        <page uri="vt://navigations/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetNavigationList</actions>
+                            <template>tmpl://vt/navigations/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://navigations/add">
+                            <actions>EazyPhoto.Common.SaveNavigation</actions>
+                            <template>tmpl://vt/navigations/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://navigations/delete/([0-9]+)">
+                            <actions>EazyPhoto.Common.DeleteNavigation</actions>
+                        </page>
+                        <page uri="vt://navigations/edit/([0-9]+)">
+                            <actions>EazyPhoto.Common.SaveNavigation</actions>
+                            <template>tmpl://vt/navigations/edit.tmpl.php</template>
+                        </page>
+                    </pageGroup>
+                </pageGroup>
+                <pageGroup name="EazyPhoto.Albums">
+                    <pageGroup name="album">
+                        <page uri="vt://albums/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Albums.GetAlbumList</actions>
+                            <template>tmpl://vt/albums/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://albums/add">
+                            <actions>EazyPhoto.Albums.SaveAlbum</actions>
+                            <template>tmpl://vt/albums/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://albums/delete/([0-9]+)">
+                            <actions>EazyPhoto.Albums.DeleteAlbum</actions>
+                        </page>
+                        <page uri="vt://albums/edit/([0-9]+)">
+                            <actions>EazyPhoto.Albums.SaveAlbum</actions>
+                            <template>tmpl://vt/albums/edit.tmpl.php</template>
+                        </page>
+                    </pageGroup>
+                    <pageGroup name="photo">
+                        <page uri="vt://photos/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Albums.GetPhotoList</actions>
+                            <template>tmpl://vt/photos/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://photos/add">
+                            <actions>EazyPhoto.Albums.SavePhoto</actions>
+                            <template>tmpl://vt/photos/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://photos/delete/([0-9]+)">
+                            <actions>EazyPhoto.Albums.DeletePhoto</actions>
+                        </page>
+                        <page uri="vt://photos/edit/([0-9]+)">
+                            <actions>EazyPhoto.Albums.SavePhoto</actions>
+                            <template>tmpl://vt/photos/edit.tmpl.php</template>
+                        </page>
+                    </pageGroup>
+                </pageGroup>
+				
+                <pageGroup name="daemonLocks">
+                    <page uri="vt://daemons/">
+                        <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetDaemonLockList</actions>
+                        <template>tmpl://vt/daemons/index.tmpl.php</template>
+                    </page>
+                    <page uri="vt://daemons/delete/([0-9]+)">
+                        <actions>EazyPhoto.Common.DeleteDaemonLock</actions>
+                    </page>
+                </pageGroup>
+                <pageGroup name="vfs">
+                    <page uri="vt://vfs/(mce)?">
+                        <template>tmpl://vt/elements/vfs/browse.tmpl.php</template>
+                    </page>
+                    <page uri="vt://vfs/rpc/">
+                        <actions>Base.VFS.VfsRpcService</actions>
+                    </page>
+                    <page uri="vt://vfs/manage/file/(queue|temp)/">
+                        <actions>Base.VFS.UploadFile</actions>
+                    </page>
+                    <page uri="vt://vfs/attach">
+                        <template>tmpl://vt/elements/vfs/attach.tmpl.php</template>
+                    </page>
+                </pageGroup>
+                <pageGroup name="daemons">
+                    <page uri="daemons://sync-photos">
+                        <actions>EazyPhoto.Site.SyncPhotosDaemon</actions>
+                    </page>
+                </pageGroup>
+            </pageGroup>
+
+            <page uri="([^?]+)" boot="EazyPhoto.Site.GetSiteParams" shutdown="EazyPhoto.Site.GetMetaDetails, EazyPhoto.Site.GetNavigations">
+                <actions>EazyPhoto.Site.GetForceStaticPage</actions>
+                <template>tmpl://fe/template.tmpl.php</template>
+            </page>
+        </pages>
+    </site>
+</sites>

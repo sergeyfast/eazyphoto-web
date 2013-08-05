@@ -1,0 +1,534 @@
+<?xml version="1.0"?>
+<ArrayOfEazeEntity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EazeEntity Name="Album">
+    <TerminalPath>albums</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies>users</CacheDependencies>
+    <Search>
+      <TemplateAttribute Name="albumId" TitleKey="vt.album.albumId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="albumId" />
+          <AttributeParameter Key="value" Value="albumId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="albumId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.album.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="description" TitleKey="vt.album.description" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="description" />
+          <AttributeParameter Key="value" Value="description" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="description" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.album.alias" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isPrivate" TitleKey="vt.album.isPrivate" Type="HTML_CHECKBOX" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isPrivate" />
+          <AttributeParameter Key="value" Value="isPrivate" />
+          <AttributeParameter Key="controlId" Value="isPrivate" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="startDate" TitleKey="vt.album.startDate" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="startDate" />
+          <AttributeParameter Key="value" Value="startDate" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="startDate" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="endDate" TitleKey="vt.album.endDate" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="endDate" />
+          <AttributeParameter Key="value" Value="endDate" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="endDate" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.album.orderNumber" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="folderPath" TitleKey="vt.album.folderPath" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="folderPath" />
+          <AttributeParameter Key="value" Value="folderPath" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="folderPath" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="roSecret" TitleKey="vt.album.roSecret" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="roSecret" />
+          <AttributeParameter Key="value" Value="roSecret" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="roSecret" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="roSecretHd" TitleKey="vt.album.roSecretHd" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="roSecretHd" />
+          <AttributeParameter Key="value" Value="roSecretHd" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="roSecretHd" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="deleteOriginalsAfter" TitleKey="vt.album.deleteOriginalsAfter" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="deleteOriginalsAfter" />
+          <AttributeParameter Key="value" Value="deleteOriginalsAfter" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="deleteOriginalsAfter" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isDescSort" TitleKey="vt.album.isDescSort" Type="HTML_CHECKBOX" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isDescSort" />
+          <AttributeParameter Key="value" Value="isDescSort" />
+          <AttributeParameter Key="controlId" Value="isDescSort" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="createdAt" TitleKey="vt.album.createdAt" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="createdAt" />
+          <AttributeParameter Key="value" Value="createdAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="modifiedAt" TitleKey="vt.album.modifiedAt" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="modifiedAt" />
+          <AttributeParameter Key="value" Value="modifiedAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="userId" TitleKey="vt.album.userId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="userId" />
+          <AttributeParameter Key="value" Value="userId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="userId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.album.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaInfo" TitleKey="vt.album.metaInfo" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaInfo" />
+          <AttributeParameter Key="value" Value="metaInfo" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaInfo" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="albumId" TitleKey="vt.album.albumId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="albumId" />
+          <AttributeParameter Key="value" Value="albumId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="albumId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.album.title" TitleValue="Название" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="description" TitleKey="vt.album.description" TitleValue="Описание" Type="HTML_TEXT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="description" />
+          <AttributeParameter Key="value" Value="description" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="description" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.album.alias" TitleValue="Системное имя" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isPrivate" TitleKey="vt.album.isPrivate" TitleValue="Скрытый альбом" Type="HTML_CHECKBOX" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isPrivate" />
+          <AttributeParameter Key="value" Value="isPrivate" />
+          <AttributeParameter Key="controlId" Value="isPrivate" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="startDate" TitleKey="vt.album.startDate" TitleValue="Дата начала" Type="HTML_DATE" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="startDate" />
+          <AttributeParameter Key="value" Value="startDate" />
+          <AttributeParameter Key="rows" Value="5" />
+          <AttributeParameter Key="cols" Value="80" />
+          <AttributeParameter Key="controlId" Value="startDate" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="endDate" TitleKey="vt.album.endDate" TitleValue="Дата окончания" Type="HTML_DATE" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="endDate" />
+          <AttributeParameter Key="value" Value="endDate" />
+          <AttributeParameter Key="rows" Value="5" />
+          <AttributeParameter Key="cols" Value="80" />
+          <AttributeParameter Key="controlId" Value="endDate" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.album.orderNumber" TitleValue="Порядковый номер" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="folderPath" TitleKey="vt.album.folderPath" TitleValue="Путь до папки" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="folderPath" />
+          <AttributeParameter Key="value" Value="folderPath" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="folderPath" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="roSecret" TitleKey="vt.album.roSecret" TitleValue="ReadOnly Secret" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="roSecret" />
+          <AttributeParameter Key="value" Value="roSecret" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="roSecret" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="roSecretHd" TitleKey="vt.album.roSecretHd" TitleValue="ReadOnly Secret HD" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="roSecretHd" />
+          <AttributeParameter Key="value" Value="roSecretHd" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="roSecretHd" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="deleteOriginalsAfter" TitleKey="vt.album.deleteOriginalsAfter" TitleValue="Удалить оригиналы через X дней" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="deleteOriginalsAfter" />
+          <AttributeParameter Key="value" Value="deleteOriginalsAfter" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="deleteOriginalsAfter" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isDescSort" TitleKey="vt.album.isDescSort" TitleValue="Обратная сортировка" Type="HTML_CHECKBOX" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isDescSort" />
+          <AttributeParameter Key="value" Value="isDescSort" />
+          <AttributeParameter Key="controlId" Value="isDescSort" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="createdAt" TitleKey="vt.album.createdAt" TitleValue="Дата создания" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="createdAt" />
+          <AttributeParameter Key="value" Value="createdAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="modifiedAt" TitleKey="vt.album.modifiedAt" TitleValue="Дата изменения" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="modifiedAt" />
+          <AttributeParameter Key="value" Value="modifiedAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="userId" TitleKey="vt.album.userId" TitleValue="Пользователь" Type="HTML_SELECT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="userId" />
+          <AttributeParameter Key="values" Value="$users" />
+          <AttributeParameter Key="dataKey" Value="login" />
+          <AttributeParameter Key="dataValue" Value="userId" />
+          <AttributeParameter Key="value" Value="userId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.album.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaInfo" TitleKey="vt.album.metaInfo" TitleValue="metaInfo" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaInfo" />
+          <AttributeParameter Key="value" Value="metaInfo" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaInfo" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="Photo">
+    <TerminalPath>photos</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies>albums</CacheDependencies>
+    <Search>
+      <TemplateAttribute Name="photoId" TitleKey="vt.photo.photoId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoId" />
+          <AttributeParameter Key="value" Value="photoId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="photoId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="albumId" TitleKey="vt.photo.albumId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="albumId" />
+          <AttributeParameter Key="values" Value="$albums" />
+          <AttributeParameter Key="dataKey" Value="albumId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="albumId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="originalName" TitleKey="vt.photo.originalName" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="originalName" />
+          <AttributeParameter Key="value" Value="originalName" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="originalName" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="filename" TitleKey="vt.photo.filename" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="filename" />
+          <AttributeParameter Key="value" Value="filename" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="filename" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="fileSize" TitleKey="vt.photo.fileSize" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileSize" />
+          <AttributeParameter Key="value" Value="fileSize" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="fileSize" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.photo.orderNumber" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="afterText" TitleKey="vt.photo.afterText" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="afterText" />
+          <AttributeParameter Key="value" Value="afterText" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="afterText" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.photo.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="exif" TitleKey="vt.photo.exif" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="exif" />
+          <AttributeParameter Key="value" Value="exif" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="exif" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="createdAt" TitleKey="vt.photo.createdAt" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="createdAt" />
+          <AttributeParameter Key="value" Value="createdAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="photoDate" TitleKey="vt.photo.photoDate" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoDate" />
+          <AttributeParameter Key="value" Value="photoDate" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="photoDate" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.photo.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="fileSizeHd" TitleKey="vt.photo.fileSizeHd" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileSizeHd" />
+          <AttributeParameter Key="value" Value="fileSizeHd" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="fileSizeHd" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="photoId" TitleKey="vt.photo.photoId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoId" />
+          <AttributeParameter Key="value" Value="photoId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="photoId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="albumId" TitleKey="vt.photo.albumId" TitleValue="Альбом" Type="HTML_SELECT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="albumId" />
+          <AttributeParameter Key="values" Value="$albums" />
+          <AttributeParameter Key="dataKey" Value="albumId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="albumId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="album.title" TitleKey="vt.photo.albumId" TitleValue="" Type="HTML_INPUT" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="albumId" />
+          <AttributeParameter Key="values" Value="$albums" />
+          <AttributeParameter Key="dataKey" Value="albumId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="albumId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="originalName" TitleKey="vt.photo.originalName" TitleValue="Оригинальный файл" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="originalName" />
+          <AttributeParameter Key="value" Value="originalName" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="originalName" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="filename" TitleKey="vt.photo.filename" TitleValue="Файл на сервере" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="filename" />
+          <AttributeParameter Key="value" Value="filename" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="filename" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="fileSize" TitleKey="vt.photo.fileSize" TitleValue="Размер файла" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileSize" />
+          <AttributeParameter Key="value" Value="fileSize" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="fileSize" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.photo.orderNumber" TitleValue="Порядковый номер" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="afterText" TitleKey="vt.photo.afterText" TitleValue="Текст под фотографией" Type="HTML_TEXT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="afterText" />
+          <AttributeParameter Key="value" Value="afterText" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="afterText" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.photo.title" TitleValue="Название" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="exif" TitleKey="vt.photo.exif" TitleValue="EXIF" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="exif" />
+          <AttributeParameter Key="value" Value="exif" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="exif" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="createdAt" TitleKey="vt.photo.createdAt" TitleValue="Дата создания" Type="HTML_DATETIME" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="createdAt" />
+          <AttributeParameter Key="value" Value="createdAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="photoDate" TitleKey="vt.photo.photoDate" TitleValue="Дата снимка" Type="HTML_DATETIME" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoDate" />
+          <AttributeParameter Key="value" Value="photoDate" />
+          <AttributeParameter Key="rows" Value="5" />
+          <AttributeParameter Key="cols" Value="80" />
+          <AttributeParameter Key="controlId" Value="photoDate" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.photo.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="fileSizeHd" TitleKey="vt.photo.fileSizeHd" TitleValue="fileSizeHd" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileSizeHd" />
+          <AttributeParameter Key="value" Value="fileSizeHd" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="fileSizeHd" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+</ArrayOfEazeEntity>

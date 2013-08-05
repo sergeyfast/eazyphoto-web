@@ -1,0 +1,7 @@
+form div.rows {
+  zoom: 1; }
+form button {
+  padding: 0; }
+  form button.large {
+    padding: 0;
+    width: 120px; }

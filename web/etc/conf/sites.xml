@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sites>
+    <site name="eazyphoto">
+        <settings>
+            <paths>
+                <path name="shared" value="/shared"/>
+                <path name="js" value="/shared/js"/>
+                <path name="css" value="/shared/css"/>
+                <path name="flash" value="/shared/flash"/>
+                <path name="images" value="/shared/images"/>
+                <path name="lang" value="/etc/locale"/>
+                <path name="vt" value="/vt"/>
+                <path name="tmpl" value="/etc/templates"/>
+                <path name="vfs" value="/shared/files"/>
+                <path name="temp" value="/shared/temp"/>
+                <path name="mail" value="/etc/templates/mail"/>
+                <path name="controls" value="/int/controls"/>
+                <path name="daemons" value="/int/daemons"/>
+                <path name="albums" value="/shared/files/albums"/>
+            </paths>
+            <!-- System modules Settings -->
+            <modules>
+                <localization class="LocaleLoader">
+                    <param name="path">lang://</param>
+                    <param name="default">ru</param>
+                    <param name="allowChange">false</param>
+                    <param name="htmlEncoding">utf-8</param>
+                    <param name="LC_ALL">ru_RU.UTF-8</param>
+                </localization>
+                <mailFactory class="MailFactory">
+                    <param name="senderName">Administrator</param>
+                    <param name="senderEmail">noreply@1adw.com</param>
+                    <param name="charset">utf-8</param>
+                </mailFactory>
+                <memcache class="MemcacheHelper">
+                    <param name="server">localhost</param>
+                    <param name="active">false</param>
+                </memcache>
+                <btsync class="BTSyncUtility">
+                    <param name="host">127.0.0.1</param>
+                    <param name="port">8888</param>
+                    <param name="user">admin</param>
+                    <param name="password">admin</param>
+                </btsync>
+                <eazyphotod class="EazyPhotoDaemon">
+                    <param name="host">127.0.0.1</param>
+                    <param name="port">8889</param>
+                    <param name="enabled">true</param>
+                </eazyphotod>
+            </modules>
+            <databases>
+                <database driver="MySqli">
+                    <hostname>127.0.0.1</hostname>
+                    <name>eazyphoto</name>
+                    <user>root</user>
+                    <password>root</password>
+                    <encoding>UTF8</encoding>
+                </database>
+            </databases>
+        </settings>
+        <hosts>
+            <host name="local">
+                <hostname>eazyphoto</hostname>
+            </host>
+            <host name="production">
+                <hostname>*</hostname>
+                <settings>
+                    <modules>
+                        <eazyphotod class="EazyPhotoDaemon">
+                            <param name="host">127.0.0.1</param>
+                            <param name="port">8889</param>
+                            <param name="enabled">true</param>
+                        </eazyphotod>
+                    </modules>
+                    <databases>
+                        <database driver="MySqli">
+                            <hostname>localhost</hostname>
+                            <name>eazyphoto</name>
+                            <user>root</user>
+                            <password>root</password>
+                        </database>
+                    </databases>
+                </settings>
+            </host>
+        </hosts>
+    </site>
+</sites>

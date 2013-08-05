@@ -1,0 +1,32 @@
+form.login-form {
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	width: 280px;
+	}
+form.login-form {
+	margin-left: -140px;
+	}
+form.login-form div.row {
+	margin: 0;
+	padding-right: 0;
+	padding-left: 5px;
+	}
+form.login-form div.row p.error {
+	margin-left: 104px;
+	}
+form.login-form div.row label {
+	width: 100px;
+	padding: 0;
+	vertical-align: middle;
+	}
+form.login-form div.row input[type="text"],
+form.login-form div.row input[type="password"] {
+	width: 160px;
+	}
+form.login-form div.buttons {
+	margin: 20px 0;
+	}
+form.login-form div.buttons-inner {
+	margin-left: 109px;
+	}

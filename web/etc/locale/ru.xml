@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language name="ru">
+  <errors>
+    <desc>
+      <validation><![CDATA[Ошибки при проверке]]></validation>
+    </desc>
+    <fatal>
+      <database><![CDATA[Ошибка базы данных. Обратитесь к разработчикам]]></database>
+    </fatal>
+    <format><![CDATA[Неверный формат]]></format>
+    <max><![CDATA[Превышено максимальное значение]]></max>
+    <min><![CDATA[Минимальное значение меньше допустимого]]></min>
+    <null><![CDATA[Значение не может быть пустым]]></null>
+  </errors>
+  <vt>
+    <grid>
+      <resultsCount>
+        <onePage1><![CDATA[Показан %s результат]]></onePage1>
+        <onePage2><![CDATA[Показано %s результата]]></onePage2>
+        <onePage5><![CDATA[Показано %s результатов]]></onePage5>
+        <pages><![CDATA[Показано %s-%s результатов из %s]]></pages>
+      </resultsCount>
+      <pEnd><![CDATA[&gt;&gt;]]></pEnd>
+      <pStart><![CDATA[&lt;&lt;]]></pStart>
+      <pFrom><![CDATA[из]]></pFrom>
+      <pPrev><![CDATA[пред]]></pPrev>
+      <pNext><![CDATA[след]]></pNext>
+      <pageSize><![CDATA[Количество на странице]]></pageSize>
+      <search><![CDATA[Найти]]></search>
+      <searchparams><![CDATA[Поиск]]></searchparams>
+    </grid>
+    <common>
+      <add><![CDATA[Добавить]]></add>
+      <yes><![CDATA[Да]]></yes>
+      <no><![CDATA[Нет]]></no>
+      <back><![CDATA[Назад]]></back>
+      <cancel><![CDATA[Отменить]]></cancel>
+      <day><![CDATA[день]]></day>
+      <days><![CDATA[дня]]></days>
+      <delete><![CDATA[Удалить]]></delete>
+      <deleted><![CDATA[Удалено]]></deleted>
+      <edit><![CDATA[Редактировать]]></edit>
+      <editPreview><![CDATA[Применить]]></editPreview>
+      <find><![CDATA[Найти]]></find>
+      <hour><![CDATA[час]]></hour>
+      <hours><![CDATA[часа]]></hours>
+      <manyDays><![CDATA[дней]]></manyDays>
+      <timeBack><![CDATA[ назад]]></timeBack>
+      <manyHours><![CDATA[часов]]></manyHours>
+      <manyMinutes><![CDATA[минут]]></manyMinutes>
+      <manySeconds><![CDATA[секунд]]></manySeconds>
+      <minute><![CDATA[минуту]]></minute>
+      <minutes><![CDATA[минуты]]></minutes>
+      <next><![CDATA[Далее]]></next>
+      <ok><![CDATA[Ок!]]></ok>
+      <operations><![CDATA[Действия]]></operations>
+      <reset><![CDATA[Сбросить]]></reset>
+      <saveChanges><![CDATA[Сохранить и закрыть]]></saveChanges>
+      <search><![CDATA[Поиск]]></search>
+      <closeSearch><![CDATA[Свернуть форму]]></closeSearch>
+      <openSearch><![CDATA[Развернуть форму]]></openSearch>
+      <second><![CDATA[секунду]]></second>
+      <seconds><![CDATA[секунды]]></seconds>
+      <select><![CDATA[Выбрать]]></select>
+      <title><![CDATA[Администрирование]]></title>
+      <undefined><![CDATA[Не определено]]></undefined>
+      <exit><![CDATA[Выход]]></exit>
+      <today><![CDATA[Сегодня]]></today>
+      <commonInfo><![CDATA[Общее]]></commonInfo>
+      <mainPage><![CDATA[Главная]]></mainPage>
+      <crumbAdd><![CDATA[Добавление]]></crumbAdd>
+      <crumbEdit><![CDATA[Редактирование]]></crumbEdit>
+    </common>
+    <daemonLock>
+      <deleteString><![CDATA[Удалить блокировку?]]></deleteString>
+      <isActive><![CDATA[Активен]]></isActive>
+      <maxExecutionTime><![CDATA[Максимальное время исполнения]]></maxExecutionTime>
+      <methodName><![CDATA[Метод]]></methodName>
+      <packageName><![CDATA[Пакет]]></packageName>
+      <runAt><![CDATA[Время запуска]]></runAt>
+      <title><![CDATA[Название]]></title>
+    </daemonLock>
+    <login>
+      <enter><![CDATA[Войти]]></enter>
+      <error><![CDATA[Имя пользователя или пароль не опознаны]]></error>
+      <password><![CDATA[Пароль]]></password>
+      <user><![CDATA[Пользователь]]></user>
+    </login>
+    <siteParam>
+      <deleteString><![CDATA[Вы действительно хотите удалить параметр?]]></deleteString>
+      <header><![CDATA[Параметры]]></header>
+      <alias><![CDATA[Имя]]></alias>
+      <value><![CDATA[Значение]]></value>
+      <description><![CDATA[Описание]]></description>
+      <statusId><![CDATA[Статус]]></statusId>
+    </siteParam>
+    <screens>
+      <siteParam>
+        <addTitle><![CDATA[Добавление параметра]]></addTitle>
+        <editTitle><![CDATA[Редактирование параметра]]></editTitle>
+        <list><![CDATA[Список параметров]]></list>
+      </siteParam>
+      <metaDetail>
+        <list><![CDATA[Список параметров страниц]]></list>
+        <addTitle><![CDATA[Добавление параметра страницы]]></addTitle>
+        <editTitle><![CDATA[Редактирование параметра страницы]]></editTitle>
+      </metaDetail>
+      <user>
+        <addTitle><![CDATA[Добавление пользователя]]></addTitle>
+        <editTitle><![CDATA[Редактирование пользователя]]></editTitle>
+        <list><![CDATA[Список пользователей]]></list>
+      </user>
+      <daemonLock>
+        <list><![CDATA[Список блокировок]]></list>
+        <deleteString><![CDATA[Вы действительно хотите удалить блокировку?]]></deleteString>
+      </daemonLock>
+      <staticPage>
+        <list><![CDATA[Список страниц]]></list>
+        <addTitle><![CDATA[Добавление страницы]]></addTitle>
+        <editTitle><![CDATA[Редактирование страницы]]></editTitle>
+      </staticPage>
+      <navigationType>
+        <list><![CDATA[Список типов навигации]]></list>
+        <addTitle><![CDATA[Добавление типа навигации]]></addTitle>
+        <editTitle><![CDATA[Редактирование типа навигации]]></editTitle>
+      </navigationType>
+      <navigation>
+        <list><![CDATA[Список элементов навигации]]></list>
+        <addTitle><![CDATA[Добавление элемента навигации]]></addTitle>
+        <editTitle><![CDATA[Редактирование элемента навигации]]></editTitle>
+      </navigation>
+      <album>
+        <list><![CDATA[Список альбомов]]></list>
+        <addTitle><![CDATA[Добавление альбома]]></addTitle>
+        <editTitle><![CDATA[Редактирование альбома]]></editTitle>
+      </album>
+      <photo>
+        <list><![CDATA[Список фотографий]]></list>
+        <addTitle><![CDATA[Добавление фотографии]]></addTitle>
+        <editTitle><![CDATA[Редактирование фотографии]]></editTitle>
+      </photo>
+    </screens>
+    <vfs>
+      <queue>
+        <browse><![CDATA[Выбрать файлы]]></browse>
+        <empty><![CDATA[Очистить очередь]]></empty>
+        <upload><![CDATA[Загрузить файлы]]></upload>
+      </queue>
+      <chooseFolder><![CDATA[Выберите папку]]></chooseFolder>
+      <createFolder><![CDATA[Создать папку]]></createFolder>
+      <explorer><![CDATA[Проводник]]></explorer>
+      <file><![CDATA[Файл]]></file>
+      <fileName><![CDATA[Имя]]></fileName>
+      <fileSize><![CDATA[Размер]]></fileSize>
+      <fileType><![CDATA[Тип]]></fileType>
+      <preView><![CDATA[Пред. просмотр]]></preView>
+      <tableView><![CDATA[Список]]></tableView>
+      <uploadFile><![CDATA[Загрузить файл]]></uploadFile>
+      <uploadFiles><![CDATA[Загрузить файлы]]></uploadFiles>
+      <view><![CDATA[Вид]]></view>
+    </vfs>
+    <menu>
+      <users><![CDATA[Пользователи]]></users>
+      <metaDetails><![CDATA[Параметры страниц]]></metaDetails>
+      <vfs><![CDATA[Файлы]]></vfs>
+      <logout><![CDATA[Выйти из системы]]></logout>
+      <exitToSite><![CDATA[Перейти на сайт]]></exitToSite>
+      <toSite><![CDATA[Перейти на сайт]]></toSite>
+      <toSiteNew><![CDATA[Перейти на сайт [в новом]]]></toSiteNew>
+      <staticPages><![CDATA[Страницы]]></staticPages>
+      <navigations><![CDATA[Элементы навигации]]></navigations>
+      <navigationTypes><![CDATA[Типы навигации]]></navigationTypes>
+      <siteParams><![CDATA[Параметры]]></siteParams>
+      <exit><![CDATA[Выход]]></exit>
+      <albums><![CDATA[Альбомы]]></albums>
+      <photos><![CDATA[Фотографии]]></photos>
+    </menu>
+    <metaDetail>
+      <deleteString><![CDATA[Вы действительно хотите удалить параметр страницы?]]></deleteString>
+      <url><![CDATA[Ссылка]]></url>
+      <pageTitle><![CDATA[Заголовок]]></pageTitle>
+      <metaKeywords><![CDATA[Ключевые слова]]></metaKeywords>
+      <metaDescription><![CDATA[Описание]]></metaDescription>
+      <alt><![CDATA[Картинка]]></alt>
+      <statusId><![CDATA[Статус]]></statusId>
+      <isInheritable><![CDATA[Наследовать параметры]]></isInheritable>
+      <content><![CDATA[Содержимое]]></content>
+      <header><![CDATA[Параметры страниц]]></header>
+    </metaDetail>
+    <user>
+      <deleteString><![CDATA[Вы действительно хотите удалить пользователя?]]></deleteString>
+      <header><![CDATA[пользователи]]></header>
+      <login><![CDATA[Имя пользователя]]></login>
+      <password><![CDATA[Пароль]]></password>
+      <statusId><![CDATA[Статус]]></statusId>
+    </user>
+    <staticPage>
+      <deleteString><![CDATA[Вы действительно хотите удалить страницу?]]></deleteString>
+      <header><![CDATA[страницы]]></header>
+      <title><![CDATA[Заголовок]]></title>
+      <url><![CDATA[Ссылка]]></url>
+      <content><![CDATA[Текст]]></content>
+      <pageTitle><![CDATA[Заголовок страницы]]></pageTitle>
+      <metaKeywords><![CDATA[Ключевые слова]]></metaKeywords>
+      <metaDescription><![CDATA[Описание]]></metaDescription>
+      <orderNumber><![CDATA[Порядковый номер]]></orderNumber>
+      <parentStaticPageId><![CDATA[Родительская страница]]></parentStaticPageId>
+      <statusId><![CDATA[Статус]]></statusId>
+      <commonInfo><![CDATA[Общая информация]]></commonInfo>
+      <metaDetails><![CDATA[Параметры страницы]]></metaDetails>
+      <nodes><![CDATA[nodes]]></nodes>
+    </staticPage>
+    <navigationType>
+      <deleteString><![CDATA[Вы действительно хотите удалить типа навигации?]]></deleteString>
+      <header><![CDATA[типы навигации]]></header>
+      <title><![CDATA[Заголовок]]></title>
+      <alias><![CDATA[Системное имя]]></alias>
+      <statusId><![CDATA[Статус]]></statusId>
+    </navigationType>
+    <navigation>
+      <deleteString><![CDATA[Вы действительно хотите удалить элемент навигации?]]></deleteString>
+      <header><![CDATA[элементы навигации]]></header>
+      <title><![CDATA[Заголовок]]></title>
+      <orderNumber><![CDATA[Порядковый номер]]></orderNumber>
+      <navigationTypeId><![CDATA[Тип навигации]]></navigationTypeId>
+      <url><![CDATA[Ссылка]]></url>
+      <staticPageId><![CDATA[Страница]]></staticPageId>
+      <statusId><![CDATA[Статус]]></statusId>
+      <nodes><![CDATA[nodes]]></nodes>
+    </navigation>
+    <album>
+      <deleteString><![CDATA[Вы действительно хотите удалить альбом?]]></deleteString>
+      <header><![CDATA[альбомы]]></header>
+      <title><![CDATA[Название]]></title>
+      <description><![CDATA[Описание]]></description>
+      <alias><![CDATA[Системное имя]]></alias>
+      <isPrivate><![CDATA[Скрытый альбом]]></isPrivate>
+      <startDate><![CDATA[Дата начала]]></startDate>
+      <endDate><![CDATA[Дата окончания]]></endDate>
+      <orderNumber><![CDATA[Порядковый номер]]></orderNumber>
+      <folderPath><![CDATA[Путь до папки]]></folderPath>
+      <roSecret><![CDATA[ReadOnly Secret]]></roSecret>
+      <roSecretHd><![CDATA[ReadOnly Secret HD]]></roSecretHd>
+      <deleteOriginalsAfter><![CDATA[Удалить оригиналы через X дней]]></deleteOriginalsAfter>
+      <isDescSort><![CDATA[Обратная сортировка]]></isDescSort>
+      <createdAt><![CDATA[Дата создания]]></createdAt>
+      <modifiedAt><![CDATA[Дата изменения]]></modifiedAt>
+      <userId><![CDATA[Пользователь]]></userId>
+      <statusId><![CDATA[Статус]]></statusId>
+    </album>
+    <photo>
+      <deleteString><![CDATA[Вы действительно хотите удалить фотографию?]]></deleteString>
+      <header><![CDATA[фотографии]]></header>
+      <albumId><![CDATA[Альбом]]></albumId>
+      <originalName><![CDATA[Оригинальный файл]]></originalName>
+      <filename><![CDATA[Файл на сервере]]></filename>
+      <fileSize><![CDATA[Размер файла]]></fileSize>
+      <fileSizeHd><![CDATA[Размер hd файла]]></fileSizeHd>
+      <orderNumber><![CDATA[Порядковый номер]]></orderNumber>
+      <afterText><![CDATA[Текст под фотографией]]></afterText>
+      <title><![CDATA[Название]]></title>
+      <exif><![CDATA[EXIF]]></exif>
+      <createdAt><![CDATA[Дата создания]]></createdAt>
+      <photoDate><![CDATA[Дата снимка]]></photoDate>
+      <statusId><![CDATA[Статус]]></statusId>
+    </photo>
+  </vt>
+  <objects>
+    <siteParam>
+      <single><![CDATA[параметр]]></single>
+      <plural><![CDATA[параметры]]></plural>
+      <pluralGenitive><![CDATA[параметров]]></pluralGenitive>
+      <singleGenitive><![CDATA[параметра]]></singleGenitive>
+      <singleAccusative><![CDATA[параметр]]></singleAccusative>
+    </siteParam>
+    <metaDetail>
+      <single><![CDATA[параметр страницы]]></single>
+      <plural><![CDATA[параметры страниц]]></plural>
+      <pluralGenitive><![CDATA[параметров страниц]]></pluralGenitive>
+      <singleGenitive><![CDATA[параметра страницы]]></singleGenitive>
+      <singleAccusative><![CDATA[параметр страницы]]></singleAccusative>
+    </metaDetail>
+    <user>
+      <single><![CDATA[пользователь]]></single>
+      <plural><![CDATA[пользователи]]></plural>
+      <pluralGenitive><![CDATA[пользователей]]></pluralGenitive>
+      <singleGenitive><![CDATA[пользователя]]></singleGenitive>
+      <singleAccusative><![CDATA[пользователя]]></singleAccusative>
+    </user>
+    <staticPage>
+      <single><![CDATA[страница]]></single>
+      <plural><![CDATA[страницы]]></plural>
+      <pluralGenitive><![CDATA[страниц]]></pluralGenitive>
+      <singleGenitive><![CDATA[страницы]]></singleGenitive>
+      <singleAccusative><![CDATA[страницу]]></singleAccusative>
+    </staticPage>
+    <navigationType>
+      <single><![CDATA[тип навигации]]></single>
+      <plural><![CDATA[типы навигации]]></plural>
+      <pluralGenitive><![CDATA[типов навигации]]></pluralGenitive>
+      <singleGenitive><![CDATA[типа навигации]]></singleGenitive>
+      <singleAccusative><![CDATA[типа навигации]]></singleAccusative>
+    </navigationType>
+    <navigation>
+      <single><![CDATA[элемент навигации]]></single>
+      <plural><![CDATA[элементы навигации]]></plural>
+      <pluralGenitive><![CDATA[элементов навигации]]></pluralGenitive>
+      <singleGenitive><![CDATA[элемента навигации]]></singleGenitive>
+      <singleAccusative><![CDATA[элемент навигации]]></singleAccusative>
+    </navigation>
+    <album>
+      <single><![CDATA[альбом]]></single>
+      <plural><![CDATA[альбомы]]></plural>
+      <pluralGenitive><![CDATA[альбомов]]></pluralGenitive>
+      <singleGenitive><![CDATA[альбома]]></singleGenitive>
+      <singleAccusative><![CDATA[альбом]]></singleAccusative>
+    </album>
+    <photo>
+      <single><![CDATA[фотография]]></single>
+      <plural><![CDATA[фотографии]]></plural>
+      <pluralGenitive><![CDATA[фотографий]]></pluralGenitive>
+      <singleGenitive><![CDATA[фотографии]]></singleGenitive>
+      <singleAccusative><![CDATA[фотографию]]></singleAccusative>
+    </photo>
+  </objects>
+</language>

@@ -1,0 +1,934 @@
+<?xml version="1.0"?>
+<ArrayOfEazeEntity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EazeEntity Name="Status">
+    <TerminalPath>statuses</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies />
+    <Search>
+      <TemplateAttribute Name="statusId" TitleKey="vt.status.statusId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="statusId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.status.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.status.alias" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="statusId" TitleKey="vt.status.statusId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="statusId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.status.title" TitleValue="Заголовок" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.status.alias" TitleValue="Системное имя" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="SiteParam">
+    <TerminalPath>site-params</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies />
+    <Search>
+      <TemplateAttribute Name="siteParamId" TitleKey="vt.siteParam.siteParamId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="siteParamId" />
+          <AttributeParameter Key="value" Value="siteParamId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="siteParamId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.siteParam.alias" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="value" TitleKey="vt.siteParam.value" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="value" />
+          <AttributeParameter Key="value" Value="value" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="value" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="description" TitleKey="vt.siteParam.description" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="description" />
+          <AttributeParameter Key="value" Value="description" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="description" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.siteParam.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="siteParamId" TitleKey="vt.siteParam.siteParamId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="siteParamId" />
+          <AttributeParameter Key="value" Value="siteParamId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="siteParamId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.siteParam.alias" TitleValue="Имя" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="value" TitleKey="vt.siteParam.value" TitleValue="Значение" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="value" />
+          <AttributeParameter Key="value" Value="value" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="value" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="description" TitleKey="vt.siteParam.description" TitleValue="Описание" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="description" />
+          <AttributeParameter Key="value" Value="description" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="description" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.siteParam.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="MetaDetail">
+    <TerminalPath>meta-details</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies />
+    <Search>
+      <TemplateAttribute Name="metaDetailId" TitleKey="vt.metaDetail.metaDetailId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaDetailId" />
+          <AttributeParameter Key="value" Value="metaDetailId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaDetailId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="url" TitleKey="vt.metaDetail.url" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="url" />
+          <AttributeParameter Key="value" Value="url" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="url" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="pageTitle" TitleKey="vt.metaDetail.pageTitle" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="pageTitle" />
+          <AttributeParameter Key="value" Value="pageTitle" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="pageTitle" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaKeywords" TitleKey="vt.metaDetail.metaKeywords" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaKeywords" />
+          <AttributeParameter Key="value" Value="metaKeywords" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaKeywords" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaDescription" TitleKey="vt.metaDetail.metaDescription" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaDescription" />
+          <AttributeParameter Key="value" Value="metaDescription" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaDescription" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alt" TitleKey="vt.metaDetail.alt" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alt" />
+          <AttributeParameter Key="value" Value="alt" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alt" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isInheritable" TitleKey="vt.metaDetail.isInheritable" Type="HTML_CHECKBOX" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isInheritable" />
+          <AttributeParameter Key="value" Value="isInheritable" />
+          <AttributeParameter Key="controlId" Value="isInheritable" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.metaDetail.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="metaDetailId" TitleKey="vt.metaDetail.metaDetailId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaDetailId" />
+          <AttributeParameter Key="value" Value="metaDetailId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaDetailId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="url" TitleKey="vt.metaDetail.url" TitleValue="Ссылка" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="url" />
+          <AttributeParameter Key="value" Value="url" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="url" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="pageTitle" TitleKey="vt.metaDetail.pageTitle" TitleValue="Заголовок" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="pageTitle" />
+          <AttributeParameter Key="value" Value="pageTitle" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="pageTitle" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaKeywords" TitleKey="vt.metaDetail.metaKeywords" TitleValue="Ключевые слова" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaKeywords" />
+          <AttributeParameter Key="value" Value="metaKeywords" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaKeywords" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaDescription" TitleKey="vt.metaDetail.metaDescription" TitleValue="Описание" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaDescription" />
+          <AttributeParameter Key="value" Value="metaDescription" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaDescription" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alt" TitleKey="vt.metaDetail.alt" TitleValue="Картинка" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alt" />
+          <AttributeParameter Key="value" Value="alt" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alt" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isInheritable" TitleKey="vt.metaDetail.isInheritable" TitleValue="Наследовать параметры" Type="HTML_CHECKBOX" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isInheritable" />
+          <AttributeParameter Key="value" Value="isInheritable" />
+          <AttributeParameter Key="controlId" Value="isInheritable" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.metaDetail.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="User">
+    <TerminalPath>users</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies />
+    <Search>
+      <TemplateAttribute Name="userId" TitleKey="vt.user.userId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="userId" />
+          <AttributeParameter Key="value" Value="userId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="userId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="login" TitleKey="vt.user.login" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="login" />
+          <AttributeParameter Key="value" Value="login" />
+          <AttributeParameter Key="size" Value="40" />
+          <AttributeParameter Key="controlId" Value="login" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="password" TitleKey="vt.user.password" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="password" />
+          <AttributeParameter Key="value" Value="password" />
+          <AttributeParameter Key="size" Value="40" />
+          <AttributeParameter Key="controlId" Value="password" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.user.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="userId" TitleKey="vt.user.userId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="userId" />
+          <AttributeParameter Key="value" Value="userId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="userId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="login" TitleKey="vt.user.login" TitleValue="Имя пользователя" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="login" />
+          <AttributeParameter Key="value" Value="login" />
+          <AttributeParameter Key="size" Value="40" />
+          <AttributeParameter Key="controlId" Value="login" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="password" TitleKey="vt.user.password" TitleValue="Пароль" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="password" />
+          <AttributeParameter Key="value" Value="password" />
+          <AttributeParameter Key="size" Value="40" />
+          <AttributeParameter Key="controlId" Value="password" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.user.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="StaticPage">
+    <TerminalPath>static-pages</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies>staticPages</CacheDependencies>
+    <Search>
+      <TemplateAttribute Name="staticPageId" TitleKey="vt.staticPage.staticPageId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="staticPageId" />
+          <AttributeParameter Key="value" Value="staticPageId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="staticPageId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.staticPage.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="url" TitleKey="vt.staticPage.url" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="url" />
+          <AttributeParameter Key="value" Value="url" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="url" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="content" TitleKey="vt.staticPage.content" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="content" />
+          <AttributeParameter Key="value" Value="content" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="content" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="pageTitle" TitleKey="vt.staticPage.pageTitle" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="pageTitle" />
+          <AttributeParameter Key="value" Value="pageTitle" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="pageTitle" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaKeywords" TitleKey="vt.staticPage.metaKeywords" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaKeywords" />
+          <AttributeParameter Key="value" Value="metaKeywords" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaKeywords" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaDescription" TitleKey="vt.staticPage.metaDescription" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaDescription" />
+          <AttributeParameter Key="value" Value="metaDescription" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaDescription" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.staticPage.orderNumber" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentStaticPageId" TitleKey="vt.staticPage.parentStaticPageId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentStaticPageId" />
+          <AttributeParameter Key="values" Value="$parentStaticPages" />
+          <AttributeParameter Key="dataKey" Value="parentStaticPageId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentStaticPageId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.staticPage.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="nodes" TitleKey="vt.staticPage.nodes" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="nodes" />
+          <AttributeParameter Key="value" Value="nodes" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="nodes" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="staticPageId" TitleKey="vt.staticPage.staticPageId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="staticPageId" />
+          <AttributeParameter Key="value" Value="staticPageId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="staticPageId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.staticPage.title" TitleValue="Заголовок" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="url" TitleKey="vt.staticPage.url" TitleValue="Ссылка" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="url" />
+          <AttributeParameter Key="value" Value="url" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="url" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="content" TitleKey="vt.staticPage.content" TitleValue="Текст" Type="HTML_EDITOR" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="content" />
+          <AttributeParameter Key="value" Value="content" />
+          <AttributeParameter Key="rows" Value="5" />
+          <AttributeParameter Key="cols" Value="80" />
+          <AttributeParameter Key="controlId" Value="content" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="pageTitle" TitleKey="vt.staticPage.pageTitle" TitleValue="Заголовок страницы" Type="HTML_INPUT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="pageTitle" />
+          <AttributeParameter Key="value" Value="pageTitle" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="pageTitle" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaKeywords" TitleKey="vt.staticPage.metaKeywords" TitleValue="Ключевые слова" Type="HTML_TEXT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaKeywords" />
+          <AttributeParameter Key="value" Value="metaKeywords" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaKeywords" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="metaDescription" TitleKey="vt.staticPage.metaDescription" TitleValue="Описание" Type="HTML_TEXT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="metaDescription" />
+          <AttributeParameter Key="value" Value="metaDescription" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="metaDescription" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.staticPage.orderNumber" TitleValue="Порядковый номер" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentStaticPageId" TitleKey="vt.staticPage.parentStaticPageId" TitleValue="Родительская страница" Type="HTML_SELECT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentStaticPageId" />
+          <AttributeParameter Key="values" Value="$parentStaticPages" />
+          <AttributeParameter Key="dataKey" Value="parentStaticPageId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentStaticPageId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentStaticPage.title" TitleKey="vt.staticPage.parentStaticPageId" TitleValue="" Type="HTML_INPUT" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentStaticPageId" />
+          <AttributeParameter Key="values" Value="$parentStaticPages" />
+          <AttributeParameter Key="dataKey" Value="parentStaticPageId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentStaticPageId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.staticPage.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="nodes" TitleKey="vt.staticPage.nodes" TitleValue="nodes" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="nodes" />
+          <AttributeParameter Key="value" Value="nodes" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="nodes" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="NavigationType">
+    <TerminalPath>navigations/types</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies />
+    <Search>
+      <TemplateAttribute Name="navigationTypeId" TitleKey="vt.navigationType.navigationTypeId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="navigationTypeId" />
+          <AttributeParameter Key="value" Value="navigationTypeId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="navigationTypeId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.navigationType.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.navigationType.alias" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.navigationType.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="navigationTypeId" TitleKey="vt.navigationType.navigationTypeId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="navigationTypeId" />
+          <AttributeParameter Key="value" Value="navigationTypeId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="navigationTypeId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.navigationType.title" TitleValue="Заголовок" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.navigationType.alias" TitleValue="Системное имя" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.navigationType.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="Navigation">
+    <TerminalPath>navigations</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies>navigationTypes staticPages</CacheDependencies>
+    <Search>
+      <TemplateAttribute Name="navigationId" TitleKey="vt.navigation.navigationId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="navigationId" />
+          <AttributeParameter Key="value" Value="navigationId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="navigationId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.navigation.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="navigationTypeId" TitleKey="vt.navigation.navigationTypeId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="navigationTypeId" />
+          <AttributeParameter Key="values" Value="$navigationTypes" />
+          <AttributeParameter Key="dataKey" Value="navigationTypeId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="navigationTypeId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.navigation.orderNumber" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="staticPageId" TitleKey="vt.navigation.staticPageId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="staticPageId" />
+          <AttributeParameter Key="values" Value="$staticPages" />
+          <AttributeParameter Key="dataKey" Value="staticPageId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="staticPageId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="url" TitleKey="vt.navigation.url" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="url" />
+          <AttributeParameter Key="value" Value="url" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="url" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.navigation.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="nodes" TitleKey="vt.navigation.nodes" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="nodes" />
+          <AttributeParameter Key="value" Value="nodes" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="nodes" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="navigationId" TitleKey="vt.navigation.navigationId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="navigationId" />
+          <AttributeParameter Key="value" Value="navigationId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="navigationId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.navigation.title" TitleValue="Заголовок" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.navigation.orderNumber" TitleValue="Порядковый номер" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="navigationTypeId" TitleKey="vt.navigation.navigationTypeId" TitleValue="Тип навигации" Type="HTML_SELECT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="navigationTypeId" />
+          <AttributeParameter Key="values" Value="$navigationTypes" />
+          <AttributeParameter Key="dataKey" Value="navigationTypeId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="navigationTypeId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="navigationType.title" TitleKey="vt.navigation.navigationTypeId" TitleValue="" Type="HTML_INPUT" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="navigationTypeId" />
+          <AttributeParameter Key="values" Value="$navigationTypes" />
+          <AttributeParameter Key="dataKey" Value="navigationTypeId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="navigationTypeId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="url" TitleKey="vt.navigation.url" TitleValue="Ссылка" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="url" />
+          <AttributeParameter Key="value" Value="url" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="url" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="staticPageId" TitleKey="vt.navigation.staticPageId" TitleValue="Страница" Type="HTML_SELECT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="staticPageId" />
+          <AttributeParameter Key="values" Value="$staticPages" />
+          <AttributeParameter Key="dataKey" Value="staticPageId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="staticPageId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="staticPage.title" TitleKey="vt.navigation.staticPageId" TitleValue="" Type="HTML_INPUT" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="staticPageId" />
+          <AttributeParameter Key="values" Value="$staticPages" />
+          <AttributeParameter Key="dataKey" Value="staticPageId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="staticPageId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.navigation.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="nodes" TitleKey="vt.navigation.nodes" TitleValue="nodes" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="nodes" />
+          <AttributeParameter Key="value" Value="nodes" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="nodes" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="DaemonLock">
+    <TerminalPath>daemonLocks</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies />
+    <Search>
+      <TemplateAttribute Name="daemonLockId" TitleKey="vt.daemonLock.daemonLockId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="daemonLockId" />
+          <AttributeParameter Key="value" Value="daemonLockId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="daemonLockId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.daemonLock.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="packageName" TitleKey="vt.daemonLock.packageName" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="packageName" />
+          <AttributeParameter Key="value" Value="packageName" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="packageName" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="methodName" TitleKey="vt.daemonLock.methodName" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="methodName" />
+          <AttributeParameter Key="value" Value="methodName" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="methodName" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="runAt" TitleKey="vt.daemonLock.runAt" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="runAt" />
+          <AttributeParameter Key="value" Value="runAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="maxExecutionTime" TitleKey="vt.daemonLock.maxExecutionTime" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="maxExecutionTime" />
+          <AttributeParameter Key="value" Value="maxExecutionTime" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isActive" TitleKey="vt.daemonLock.isActive" Type="HTML_CHECKBOX" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isActive" />
+          <AttributeParameter Key="value" Value="isActive" />
+          <AttributeParameter Key="controlId" Value="isActive" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="daemonLockId" TitleKey="vt.daemonLock.daemonLockId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="daemonLockId" />
+          <AttributeParameter Key="value" Value="daemonLockId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="daemonLockId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.daemonLock.title" TitleValue="Заголовок" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="packageName" TitleKey="vt.daemonLock.packageName" TitleValue="packageName" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="packageName" />
+          <AttributeParameter Key="value" Value="packageName" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="packageName" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="methodName" TitleKey="vt.daemonLock.methodName" TitleValue="methodName" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="methodName" />
+          <AttributeParameter Key="value" Value="methodName" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="methodName" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="runAt" TitleKey="vt.daemonLock.runAt" TitleValue="runAt" Type="HTML_DATETIME" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="runAt" />
+          <AttributeParameter Key="value" Value="runAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="maxExecutionTime" TitleKey="vt.daemonLock.maxExecutionTime" TitleValue="maxExecutionTime" Type="HTML_DATETIME" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="maxExecutionTime" />
+          <AttributeParameter Key="value" Value="maxExecutionTime" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isActive" TitleKey="vt.daemonLock.isActive" TitleValue="isActive" Type="HTML_CHECKBOX" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isActive" />
+          <AttributeParameter Key="value" Value="isActive" />
+          <AttributeParameter Key="controlId" Value="isActive" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+</ArrayOfEazeEntity>

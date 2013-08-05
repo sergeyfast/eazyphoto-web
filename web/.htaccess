@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteBase /
+RewriteRule ^favicon.ico - [L]
+RewriteRule ^crossdomain.xml - [L]
+RewriteRule ^robots.txt - [L]
+
+RewriteRule ^(vt)$ /$1/? [R=301,L]
+RewriteRule .* eaze.php
