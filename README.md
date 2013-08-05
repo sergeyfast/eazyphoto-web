@@ -8,6 +8,7 @@ Install
   * Create database from docs/dump.sql (utf8)
   * Change settings in web/etc/conf/sites.xml
   * Sample nginx config: docs/nginx-fpm.conf
+  * chmod -R 777 web/cache web/shared/temp web/shared/files
   * Make sure you have btsync and eazyphotod installed and running
 
 
