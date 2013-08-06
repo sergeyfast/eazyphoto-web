@@ -27,7 +27,7 @@
                 , 'leStartDate'   => $year ? Convert::ToDate( '31.12.' . $year ) : null
             );
 
-            $albums = AlbumFactory::Get( $search );
+            $albums = AlbumFactory::Get( $search, array( BaseFactory::WithoutPages => true ) );
             $photos = $albums ? $this->getPhotos( $albums ) : null;
 
             Response::setArray( 'albums', $albums );
