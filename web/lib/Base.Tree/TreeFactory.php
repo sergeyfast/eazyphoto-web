@@ -1,4 +1,8 @@
 <?php
+    use Eaze\Database\DataSet;
+    use Eaze\Model\BaseFactory;
+    use Eaze\Model\BaseFactoryPrepare;
+
     /**
      * Tree Factory Abstract Class.
      *
@@ -10,7 +14,7 @@
         /**
          * Gets results form the data set.
          *
-         * @param IDataSet $ds    Result Data Set.
+         * @param DataSet $ds    Result Data Set.
          * @param array $options  Array of options.
          * @static
          * @access private
@@ -47,4 +51,3 @@
             return $result;
         }
     }
-?>

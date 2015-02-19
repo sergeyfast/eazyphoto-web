@@ -1,4 +1,11 @@
 <?php
+    define( "TREEMODE_LTREE", "LTree" );
+    define( "TREEMODE_ADJ", "ADJLists" );
+    define( "TREEMODE_NS", "NestedSets");
+
+    define( "SELECTOR_PATH", "path" );
+    define( "SELECTOR_ID", "id" );
+
     /**
      * Tree Factory Abstract Class.
      *
@@ -153,4 +160,3 @@
          */
         public static function GetChildren( $object, $searchArray = array(), $options = array(), $level = 1, $mapping, $connectionName = null );
     }
-?>

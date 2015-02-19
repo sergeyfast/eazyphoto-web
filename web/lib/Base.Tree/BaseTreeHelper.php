@@ -10,10 +10,12 @@
      * @author Rykin Maxim
      */
     class BaseTreeHelper {
+
         /**
          * Collapses objects to the tree.
          *
-         * @param array $objects  List of the objects to collapse.
+         * @param array $objects List of the objects to collapse.
+         * @return array
          */
         public static function Collapse( $objects ) {
             $tree = array();

@@ -1,98 +1,102 @@
 <?php
+    /** @var string[] $search */
+    /** @var bool $hideSearch */
+    /** @var string $sortField */
+    /** @var string $sortType */
+
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Site\Site;
+
     /** @var StaticPage[] $list */
+    /** @var StaticPage[] $staticPages */
+    
 
-    $__pageTitle = LocaleLoader::Translate( "vt.screens.staticPage.list");
+    $__pageTitle = T( 'vt.screens.staticPage.list');
 
-    $grid = array(
-        "columns" => array(
-           LocaleLoader::Translate( "vt.staticPage.title" )
-            , LocaleLoader::Translate( "vt.staticPage.url" )
-            , LocaleLoader::Translate( "vt.staticPage.orderNumber" )
-            , LocaleLoader::Translate( "vt.staticPage.parentStaticPageId" )
-            , LocaleLoader::Translate( "vt.staticPage.statusId" )
-        )
-        , "colspans"	=> array()
-        , "sorts"		=> array(0 => "title", 1 => "url", 2 => "orderNumber", 3 => "parentStaticPage.title", 4 => "statusId")
-        , "operations"	=> true
-        , "allowAdd"	=> true
-        , "canPages"	=> StaticPageFactory::CanPages()
-        , "basepath"	=> Site::GetWebPath( "vt://static-pages/" )
-        , "addpath"		=> Site::GetWebPath( "vt://static-pages/add" )
-        , "title"		=> $__pageTitle
-		, "description"	=> ''
-        , "pageSize"	=> HtmlHelper::RenderToForm( $search["pageSize"] )
-        , "deleteStr"	=> LocaleLoader::Translate( "vt.staticPage.deleteString")
-    );
-	
-	$__breadcrumbs = array( array( 'link' => $grid['basepath'], 'title' => $__pageTitle ) );
-?>
-{increal:tmpl://vt/header.tmpl.php}
-<div class="main">
-	<div class="inner">
-		{increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
-		<div class="pagetitle">
-			<? if( $grid['allowAdd'] ) { ?>
-			<div class="controls"><a href="{$grid[addpath]}" class="add"><span>{lang:vt.common.add}</span></a></div>
-			<? } ?>
-			<h1>{$__pageTitle}</h1>
-		</div>
-		{$grid[description]}
-		<div class="search<?= $hideSearch == "true" ? " closed" : ""  ?>">
-			<a href="#" class="search-close"><span>{lang:vt.common.closeSearch}</span></a>
-			<a href="#" class="search-open"><span>{lang:vt.common.openSearch}</span></a>
-			<form class="search-form" id="searchForm" method="post" action="{$grid[basepath]}">
-				<input type="hidden" value="1" name="searchForm" />
-				<input type="hidden" value="" id="pageId" name="page" />
-				<input type="hidden" value="{$grid[pageSize]}" id="pageSize" name="search[pageSize]" />
-				<input type="hidden" value="{form:$sortField}" id="sortField" name="sortField" />
-				<input type="hidden" value="{form:$sortType}" id="sortType" name="sortType" />
-                <div class="row">
-                    <label>{lang:vt.staticPage.title}</label>
-                    <?= FormHelper::FormInput( "search[title]", $search['title'], 'title', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.staticPage.content}</label>
-                    <?= FormHelper::FormInput( "search[content]", $search['content'], 'content', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.staticPage.parentStaticPageId}</label>
-                    <?= StaticPageHelper::FormSelect( "search[parentStaticPageId]", $staticPages, $search["parentStaticPageId"] ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.staticPage.statusId}</label>
-                    <?= FormHelper::FormSelect( "search[statusId]", StatusUtility::$Common[$__currentLang], "", "", $search['statusId'], null, null, true ); ?>
-                </div>
-				<input type="submit" value="{lang:vt.common.find}" />
-			</form>
-		</div>
-		
-		<!-- GRID -->
-		{increal:tmpl://vt/elements/datagrid/header.tmpl.php}
-<?php
-    $langEdit   = LocaleLoader::Translate( "vt.common.edit" );
-    $langDelete = LocaleLoader::Translate( "vt.common.delete" );
+    $grid = [
+        'columns'     => [
+            T( 'vt.staticPage.title' ),
+            T( 'vt.staticPage.url' ),
+            T( 'vt.staticPage.orderNumber' ),
+            T( 'vt.staticPage.parentStaticPageId' ),
+            T( 'vt.staticPage.statusId' ),
+        ],
+        'colspans'    => [],
+        'sorts'       => [ 0 => 'title', 1 => 'url', 2 => 'orderNumber', 3 => 'parentStaticPage.title', 4 => 'statusId', ],
+        'operations'  => true,
+        'allowAdd'    => true,
+        'canPages'    => StaticPageFactory::CanPages(),
+        'basePath'    => Site::GetWebPath( 'vt://static-pages/' ),
+        'addPath'     => Site::GetWebPath( 'vt://static-pages/add' ),
+        'title'       => $__pageTitle,
+        'description' => '',
+        'pageSize'    => FormHelper::RenderToForm( $search['pageSize'] ),
+        'deleteStr'   => T( 'vt.staticPage.deleteString' ),
+    ];
 
-    foreach ( $list as $object )  {
-        $id         = $object->staticPageId;
-        $editpath   = $grid['basepath'] . "edit/" . $id;
+    $__breadcrumbs = [ [ 'link' => $grid['basePath'], 'title' => $__pageTitle ] ];
 ?>
-			<tr data-object-id="{$id}">
-                <td class="header">{$object.title}</td>
-                <td class="left">{$object.url}</td>
-                <td>{$object.orderNumber}</td>
-                <td><?= !empty($object->parentStaticPage) ? $object->parentStaticPage->title : "" ?></td>
-                <td><?= StatusUtility::GetStatusTemplate($object->statusId) ?></td>
-				<td width="10%">
-					<ul class="actions">
-						<li class="edit"><a href="{$editpath}" title="{$langEdit}">{$langEdit}</a></li><li class="delete"><a href="#" class="delete-object" title="{$langDelete}">{$langDelete}</a></li>
-					</ul>
-				</td>
-	        </tr>
-<?php
-    }
-?>
-		{increal:tmpl://vt/elements/datagrid/footer.tmpl.php}
-		<!-- EOF GRID -->
-	</div>
-</div>
-{increal:tmpl://vt/footer.tmpl.php}
+{increal:tmpl://vt/elements/header.tmpl.php}
+<main role="main">
+    {increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
+    <div class="container"><? if( $grid['allowAdd'] ) { ?><a href="{$grid[addPath]}" class="button _big floatRight marginAntiTopHalfBase"><i class="foundicon-add-doc"></i> {lang:vt.common.add}</a><? }?>
+        <h1>{$__pageTitle}</h1>
+        <form id="searchForm" method="post" action="{$grid[basePath]}">
+            <?= FormHelper::FormHidden( 'searchForm', 1 ); ?>
+            <?= FormHelper::FormHidden( 'page', '', 'pageId' ); ?>
+            <?= FormHelper::FormHidden( 'search[pageSize]', $grid['pageSize'], 'pageSize' ); ?>
+            <?= FormHelper::FormHidden( 'sortField', $sortField, 'sortField' ); ?>
+            <?= FormHelper::FormHidden( 'sortType', $sortType, 'sortType' ); ?>
+
+            <div class="plate cont">
+                <div class="form fsMedium">
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="title" class="blockLabel _shiftToRight">{lang:vt.staticPage.title}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[title]', $search['title'], 'title' ); ?></div>
+                        <?= VtHelper::GetExtendedSearchHtml() ?>
+                    </div>
+                    <div id="ExtendedSearch" class="displayNone" style="display: none;">
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="url" class="blockLabel _shiftToRight">{lang:vt.staticPage.url}</label></div>
+                            <div class="col6"><?= FormHelper::FormInput( 'search[url]', $search['url'], 'url' ); ?></div>
+                        </div>
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="content" class="blockLabel _shiftToRight">{lang:vt.staticPage.content}</label></div>
+                            <div class="col6"><?= FormHelper::FormInput( 'search[content]', $search['content'], 'content' ); ?></div>
+                        </div>
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="parentStaticPageId" class="blockLabel _shiftToRight">{lang:vt.staticPage.parentStaticPageId}</label></div>
+                            <div class="col6"><?= StaticPageHelper::FormSelect( 'search[parentStaticPageId]', $staticPages, $search['parentStaticPageId'] ); ?></div>
+                        </div>
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="statusId" class="blockLabel _shiftToRight">{lang:vt.staticPage.statusId}</label></div>
+                            <div class="col6"><?= FormHelper::FormSelect( 'search[statusId]', StatusUtility::$Common[$__currentLang], '', '', $search['statusId'], null, null, true ); ?></div>
+                        </div>
+                    </div>
+                    <div class="row _fluid _p"><div class="col6 offset3"><button type="submit">{lang:vt.common.find}</button></div></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {increal:tmpl://vt/elements/datagrid/paginator.tmpl.php}
+    {increal:tmpl://vt/elements/datagrid/header.tmpl.php}
+    <?php
+        $langEdit   = T( 'vt.common.edit' );
+        $langDelete = T( 'vt.common.delete' );
+
+        foreach ( $list as $object )  {
+            $id       = $object->staticPageId;
+            $editPath = $grid['basePath'] . 'edit/' . $id;
+    ?>
+                <tr data-object-id="{$id}">
+                    <td><strong>{$object.title}</strong></td>
+                    <td>{form:$object.url}</td>
+                    <td class="alignRight"><? if ( $object->orderNumber !== null ) { ?>{num:$object.orderNumber}<? } ?></td>
+                    <td><?= $object->parentStaticPage ? $object->parentStaticPage->title : '' ?></td>
+                    <td><?= StatusUtility::GetStatusTemplate( $object->statusId ) ?></td>
+                    <td class="tableControls"><a href="{$editPath}" title="{$langEdit}"><i class="foundicon-edit"></i> {$langEdit}</a> <a href="#" class="delete-object" title="{langDelete}"><i class="foundicon-remove"></i></a></td>
+                </tr>
+    <? } ?>
+    {increal:tmpl://vt/elements/datagrid/footer.tmpl.php}
+</main>
+{increal:tmpl://vt/elements/footer.tmpl.php}

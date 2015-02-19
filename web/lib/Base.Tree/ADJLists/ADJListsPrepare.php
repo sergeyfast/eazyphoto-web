@@ -1,13 +1,33 @@
 <?php
+
+
+    use Eaze\Database\IConnection;
+    use Eaze\Model\BaseFactoryPrepare;
+
     class ADJListsPrepare {
+
+        /**
+         * @param             $searchArray
+         * @param             $options
+         * @param             $object
+         * @param             $mapping
+         * @param IConnection $connection
+         * @return string
+         */
         public static function PrepareGetCommand( $searchArray, $options, $object, $mapping, $connection ) {
-            $query       = 'SELECT * FROM  ' . $conn->quote( $mapping["view"] );
-            $query      .= BaseFactoryPrepare::PrepareGetOrCountFields( $searchArray, $mapping, $options, $conn );
-            $query      .= BaseFactoryPrepare::GetOrderByString( $options, $conn );
-            
+            $query = 'SELECT * FROM  ' . $connection->Quote( $mapping["view"] );
+            $query .= BaseFactoryPrepare::PrepareGetOrCountFields( $searchArray, $mapping, $options, $connection );
+            $query .= BaseFactoryPrepare::GetOrderByString( $options, $connection );
+
             return $query;
         }
 
+
+        /**
+         * @param             $table
+         * @param IConnection $conn
+         * @return string
+         */
         public static function PrepareAddCommand( $table, IConnection $conn ) {
             $result = "INSERT INTO " . $conn->quote( $table )
                 . sprintf( " ( %s ", $conn->quote( "objectId" ) )
@@ -22,6 +42,12 @@
             return $result;
         }
 
+
+        /**
+         * @param             $mapping
+         * @param IConnection $conn
+         * @return string
+         */
         public static function PrepareMoveCommand( $mapping, $conn ) {
             $result = "UPDATE " . $conn->quote( $mapping["table"] . "Tree" );
             $result .= " SET level = @level";
@@ -30,6 +56,12 @@
             return $result;
         }
 
+
+        /**
+         * @param             $mapping
+         * @param IConnection $conn
+         * @return string
+         */
         public static function PrepareUpdateCommand( $mapping, $conn ) {
             $result = "UPDATE " . $conn->quote( $mapping["table"] . "Tree" );
             $result .= " SET level = @level";
@@ -39,6 +71,12 @@
             return $result;
         }
 
+
+        /**
+         * @param             $mapping
+         * @param IConnection $conn
+         * @return string
+         */
         public static function PrepareDeleteCommand( $mapping, $conn ) {
             $result = "DELETE FROM " . $conn->quote( $mapping["table"] . "Tree" );
             $result .= " WHERE " . $conn->quote( "objectId" ) . " IN @_objectIds";
@@ -46,4 +84,3 @@
             return $result;
         }
     }
-?>

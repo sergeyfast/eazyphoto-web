@@ -1,6 +1,11 @@
 <?php
     /** @var SiteParamHelper $sph */
 
+    use Eaze\Helpers\AssetHelper;
+    use Eaze\Helpers\CssHelper;
+    use Eaze\Helpers\JsHelper;
+    use Eaze\Site\Site;
+
     if ( !isset( $__activeElement ) ) {
         $__activeElement = NULL;
     }
@@ -38,20 +43,20 @@
      */
     $__pageTitle = !empty( $__pageTitle ) ? $__pageTitle : $__sitePageTitle;
 	
-    $cssFiles = array(
-        AssetHelper::AnyBrowser => array(
+    $cssFiles = [
+        AssetHelper::AnyBrowser => [
             'css://fe/foundation.min.css'
             , 'css://fe/custom.css'
-        )
-        , AssetHelper::IE7 => array()
-    );
+        ]
+        , AssetHelper::IE7 => []
+    ];
 
-    $jsFiles = array(
+    $jsFiles = [
         'js://fe/modernizr.foundation.js'
         , 'js://fe/jquery.js'
         //, 'js://fe/foundation.min.js'
         , 'js://fe/scripts.js'
-    );
+    ];
 
     CssHelper::Init( !Site::IsDevel() );
     JsHelper::Init( !Site::IsDevel() );

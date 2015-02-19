@@ -1,10 +1,17 @@
 <?php
+    use Eaze\Core\Convert;
+    use Eaze\Core\DirectoryInfo;
+    use Eaze\Core\FileInfo;
+    use Eaze\Helpers\ImageHelper;
+    use Eaze\Model\BaseFactory;
+    use Eaze\Site\Site;
+
     /**
      * VFS Utility
      *
      * @package    Base
      * @subpackage VFS
-     * @author Sergeyfast
+     * @author     Sergeyfast
      */
     class VfsUtility {
 
@@ -54,18 +61,19 @@
          * @var array
          */
         public static $ResizableSettings = array(
-            'prefix'  => 'original_'
-            , 'keep'  => true
-            , 'modes' => array(
-                array(
-                    'prefix'   => 'small_'
-                    , 'width'      => 93
-                    , 'height'     => 93
-                    , 'scale'      => false
-                    , 'quality'    => 90
-                )
-            )
+            'prefix' => 'original_',
+            'keep'   => true,
+            'modes'  => [
+                [
+                    'prefix'  => 'small_',
+                    'width'   => 93,
+                    'height'  => 93,
+                    'scale'   => false,
+                    'quality' => 90,
+                ]
+            ]
         );
+
 
         /**
          * Get Current Dir Real Path
@@ -73,7 +81,7 @@
          * @return string
          */
         public static function GetCurrentDirRealPath() {
-            $path = Site::GetRealPath( sprintf(  'vfs://%s/', date( 'Ym' ) ) );
+            $path = Site::GetRealPath( sprintf( 'vfs://%s/', date( 'Ym' ) ) );
 
             if ( !file_exists( $path ) && !is_dir( $path ) ) {
                 mkdir( $path );
@@ -121,10 +129,10 @@
 
         /**
          * Set Jail After Response
-         * @param int $jailedFolderId
+         * @param int         $jailedFolderId
          * @param VfsFolder[] $branch
          */
-        public static function CutJailedRoot( $jailedFolderId, &$branch  ) {
+        public static function CutJailedRoot( $jailedFolderId, &$branch ) {
             if ( !empty( $jailedFolderId ) && !empty( $branch[$jailedFolderId] ) ) {
                 $i = 0;
                 $f = current( $branch );
@@ -189,12 +197,12 @@
 
             if ( move_uploaded_file( $requestFile['tmp_name'], Site::GetRealPath( $tempFile ) ) ) {
                 $result = array(
-                    'name'      => $requestFile['name']
-                    , 'path'    => Site::GetRealPath( $tempFile )
-                    , 'size'    => $requestFile['size']
-                    , 'type'    => $requestFile['type']
-                    , 'normal'  => basename( $requestFile['name'], '.' . $extension )
-                    , 'relpath' => basename( $tempFile )
+                    'name'    => $requestFile['name'],
+                    'path'    => Site::GetRealPath( $tempFile ),
+                    'size'    => $requestFile['size'],
+                    'type'    => $requestFile['type'],
+                    'normal'  => basename( $requestFile['name'], '.' . $extension ),
+                    'relpath' => basename( $tempFile ),
                 );
             }
 
@@ -204,10 +212,10 @@
 
         /**
          * Create File
-         * @param int $folderId
+         * @param int    $folderId
          * @param string $name
          * @param string $path full path
-         * @param null $type
+         * @param null   $type
          * @return bool|int false or vfs file id
          */
         public static function CreateFile( $folderId, $name, $path, $type = null ) {
@@ -237,7 +245,7 @@
                     }
 
                     // resize
-                    $opResult = ImageHelper::Resize( $originalPath, $resizedPath , $mode['width'], $mode['height'], $mode['quality'], $mode['scale'] );
+                    $opResult = ImageHelper::Resize( $originalPath, $resizedPath, $mode['width'], $mode['height'], $mode['quality'], $mode['scale'] );
                     if ( $opResult ) { //add
                         $result = self::AddFile( $folderId, $mode['prefix'] . $name, $resizedPath, 'image/jpeg' );
                     }
@@ -314,7 +322,7 @@
                     break;
                 }
 
-                /** @var VfsFolder $folder  */
+                /** @var VfsFolder $folder */
                 $folder = VfsFolderFactory::GetById( $folderId, array(), array(), $connectionName );
                 if ( empty( $folder ) ) {
                     break;
@@ -332,19 +340,19 @@
          * Add File to Database
          *
          * @param VfsFolder $folder
-         * @param string  $name        file name
-         * @param string  $path        full path to temp file
-         * @param string  $type        mime type
-         * @param string  $connectionName
-         * @param string  $newFileName output value for new filename
+         * @param string    $name        file name
+         * @param string    $path        full path to temp file
+         * @param string    $type        mime type
+         * @param string    $connectionName
+         * @param string    $newFileName output value for new filename
          * @return bool|VfsFile
          */
         public static function AddFileToFolder( $folder, $name, $path, $type = null, $connectionName = null, &$newFileName = null ) {
-            if ( empty( $folder ) || empty( $name ) || empty( $path )  ) {
+            if ( empty( $folder ) || empty( $name ) || empty( $path ) ) {
                 return false;
             }
 
-            $salt = (VfsUtility::$SaltedFileNames ) ? "_" . substr(md5(time() . "-" . microtime()), 0, 8) : "";
+            $salt = ( VfsUtility::$SaltedFileNames ) ? "_" . substr( md5( time() . "-" . microtime() ), 0, 8 ) : "";
 
             /** Add File */
             $fileId      = VfsFileFactory::GetCurrentId( $connectionName ) + 1;
@@ -358,15 +366,15 @@
 
             $tmpFile = new FileInfo( $path );
             if ( $tmpFile->MoveTo( $newFileName ) ) {
-                $file = new VfsFile();
+                $file             = new VfsFile();
                 $file->title      = $name;
                 $file->statusId   = 1;
                 $file->fileId     = $fileId;
                 $file->fileExists = file_exists( $newFileName );
                 $file->folderId   = $folder->folderId;
                 $file->fileSize   = $tmpFile->GetFileSize();
-                $file->mimeType   = (empty($type)) ? $tmpFile->GetType() : $type;
-                $file->path       = sprintf( "%s/%s_%s%s.%s", date("Ym"), $folder->folderId, $fileId, $salt, $tmpFile->GetExtension()  );
+                $file->mimeType   = ( empty( $type ) ) ? $tmpFile->GetType() : $type;
+                $file->path       = sprintf( "%s/%s_%s%s.%s", date( "Ym" ), $folder->folderId, $fileId, $salt, $tmpFile->GetExtension() );
 
                 if ( ImageHelper::IsImage( $newFileName ) ) {
                     $file->params = ImageHelper::GetImageSizes( $newFileName );
@@ -381,4 +389,3 @@
         }
     }
 
-?>

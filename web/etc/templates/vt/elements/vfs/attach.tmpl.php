@@ -1,3 +1,6 @@
+<?
+    use \Eaze\Helpers\FormHelper;
+?>
 {increal:tmpl://vt/header.tmpl.php}
 <script type="text/javascript" src="{web:js://vfs/vfs.selector.js}"></script>
 <script type="text/javascript">

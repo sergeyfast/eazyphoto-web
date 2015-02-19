@@ -1,4 +1,7 @@
 <?php
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Site\Site;
+
     /**
      * Vfs Helper for Render
      * @package    Base
@@ -106,5 +109,3 @@
             return $xhtml;
         }
     }
-
-?>

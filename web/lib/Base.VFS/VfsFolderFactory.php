@@ -1,74 +1,77 @@
 <?php
-    /**
-     * WTF MFD EG 1.6
-     * Copyright (c) The 1ADW. All rights reserved.
-     */
+    use Eaze\Model\BaseFactory;
 
-        /**
+
+    /**
      * VfsFolder Factory
      *
      * @package Base
      * @subpackage VFS
+     *
      */
-    class VfsFolderFactory implements IFactory {
+    class VfsFolderFactory implements Eaze\Model\IFactory {
+
 
         /** Default Connection Name */
         const DefaultConnection = null;
 
         /** VfsFolder instance mapping  */
-        public static $mapping = array (
-            'class'       => 'VfsFolder'
-            , 'table'     => 'vfsFolders'
-            , 'view'      => 'getVfsFolders'
-            , 'flags'     => array( 'CanCache' => 'CanCache', 'IsTree' => 'IsTree', 'WithoutTemplates' => 'WithoutTemplates' )
-            , 'cacheDeps' => array( 'vfsFolders' )
-            , 'fields'    => array(
-                'folderId' => array(
-                    'name'          => 'folderId'
-                    , 'type'        => TYPE_INTEGER
-                    , 'key'         => true
-                )
-                ,'parentFolderId' => array(
-                    'name'          => 'parentFolderId'
-                    , 'type'        => TYPE_INTEGER
-                    , 'foreignKey'  => 'VfsFolder'
-                )
-                ,'title' => array(
-                    'name'          => 'title'
-                    , 'type'        => TYPE_STRING
-                    , 'max'         => 255
-                    , 'nullable'    => 'CheckEmpty'
-                    , 'searchType'  => SEARCHTYPE_ILIKE
-                )
-                ,'isFavorite' => array(
-                    'name'          => 'isFavorite'
-                    , 'type'        => TYPE_BOOLEAN
-                )
-                ,'createdAt' => array(
-                    'name'          => 'createdAt'
-                    , 'type'        => TYPE_DATETIME
-                    , 'updatable'   => false
-                    , 'addable'     => false
-                )
-                ,'statusId' => array(
-                    'name'          => 'statusId'
-                    , 'type'        => TYPE_INTEGER
-                    , 'nullable'    => 'CheckEmpty'
-                    , 'foreignKey'  => 'Status'
-                ))
-            , 'lists'     => array()
-            , 'search'    => array(
-                '_id' => array(
-                    'name'         => 'folderId'
-                    , 'type'       => TYPE_INTEGER
-                    , 'searchType' => SEARCHTYPE_ARRAY
-                )
-                ,'exactTitle' => array(
-                    'name'         => 'title'
-                    , 'type'       => TYPE_STRING
-                ))
-        );
-        
+        public static $mapping = [
+            'class'     => 'VfsFolder',
+            'table'     => 'vfsFolders',
+            'view'      => 'getVfsFolders',
+            'flags'     => [ 'CanCache' => 'CanCache', 'IsTree' => 'IsTree', 'WithoutTemplates' => 'WithoutTemplates' ],
+            'cacheDeps' => ['TODO'],
+            'cache'     => 'TODO',
+            'fields'    => [
+                'folderId'       => [
+                    'name'        => 'folderId',
+                    'type'        => TYPE_INTEGER,
+                    'key'         => true,
+                ],
+                'parentFolderId' => [
+                    'name'        => 'parentFolderId',
+                    'type'        => TYPE_INTEGER,
+                    'foreignKey'  => 'VfsFolder',
+                ],
+                'title'          => [
+                    'name'        => 'title',
+                    'type'        => TYPE_STRING,
+                    'max'         => 255,
+                    'nullable'    => 'CheckEmpty',
+                    'searchType'   => SEARCHTYPE_ILIKE,
+                ],
+                'isFavorite'     => [
+                    'name'        => 'isFavorite',
+                    'type'        => TYPE_BOOLEAN,
+                ],
+                'createdAt'      => [
+                    'name'        => 'createdAt',
+                    'type'        => TYPE_DATETIME,
+                    'updatable'   => false,
+                    'addable'     => false,
+                ],
+                'statusId'       => [
+                    'name'        => 'statusId',
+                    'type'        => TYPE_INTEGER,
+                    'nullable'    => 'CheckEmpty',
+                    'foreignKey'  => 'Status',
+                ],
+            ],
+            'lists'     => [],
+            'search'    => [
+                '_id'        => [
+                    'name'       => 'folderId',
+                    'type'       => TYPE_INTEGER,
+                    'searchType'   => SEARCHTYPE_ARRAY,
+                ],
+                'exactTitle' => [
+                    'name'       => 'title',
+                    'type'       => TYPE_STRING,
+                ],
+            ],
+        ];
+
         /** @return array */
         public static function Validate( $object, $options = null, $connectionName = self::DefaultConnection ) {
             return BaseFactory::Validate( $object, self::$mapping, $options, $connectionName );
@@ -101,7 +104,7 @@
         public static function CanPages() {
             return BaseFactory::CanPages( self::$mapping );
         }
-        
+
         public static function GetCurrentId( $connectionName = self::DefaultConnection ) {
             return BaseFactory::GetCurrentId( self::$mapping, $connectionName );
         }
@@ -126,20 +129,20 @@
         public static function GetFromRequest( $prefix = null, $connectionName = self::DefaultConnection ) {
             return BaseFactory::GetFromRequest( $prefix, self::$mapping, null, $connectionName );
         }
-        
-		/// Base Tree Operations.
+
+        /// Base Tree Operations.
         public static function Move( $object, $destination, $connectionName = self::DefaultConnection, $mode = TREEMODE_LTREE ) {
             return BaseTreeFactory::Move( $object, $destination, self::$mapping, $connectionName, $mode = TREEMODE_LTREE );
         }
-        
+
         public static function Copy( $object, $destination, $connectionName = self::DefaultConnection, $mode = TREEMODE_LTREE ) {
             return BaseTreeFactory::Copy( $object, $destination, self::$mapping, $connectionName, $mode = TREEMODE_LTREE );
         }
-        
+
         public static function Add( $object, $options = null, $connectionName = self::DefaultConnection ) {
             return BaseTreeFactory::Add( $object, self::$mapping, null, $connectionName );
         }
-        
+
         public static function AddRange( $objects, $options = null, $connectionName = self::DefaultConnection ) {
             // TODO: Implement AddRange() method.
         }
@@ -164,9 +167,8 @@
             $level = empty( $level ) ? 1 : $level;
             return BaseTreeFactory::GetChildren( $object, $searchArray, $options, $level, self::$mapping, $connectionName, $mode );
         }
-        
+
         public static function GetBranch( $object, $connectionName = self::DefaultConnection, $mode = TREEMODE_LTREE ) {
             return BaseTreeFactory::GetBranch( $object, self::$mapping, $connectionName, $mode );
         }
     }
-?>

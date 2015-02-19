@@ -1,58 +1,70 @@
 <?php
+
+    use Eaze\Core\Request;
+    use Eaze\Model\BaseFactory;
+    use Eaze\Core\Response;
+
     /**
-     * Save User Action
-     * 
-     * @package PandaTrunk
+     * Save User List Action
+     *
+     * @package    EazyPhoto
      * @subpackage Common
+     * @property User        originalObject
+     * @property User        currentObject
+     * @property UserFactory factory
      */
-    class SaveUserAction extends BaseSaveAction  {
+    class SaveUserAction extends Eaze\Model\BaseSaveAction {
 
         /**
          * Password
          * @var string
          */
-        private $password = null;
-        
+        private $password;
+
+
         /**
          * Constructor
          */
         public function __construct() {
-            $this->options = array(
-                BaseFactory::WithoutDisabled => false
-                , BaseFactory::WithLists     => true
-            );
+            $this->options = [
+                BaseFactory::WithReturningKeys => true,
+                BaseFactory::WithoutDisabled   => false,
+                BaseFactory::WithLists         => true,
+            ];
 
             parent::$factory = new UserFactory();
         }
 
-        protected function beforeAction() {
-            $this->password = Request::getParameter( 'password' );
-            Response::setParameter( 'password', $this->password );
-        }
-               
+
         /**
          * Form Object From Request
          *
-		 * @param User $originalObject 
+         * @param User $originalObject
          * @return User
          */
         protected function getFromRequest( $originalObject = null ) {
+            /** @var User $object */
             $object = parent::$factory->GetFromRequest();
-            
+
             if ( $originalObject != null ) {
                 $object->userId   = $originalObject->userId;
                 $object->password = $originalObject->password;
-				if( empty( $object->statusId ) ) $object->statusId = $originalObject->statusId;
+                $object->authKey  = $originalObject->authKey;
+
+                if ( !$object->statusId ) {
+                    $object->statusId = $originalObject->statusId;
+                }
             }
 
-            if ( !empty($this->password) ) {
-                $object->password = AuthUtility::EncodePassword($this->password, Request::getString( 'su_EncodeMethod' ));
+            if ( $this->password ) {
+                $object->password = AuthUtility::EncodePassword( $this->password, 'salt' );
+                $object->authKey  = null;
             }
-            
+
             return $object;
         }
-        
-        
+
+
         /**
          * Validate Object
          *
@@ -61,11 +73,19 @@
          */
         protected function validate( $object ) {
             $errors = parent::$factory->Validate( $object );
-            
+
+            if ( $object->login ) {
+                $userId  = $this->originalObject && $this->originalObject->userId ? $this->originalObject->userId : -1;
+                $objects = parent::$factory->Get( [ 'login' => $object->login, "!userId" => $userId ], [ BaseFactory::WithoutPages => true ] );
+                if ( $objects ) {
+                    $errors['fields']['login']['unique'] = 'unique';
+                }
+            }
+
             return $errors;
         }
-        
-        
+
+
         /**
          * Add Object
          *
@@ -73,12 +93,12 @@
          * @return bool
          */
         protected function add( $object ) {
-            $result = parent::$factory->Add( $object );
-            
+            $result = parent::$factory->Add( $object, $this->options );
+
             return $result;
         }
-        
-        
+
+
         /**
          * Update Object
          *
@@ -87,14 +107,13 @@
          */
         protected function update( $object ) {
             $result = parent::$factory->Update( $object );
-            
+
             return $result;
         }
-        
-        
-        /**
-         * Set Foreign Lists
-         */
-        protected function setForeignLists() {}
+
+
+        protected function beforeAction() {
+            $this->password = Request::getParameter( 'password' );
+            Response::setParameter( 'password', $this->password );
+        }
     }
-?>

@@ -1,6 +1,10 @@
 <?php
+    use Eaze\Helpers\ArrayHelper;
+    use Eaze\Model\BaseFactory;
+    use Eaze\Core\Logger;
+
     /**
-     * SiteParamHelper
+     * SiteParam Helper
      *
      * @author Sergeyfast
      *
@@ -8,6 +12,7 @@
      * @method GetYandexAPI
      * @method GetYandexMeta
      * @method GetYandexMetrika
+     * @method GetBingMeta
      * @method GetGoogleMeta
      * @method GetGoogleAnalytics
      * @method GetGoogleAPI
@@ -16,11 +21,11 @@
      * @method GetSmallImageQuality
      * @method GetSiteHeader
      * @method GetSiteFooter
-
      * @method HasEmail
      * @method HasYandexAPI
      * @method HasYandexMeta
      * @method HasYandexMetrika
+     * @method HasBingMeta
      * @method HasGoogleMeta
      * @method HasGoogleAnalytics
      * @method HasGoogleAPI
@@ -31,18 +36,20 @@
      * @method HasSiteFooter
      */
     class SiteParamHelper {
-        const Email   			  = 'Email';
-        const YandexAPI 		  = 'Yandex.API';
-        const YandexMeta 		  = 'Yandex.Meta';
-        const YandexMetrika		  = "Yandex.Metrika";
-        const GoogleMeta 		  = 'Google.Meta';
-        const GoogleAnalytics 	  = 'Google.Analytics';
-        const GoogleAPI           = 'Google.API';
-        const BigImageQuality     = 'BigImage.Quality';
-        const BigImageSize        = 'BigImage.Size';
-        const SmallImageQuality   = 'SmallImage.Quality';
-        const SiteHeader          = 'Site.Header';
-        const SiteFooter          = 'Site.Footer';
+
+        const Email = 'Email';
+        const YandexAPI = 'Yandex.API';
+        const YandexMeta = 'Yandex.Meta';
+        const YandexMetrika = 'Yandex.Metrika';
+        const BingMeta = 'Bing.Meta';
+        const GoogleMeta = 'Google.Meta';
+        const GoogleAnalytics = 'Google.Analytics';
+        const GoogleAPI = 'Google.API';
+        const BigImageQuality = 'BigImage.Quality';
+        const BigImageSize = 'BigImage.Size';
+        const SmallImageQuality = 'SmallImage.Quality';
+        const SiteHeader = 'Site.Header';
+        const SiteFooter = 'Site.Footer';
 
         /**
          * @var SiteParamHelper
@@ -52,12 +59,12 @@
         /**
          * @var string[]
          */
-        private static $constantsMapping = array();
+        private static $constantsMapping = [ ];
 
         /**
          * @var SiteParam[]
          */
-        public static $SiteParams = array();
+        public static $SiteParams = [ ];
 
         /**
          * Initialized Flag
@@ -65,17 +72,18 @@
          */
         private static $isInitialized = false;
 
+
         /**
          * Fill SiteParams to
          * @static
          */
         public static function Init() {
             if ( !self::$isInitialized ) {
-                self::$SiteParams    = SiteParamFactory::Get( array(), array( BaseFactory::WithoutPages => true ) );
-                self::$SiteParams    = BaseFactoryPrepare::Collapse( self::$SiteParams, 'alias', false );
+                self::$SiteParams    = SiteParamFactory::Get( [ ], [ BaseFactory::WithoutPages => true ] );
+                self::$SiteParams    = ArrayHelper::Collapse( self::$SiteParams, 'alias', false );
                 self::$isInitialized = true;
 
-                $constants = new ReflectionClass( __CLASS__ );
+                $constants              = new ReflectionClass( __CLASS__ );
                 self::$constantsMapping = $constants->getConstants();
             }
         }
@@ -95,7 +103,7 @@
         /**
          * Magic Method Wrapper
          * @param string $method
-         * @param array $params
+         * @param array  $params
          * @return string
          */
         public function __call( $method, $params ) {
@@ -108,8 +116,8 @@
             $method = substr( $method, 3 );
             $alias  = ArrayHelper::GetValue( self::$constantsMapping, $method );
 
-            if ( !empty( $alias ) ) {
-                switch( $type ) {
+            if ( $alias ) {
+                switch ( $type ) {
                     case 'Get':
                         if ( !empty( self::$SiteParams[$alias] ) ) {
                             return self::$SiteParams[$alias]->value;
@@ -126,7 +134,6 @@
 
             return null;
         }
-
 
 
         /**
@@ -161,4 +168,3 @@
             return self::$instance;
         }
     }
-?>

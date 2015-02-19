@@ -1,8 +1,5 @@
 <?php
-    /**
-     * WTF MFD EG 1.6 [t:trunk]
-     * Copyright (c) The 1ADW. All rights reserved.
-     */
+
 
     /**
      * Album
@@ -27,10 +24,10 @@
         /** @var bool */
         public $isPrivate;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $startDate;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $endDate;
 
         /** @var int */
@@ -51,10 +48,10 @@
         /** @var bool */
         public $isDescSort;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $createdAt;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $modifiedAt;
 
         /** @var int */
@@ -71,5 +68,7 @@
 
         /** @var Status */
         public $status;
+
+        # user defined code goes below
+
     }
-?>

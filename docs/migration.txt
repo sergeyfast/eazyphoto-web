@@ -1,0 +1,21 @@
+CREATE SCHEMA "old";
+SET search_path TO old,public;
+
+psql -f current.sql eazyphoto
+
+-- import albums
+INSERT INTO albums( "albumId", title, description, alias, "isPrivate", "startDate",  "endDate", "orderNumber", "folderPath", "roSecret", "roSecretHd", 
+            "deleteOriginalsAfter", "isDescSort", "createdAt", "modifiedAt",  "metaInfo", "userId", "statusId")
+SELECT "albumId", title, description, alias, "isPrivate"::bool, "startDate",  "endDate", "orderNumber", "folderPath", "roSecret", "roSecretHd", 
+            "deleteOriginalsAfter", "isDescSort", "createdAt", "modifiedAt",  "metaInfo", "userId", "statusId"
+FROM "old"."albums";
+
+
+-- import photos
+INSERT INTO photos( "photoId", "albumId", "originalName", filename, "fileSize", "fileSizeHd", "orderNumber", "afterText", title, exif, "createdAt", "photoDate", "statusId")
+SELECT "photoId", "albumId", "originalName", filename, "fileSize", "fileSizeHd", "orderNumber", "afterText", title, exif, "createdAt", "photoDate",  "statusId"
+FROM "old"."photos";
+
+SELECT SETVAL('"albums_albumId_seq"', (SELECT MAX("albumId") FROM "albums") + 1);
+SELECT SETVAL('"photos_photoId_seq"', (SELECT MAX("photoId") FROM "photos") + 1);
+

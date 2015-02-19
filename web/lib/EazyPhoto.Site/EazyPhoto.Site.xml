@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
     <group name="Pages">
-        <action name="GetMetaDetails" />
-        <action name="GetNavigations" />
+        <action name="GetContext" />
         <action name="GetStaticPage">
             <path>GetStaticPage</path>
             <parameters>
@@ -19,18 +18,7 @@
                 </request>
             </parameters>
         </action>
-        <action name="GetSiteParams">
-            <path>controls/GetSiteParams</path>
-            <parameters>
-                <request>
-                    <param name="gsp_Container">"__params"</param>
-                    <param name="gsp_Instance">"sph"</param>
-                </request>
-            </parameters>
-        </action>
     </group>
-
-
     <group name="Daemons">
         <action name="SyncPhotosDaemon">
             <path>daemons/SyncPhotosDaemon</path>
@@ -49,10 +37,7 @@
                 </request>
             </parameters>
         </action>
-
     </group>
-
-	<!-- Put your's frontend actions here -->
     <group name="Site">
         <action name="GetAlbums" />
         <action name="GetAlbum" />

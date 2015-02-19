@@ -1,13 +1,14 @@
 <?php
+    use Eaze\Modules\LocaleLoader;
+
     /**
      * Status Utility
-     *
      */
     class StatusUtility {
 
-        const
-            Enabled = 1,
+        const Enabled = 1,
             Disabled = 2,
+            Deleted = 3,
             InQueue = 4;
 
         /**
@@ -15,34 +16,18 @@
          *
          * @var array
          */
-        public static $Common = array(
-            'en' => array(
-                1   => 'Enabled'
-                , 2 => 'Disabled'
-            )
-            , 'ru' => array(
-                1   => 'Опубликован'
-                , 2 => 'Не опубликован'
-			)
-        );
-        
-        /**
-         * Album Statuses
-         *
-         * @var array
-         */
-        public static $Album = array(
-            'en' => array(
-                1   => 'Enabled'
-                , 2 => 'Disabled'
-                , 4 => 'In Queue'
-            )
-            , 'ru' => array(
-                4   => 'Новый'
-                , 1 => 'Опубликован'
-                , 2 => 'Не опубликован'
-			)
-        );
+        public static $Common = [
+            LocaleLoader::En => [
+                self::Enabled  => 'Enabled',
+                self::Disabled => 'Disabled',
+            ],
+            LocaleLoader::Ru => [
+                self::Enabled  => 'Опубликован',
+                self::Disabled => 'Не опубликован',
+                self::InQueue => 'Новый',
+            ]
+        ];
+
 
         /**
          * Get Status Template
@@ -51,15 +36,15 @@
          * @return string
          */
         public static function GetStatusTemplate( $statusId ) {
-            $status = self::$Album[LocaleLoader::$CurrentLanguage][$statusId];
+            $status = self::$Common[LocaleLoader::$CurrentLanguage][$statusId];
 
-            switch ($statusId) {
-            	case 1:
-            	    return sprintf( '<span class="status green" title="%s">%s</span>', $status, $status);
-                case 4:
-            	    return sprintf( '<span class="status blue" title="%s">%s</span>', $status, $status);
-            	default:
-            	    return sprintf( '<span class="status" title="%s">%s</span>', $status, $status);
+            switch ( $statusId ) {
+                case 1:
+                    return sprintf( '<span class="status" title="%s">%1$s</span>', $status );
+                case 5:
+                    return sprintf( '<span class="status _b" title="%s">%1$s</span>', $status );
+                default:
+                    return sprintf( '<span class="status _fade" title="%s">%1$s</span>', $status );
             }
         }
 
@@ -71,11 +56,14 @@
          * @return string
          */
         public static function GetBoolTemplate( $bool = false ) {
-            if ( $bool ) {
-                return sprintf( '<span class="status green" title="%s">%s</span>', "Да", "Да");
-            } else {
-                return sprintf( '<span class="status" title="%s">%s</span>', "Нет", "Нет");
+            if ( $bool === null ) {
+                return '';
             }
-        }        
+
+            if ( $bool ) {
+                return sprintf( '<span class="status" title="%s">%1$s</span>', 'Да' );
+            }
+
+            return sprintf( '<span class="status _fade" title="%s">%1$s</span>', "Нет" );
+        }
     }
-?>

@@ -1,0 +1,50 @@
+.uploadify {
+    position: relative;
+    display: inline-block;
+}
+.uploadify-button {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    color: #2f383c;
+    background-color: #eee;
+
+}
+.uploadify-button.disabled {
+    color: #ededed;
+    background-color: #c1c3c5;
+}
+.uploadify-queue {
+    margin-bottom: 1em;
+}
+.uploadify-queue-item {
+    max-width: 400px;
+    padding: 7px;
+    margin-top: 5px;
+    font: 11px/1 "PT Sans", Helvetica, Arial, sans-serif;
+    background: #ededed;
+    border-radius: 4px;
+}
+.uploadify-error {
+    background-color: rgba(203,0,17,0.15) !important;
+}
+.uploadify-queue-item .cancel a {
+    background: url("../../../img/vfs/icon_del.png") no-repeat 50% 50%;
+    float: right;
+    height: 13px;
+    text-indent: -9999px;
+    width: 13px;
+}
+.uploadify-queue-item.completed {
+    background-color: #7bc919;
+}
+.uploadify-progress {
+    background-color: #c1c3c5;
+    margin-top: 5px;
+    width: 100%;
+}
+.uploadify-progress-bar {
+    background-color: #f89614;
+    height: 3px;
+    width: 1px;
+}

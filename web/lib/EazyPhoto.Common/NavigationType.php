@@ -1,6 +1,11 @@
 <?php
+
+
     /**
      * NavigationType
+     *
+     * @package %project%
+     * @subpackage Common
      */
     class NavigationType {
 
@@ -18,5 +23,7 @@
 
         /** @var Status */
         public $status;
+
+        # user defined code goes below
+
     }
-?>

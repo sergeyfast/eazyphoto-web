@@ -1,4 +1,8 @@
 <?php
+    use Eaze\Core\Cookie;
+    use Eaze\Core\Response;
+    use Eaze\Core\Session;
+
     /**
      * Simple Auth Utility
      */
@@ -8,50 +12,54 @@
          * Salt
          * @var string
          */
-        public static $Salt = '321p@$$-';
+        public static $Salt = 'saltedp@$$-';
 
         /**
-         * Login Cookie Lifetime in seconds
+         * Login Cookie Lifetime in seconds (1 week)
          */
-        const LoginCookieLifeTime = 180000;
-
+        const LoginCookieLifeTime = 604800;
 
 
         /**
-         * Get User By Credentials
+         * Get User By Auth Key
          *
-         * @param string $login
-         * @param string $password
-         * @param string $class
-         * @param string $connectionName
+         * @param $authKey
          * @return User
          */
-        public static function GetByCredentials( $login, $password, $class, $connectionName = null ) {
-            if ( ( empty( $login ) ) || empty( $password ) ) {
+        public static function GetByAuthKey( $authKey ) {
+            if ( !$authKey ) {
                 return null;
             }
 
-            $factory     = BaseFactory::GetInstance( $class . 'Factory' );
-            $searchArray = array( "login" => $login, "password" => $password );
-            $options     = array( BaseFactory::WithoutDisabled => true, BaseFactory::WithLists => true );
-            
-            $object      = $factory->GetOne( $searchArray, $options, $connectionName );
+            return UserFactory::GetOne( [ 'authKey' => $authKey ] );
+        }
 
-            return $object;
+
+        /**
+         * @param string $login
+         * @param string $password encoded password
+         * @return User
+         */
+        public static function GetByLogin( $login, $password ) {
+            if ( !$login || !$password ) {
+                return null;
+            }
+
+            return UserFactory::GetOne( [ 'login' => $login, 'password' => $password ] );
         }
 
 
         /**
          * Encode / Salt Password
-         * 
-         * @param string $password  password
-         * @param string $type      salt or md5
+         *
+         * @param string $password password
+         * @param string $type     salt or md5
          * @return string
          */
         public static function EncodePassword( $password, $type = 'salt' ) {
-            switch( $type ) {
+            switch ( $type ) {
                 case 'salt':
-                    return md5( self::$Salt . md5(  self::$Salt . $password  ));
+                    return md5( self::$Salt . md5( self::$Salt . $password ) );
                 case 'md5':
                     return md5( $password );
             }
@@ -61,13 +69,13 @@
 
 
         /**
-         * Get Current User
+         * Get Current User from Session
          *
          * @param string $class
          * @return object
          */
         public static function GetCurrentUser( $class ) {
-            $user = Session::getParameter( $class );
+            $user = Session::GetParameter( $class );
 
             return $user;
         }
@@ -76,15 +84,19 @@
         /**
          * Login User
          *
-         * @param object $user
+         * @param User   $user
          * @param string $class
+         * @param bool   $setCookie
          */
-        public static function Login( $user, $class ) {
-            Cookie::setCookie(  $class . "[login]",    $user->login,    time() + self::LoginCookieLifeTime );
-            Cookie::setCookie(  $class . "[password]", $user->password, time() + self::LoginCookieLifeTime );
+        public static function Login( User $user, $class, $setCookie = false ) {
+            if ( $setCookie ) {
+                Cookie::SetCookie( $class, $user->authKey, time() + self::LoginCookieLifeTime );
+            }
 
-            Session::setParameter( $class,           $user );
-            Session::setParameter( $class . "Logged", true);
+            Session::SetParameter( $class, $user );
+            Session::SetParameter( $class . 'Logged', true );
+
+            AuthUtility::ToResponse( $user, $class );
         }
 
 
@@ -94,11 +106,10 @@
          * @param string $class
          */
         public static function Logout( $class ) {
-            Cookie::setCookie(  $class . "[login]",    "", time() - 1024 );
-            Cookie::setCookie(  $class . "[password]", "", time() - 1024 );
+            Cookie::SetCookie( $class, '', time() - 3600 );
 
-            Session::setParameter( $class,            null );
-            Session::setParameter( $class . "Logged", false);
+            Session::SetParameter( $class, null );
+            Session::SetParameter( $class . 'Logged', false );
         }
 
 
@@ -109,28 +120,57 @@
          * @param string $class
          */
         public static function ToResponse( $user, $class ) {
-            Response::setObject( "__" . $class, $user );
-            Response::setBoolean( "__" . $class . "Logged", true );
+            Response::SetParameter( '__' . $class, $user );
+            Response::SetBoolean( '__' . $class . 'Logged', true );
+        }
+
+
+        /**
+         * Generate New AuthKey
+         * @param User $user
+         * @param bool $isRandom
+         * @return string
+         */
+        public static function NewAuthKey( User $user, $isRandom = false ) {
+            if ( $isRandom ) {
+                return self::GeneratePassword( 32, true, true, false );
+            }
+
+            return self::EncodePassword( md5( implode( ':', [ $user->login, $user->password, $user->userId ] ) ) );
+        }
+
+
+        /**
+         * Update User Auth Key
+         * @param User $user
+         * @param bool $isRandom
+         * @return array|bool
+         */
+        public static function UpdateAuthKey( User $user, $isRandom = false ) {
+            $user->authKey        = self::NewAuthKey( $user, $isRandom );
+            $user->lastActivityAt = \Eaze\Core\DateTimeWrapper::Now();
+
+            return UserFactory::Update( $user );
         }
 
 
         /**
          * Generate random strong password
          * @static
-         * @param int  $pw_length    password length
-         * @param bool $use_caps     use caps
-         * @param bool $use_numeric  use numeric
-         * @param bool $use_specials use special
+         * @param int  $pw_length
+         * @param bool $use_caps
+         * @param bool $use_numeric
+         * @param bool $use_specials
          * @return string
          */
         public static function GeneratePassword( $pw_length = 8, $use_caps = true, $use_numeric = true, $use_specials = true ) {
-            $caps         = array();
-            $numbers      = array();
-            $num_specials = 0;
-            $reg_length   = $pw_length;
-            $pws          = array();
-            $chars        = array();
-
+            $caps       = [ ];
+            $numbers    = [ ];
+            $reg_length = $pw_length;
+            $pws        = [ ];
+            $chars      = [ ];
+            $signs      = [ ];
+            $pw         = [ ];
             for ( $ch = 97; $ch <= 122; $ch++ ) {
                 $chars[] = $ch;
             } // create a-z
@@ -151,8 +191,6 @@
                 if ( $num_specials > 5 ) {
                     $num_specials = 5;
                 }
-
-                $signs = array();
                 for ( $si = 33; $si <= 47; $si++ ) {
                     $signs[] = $si;
                 }
@@ -162,7 +200,6 @@
                 }
             }
             $rand_keys = array_rand( $all, $reg_length );
-            $pw        = array();
             foreach ( $rand_keys as $rand ) {
                 $pw[] = chr( $all[$rand] );
             }
@@ -171,4 +208,3 @@
             return implode( '', $compl );
         }
     }
-?>

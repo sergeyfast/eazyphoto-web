@@ -1,8 +1,5 @@
 <?php
-    /**
-     * WTF MFD EG 1.6 [t:trunk]
-     * Copyright (c) The 1ADW. All rights reserved.
-     */
+
 
     /**
      * Photo
@@ -45,10 +42,10 @@
         /** @var array */
         public $exif;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $createdAt;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $photoDate;
 
         /** @var int */
@@ -56,5 +53,7 @@
 
         /** @var Status */
         public $status;
+
+        # user defined code goes below
+
     }
-?>

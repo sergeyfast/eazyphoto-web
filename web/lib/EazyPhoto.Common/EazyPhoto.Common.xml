@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <actions>
-    <group name="siteparam">
+    <group name="siteParams">
         <action name="GetSiteParamList">
             <path>site-params/GetSiteParamListAction</path>
+            <parameters>
+                <response>
+                    <param name="__activeElement">'site-params'</param>
+                </response>
+            </parameters>
         </action>
         <action name="SaveSiteParam">
             <path>site-params/SaveSiteParamAction</path>
             <redirects>
-                <redirect name="success" path="vt://site-params/" />
+                <redirect name="success" path="vt://site-params/"></redirect>
             </redirects>
         </action>
         <action name="DeleteSiteParam">
@@ -19,18 +23,23 @@
             </parameters>
         </action>
     </group>
-    <group name="metadetail">
-        <action name="GetMetaDetailList">
-            <path>meta-details/GetMetaDetailListAction</path>
+    <group name="users">
+        <action name="GetUserList">
+            <path>users/GetUserListAction</path>
         </action>
-        <action name="SaveMetaDetail">
-            <path>meta-details/SaveMetaDetailAction</path>
+        <action name="SaveUser">
+            <path>users/SaveUserAction</path>
+            <parameters>
+                <request>
+                    <param name="su_EncodeMethod">"salt"</param>
+                </request>
+            </parameters>
             <redirects>
-                <redirect name="success" path="vt://meta-details/" />
+                <redirect name="success" path="vt://users/"></redirect>
             </redirects>
         </action>
-        <action name="DeleteMetaDetail">
-            <path>meta-details/SaveMetaDetailAction</path>
+        <action name="DeleteUser">
+            <path>users/SaveUserAction</path>
             <parameters>
                 <request>
                     <param name="action">'delete'</param>
@@ -38,7 +47,69 @@
             </parameters>
         </action>
     </group>
-    <group name="daemonlock">
+    <group name="staticPages">
+        <action name="GetStaticPageList">
+            <path>static-pages/GetStaticPageListAction</path>
+            <parameters>
+                <response>
+                    <param name="__activeElement">'static-pages'</param>
+                </response>
+            </parameters>
+        </action>
+        <action name="SaveStaticPage">
+            <path>static-pages/SaveStaticPageAction</path>
+            <redirects>
+                <redirect name="success" path="vt://static-pages/"></redirect>
+            </redirects>
+        </action>
+        <action name="DeleteStaticPage">
+            <path>static-pages/SaveStaticPageAction</path>
+            <parameters>
+                <request>
+                    <param name="action">'delete'</param>
+                </request>
+            </parameters>
+        </action>
+    </group>
+    <group name="navigationTypes">
+        <action name="GetNavigationTypeList">
+            <path>navigations/types/GetNavigationTypeListAction</path>
+        </action>
+        <action name="SaveNavigationType">
+            <path>navigations/types/SaveNavigationTypeAction</path>
+            <redirects>
+                <redirect name="success" path="vt://navigations/types/"></redirect>
+            </redirects>
+        </action>
+        <action name="DeleteNavigationType">
+            <path>navigations/types/SaveNavigationTypeAction</path>
+            <parameters>
+                <request>
+                    <param name="action">'delete'</param>
+                </request>
+            </parameters>
+        </action>
+    </group>
+    <group name="navigations">
+        <action name="GetNavigationList">
+            <path>navigations/GetNavigationListAction</path>
+        </action>
+        <action name="SaveNavigation">
+            <path>navigations/SaveNavigationAction</path>
+            <redirects>
+                <redirect name="success" path="vt://navigations/"></redirect>
+            </redirects>
+        </action>
+        <action name="DeleteNavigation">
+            <path>navigations/SaveNavigationAction</path>
+            <parameters>
+                <request>
+                    <param name="action">'delete'</param>
+                </request>
+            </parameters>
+        </action>
+    </group>
+    <group name="daemonLocks">
         <action name="GetDaemonLockList">
             <path>daemons/GetDaemonLockListAction</path>
         </action>
@@ -51,75 +122,26 @@
             </parameters>
         </action>
     </group>
-    <group name="staticpage">
-        <action name="SaveStaticPage">
-            <path>static-pages/SaveStaticPageAction</path>
+    <group name="metaDetails">
+        <action name="GetMetaDetailList">
+            <path>meta-details/GetMetaDetailListAction</path>
+        </action>
+        <action name="SaveMetaDetail">
+            <path>meta-details/SaveMetaDetailAction</path>
             <redirects>
-                <redirect name="success" path="vt://static-pages/" />
+                <redirect name="success" path="vt://meta-details/"></redirect>
             </redirects>
         </action>
-        <action name="DeleteStaticPage">
-            <path>static-pages/SaveStaticPageAction</path>
+        <action name="DeleteMetaDetail">
+            <path>meta-details/SaveMetaDetailAction</path>
             <parameters>
                 <request>
                     <param name="action">'delete'</param>
                 </request>
             </parameters>
         </action>
-        <action name="GetStaticPageList">
-            <path>static-pages/GetStaticPageListAction</path>
-        </action>
-		<action name="GetStaticPagesAutocomplete">
-			<path>controls/GetObjectsAutocomplete</path>
-			<parameters>
-				<request>
-					<param name="goa_Object">'StaticPage'</param>
-					<param name="goa_Search">array('iTitle' => trim( Request::getString( "q" ) ))</param>
-					<param name="goa_Options">array(BaseFactory::WithLists => true)</param>
-					<param name="goa_ResultFormat">array('label' => 'title', 'title' => 'title', 'id' => 'staticPageId')</param>
-				</request>
-			</parameters>
-		</action>
     </group>
-    <group name="navigationtype">
-        <action name="SaveNavigationType">
-            <path>navigations/types/SaveNavigationTypeAction</path>
-            <redirects>
-                <redirect name="success" path="vt://navigations/types/" />
-            </redirects>
-        </action>
-        <action name="DeleteNavigationType">
-            <path>navigations/types/SaveNavigationTypeAction</path>
-            <parameters>
-                <request>
-                    <param name="action">'delete'</param>
-                </request>
-            </parameters>
-        </action>
-        <action name="GetNavigationTypeList">
-            <path>navigations/types/GetNavigationTypeListAction</path>
-        </action>
-    </group>
-    <group name="navigation">
-        <action name="SaveNavigation">
-            <path>navigations/SaveNavigationAction</path>
-            <redirects>
-                <redirect name="success" path="vt://navigations/" />
-            </redirects>
-        </action>
-        <action name="DeleteNavigation">
-            <path>navigations/SaveNavigationAction</path>
-            <parameters>
-                <request>
-                    <param name="action">'delete'</param>
-                </request>
-            </parameters>
-        </action>
-        <action name="GetNavigationList">
-            <path>navigations/GetNavigationListAction</path>
-        </action>
-    </group>
-  
+
     <group name="simple auth">
         <action name="CheckAuth">
             <path>auth/CheckAuthAction</path>
@@ -146,71 +168,37 @@
             </parameters>
         </action>
     </group>
-    <group name="user">
-        <action name="GetUserList">
-            <path>users/GetUserListAction</path>
-        </action>
-        <action name="SaveUser">
-            <path>users/SaveUserAction</path>
-            <parameters>
-                <request>
-                    <param name="su_EncodeMethod">"salt"</param>
-                </request>
-            </parameters>
-            <redirects>
-                <redirect name="success" path="vt://users/"/>
-            </redirects>
-        </action>
-        <action name="DeleteUser">
-            <path>users/SaveUserAction</path>
-            <parameters>
-                <request>
-                    <param name="action">'delete'</param>
-                </request>
-            </parameters>
-        </action>
-    </group>
-	
-    <group name="controls">
-        <action name="GetCaptcha">
-            <path>controls/GetCaptcha</path>
-        </action>
-    </group>
 
-    <group name="VFS">
-        <action name="GetVFSSmallImage">
-            <path>GetResizedImageAction</path>
+    <group name="controls">
+        <action name="ObjectImageUploadControl">
+            <path>controls/ImageUploadControl</path>
             <parameters>
                 <request>
-                    <param name="withDirCheck">false</param>
-                    <param name="quality">90</param>
-                    <param name="width">200</param>
-                    <param name="height">200</param>
-                    <param name="scale">true</param>
+                    <param name="iuc_FolderId">ObjectImageUtility::$DefaultFolderId</param>
+                    <param name="iuc_Settings">
+                        <![CDATA[
+[
+        "prefix" => 'original_',
+        "keep"   => false,
+        "modes"  => [
+            'smallImage' => [
+                "prefix"  => 's_',
+                "width"   => ObjectImageUtility::$DefaultImageSize[0],
+                "height"  => ObjectImageUtility::$DefaultImageSize[1],
+                "scale"   => false,
+                "quality" => 100,
+            ],
+            'bigImage'   => [
+                "prefix"  => 'b_',
+                "width"   => 800,
+                "height"  => 600,
+                "scale"   => false,
+                "quality" => 95,
+            ],
+        ]
+    ];
+]]>                    </param>
                 </request>
-            </parameters>
-            <redirects>
-                <redirect name="warning" path="images://vt/bullet_error.png" />
-                <redirect name="failure" path="images://vt/delete.png" />
-            </redirects>
-        </action>
-    </group>
-	
-    <group name="menu">
-        <action name="SetSiteParamsMenu">
-            <path>EmptyAction</path>
-            <parameters>
-                <response>
-                    <param name="__activeElement">"site-params"</param>
-                </response>
-            </parameters>
-        </action>
-        <action name="SetStaticPagesMenu">
-            <path>EmptyAction</path>
-            <parameters>
-                <response>
-                    <param name="__activeElement">"static-pages"</param>
-                </response>
             </parameters>
         </action>
     </group>

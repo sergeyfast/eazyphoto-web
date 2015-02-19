@@ -1,7 +1,10 @@
 <?php
     // add default path to breadcrumbs
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Site\Site;
+
     if ( isset( $__breadcrumbs ) ) {
-        array_unshift( $__breadcrumbs, array( 'title' => 'Главная', 'path' => '/' ) );
+        array_unshift( $__breadcrumbs, [ 'title' => 'Главная', 'path' => '/' ] );
     }
 
     // Create breadcrumbs array for view

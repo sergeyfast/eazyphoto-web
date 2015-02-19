@@ -1,4 +1,11 @@
 <?php
+    use \Eaze\Helpers\JsHelper;
+    use \Eaze\Helpers\CssHelper;
+    use \Eaze\Site\Site;
+    use \Eaze\Site\Page;
+    use \Eaze\Core\Request;
+    use \Eaze\Core\Session;
+
     JsHelper::Init( Site::IsDevel() );
     CssHelper::Init( Site::IsDevel() );
 
@@ -268,7 +275,7 @@
             path: '{web:vt://vfs/rpc/}',
             folder: <?= $folderId ?>,
             <?= $fileId ? 'startFileId: ' . $fileId . ',' : '' ?>
-            <?= $file ? 'startFile: "' . HtmlHelper::RenderToForm( $file ) . '",' : '' ?>
+            <?= $file ? 'startFile: "' . \Eaze\Helpers\FormHelper::RenderToForm( $file ) . '",' : '' ?>
             filesPage: 100,
             foldersView: 0,
             filesView: 0,

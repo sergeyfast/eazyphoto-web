@@ -3,20 +3,19 @@
     <site name="eazyphoto">
         <settings>
             <paths>
-                <path name="shared" value="/shared"/>
-                <path name="js" value="/shared/js"/>
-                <path name="css" value="/shared/css"/>
-                <path name="flash" value="/shared/flash"/>
-                <path name="images" value="/shared/images"/>
-                <path name="lang" value="/etc/locale"/>
-                <path name="vt" value="/vt"/>
-                <path name="tmpl" value="/etc/templates"/>
-                <path name="vfs" value="/shared/files"/>
-                <path name="temp" value="/shared/temp"/>
-                <path name="mail" value="/etc/templates/mail"/>
-                <path name="controls" value="/int/controls"/>
-                <path name="daemons" value="/int/daemons"/>
-                <path name="albums" value="/shared/files/albums"/>
+                <path name="shared" value="/shared" />
+                <path name="js" value="/shared/js" />
+                <path name="css" value="/shared/css" />
+                <path name="flash" value="/shared/flash" />
+                <path name="img" value="/shared/img" />
+                <path name="lang" value="/etc/locale" />
+                <path name="vt" value="/vt" />
+                <path name="tmpl" value="/etc/templates" />
+                <path name="vfs" value="/shared/files" />
+                <path name="temp" value="/shared/temp" />
+                <path name="mail" value="/etc/templates/mail" />
+                <path name="controls" value="/int/controls" />
+                <path name="daemons" value="/int/daemons" />
             </paths>
             <!-- System modules Settings -->
             <modules>
@@ -36,24 +35,24 @@
                     <param name="server">localhost</param>
                     <param name="active">false</param>
                 </memcache>
-                <btsync class="BTSyncUtility">
+                <btsync class="\BTSyncUtility">
                     <param name="host">127.0.0.1</param>
                     <param name="port">8888</param>
                     <param name="user">admin</param>
                     <param name="password">admin</param>
                 </btsync>
-                <eazyphotod class="EazyPhotoDaemon">
+                <eazyphotod class="\EazyPhotoDaemon">
                     <param name="host">127.0.0.1</param>
                     <param name="port">8889</param>
                     <param name="enabled">true</param>
                 </eazyphotod>
             </modules>
             <databases>
-                <database driver="MySqli">
+                <database driver="PgSql">
                     <hostname>127.0.0.1</hostname>
                     <name>eazyphoto</name>
-                    <user>root</user>
-                    <password>root</password>
+                    <user>sergeyfast</user>
+                    <password></password>
                     <encoding>UTF8</encoding>
                 </database>
             </databases>
@@ -73,11 +72,12 @@
                         </eazyphotod>
                     </modules>
                     <databases>
-                        <database driver="MySqli">
-                            <hostname>localhost</hostname>
+                        <database driver="PgSql">
+                            <hostname>127.0.0.1</hostname>
                             <name>eazyphoto</name>
-                            <user>root</user>
-                            <password>root</password>
+                            <user>sergeyfast</user>
+                            <password></password>
+                            <encoding>UTF8</encoding>
                         </database>
                     </databases>
                 </settings>

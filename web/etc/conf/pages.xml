@@ -2,7 +2,7 @@
 <sites>
     <site name="eazyphoto">
         <pages>
-            <pageGroup name="fe" boot="EazyPhoto.Site.GetSiteParams" shutdown="EazyPhoto.Site.GetMetaDetails, EazyPhoto.Site.GetNavigations">
+            <pageGroup name="fe" shutdown="EazyPhoto.Site.GetContext">
                 <page uri="/">
                     <actions>EazyPhoto.Site.GetAlbums</actions>
                     <template>tmpl://fe/index.tmpl.php</template>
@@ -16,7 +16,6 @@
                     <template>tmpl://fe/album.tmpl.php</template>
                 </page>
             </pageGroup>
-			
             <pageGroup name="vt" boot="EazyPhoto.Common.CheckAuth">
                 <page uri="vt://login" boot="">
                     <template>tmpl://vt/login.tmpl.php</template>
@@ -25,11 +24,10 @@
                 <page uri="vt://">
                     <template>tmpl://vt/index.tmpl.php</template>
                 </page>
-				
                 <pageGroup name="EazyPhoto.Common">
                     <pageGroup name="siteParam">
                         <page uri="vt://site-params/">
-                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetSiteParamList, EazyPhoto.Common.SetSiteParamsMenu</actions>
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetSiteParamList</actions>
                             <template>tmpl://vt/site-params/index.tmpl.php</template>
                         </page>
                         <page uri="vt://site-params/add">
@@ -80,7 +78,7 @@
                     </pageGroup>
                     <pageGroup name="staticPage">
                         <page uri="vt://static-pages/">
-                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetStaticPageList, EazyPhoto.Common.SetStaticPagesMenu</actions>
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetStaticPageList</actions>
                             <template>tmpl://vt/static-pages/index.tmpl.php</template>
                         </page>
                         <page uri="vt://static-pages/add">
@@ -166,7 +164,6 @@
                         </page>
                     </pageGroup>
                 </pageGroup>
-				
                 <pageGroup name="daemonLocks">
                     <page uri="vt://daemons/">
                         <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Common.GetDaemonLockList</actions>
@@ -190,14 +187,18 @@
                         <template>tmpl://vt/elements/vfs/attach.tmpl.php</template>
                     </page>
                 </pageGroup>
+                <pageGroup name="controls">
+                    <page uri="controls://image-upload/objects/">
+                        <actions>EazyPhoto.Common.ObjectImageUploadControl</actions>
+                    </page>
+                </pageGroup>
                 <pageGroup name="daemons">
                     <page uri="daemons://sync-photos">
                         <actions>EazyPhoto.Site.SyncPhotosDaemon</actions>
                     </page>
                 </pageGroup>
             </pageGroup>
-
-            <page uri="([^?]+)" boot="EazyPhoto.Site.GetSiteParams" shutdown="EazyPhoto.Site.GetMetaDetails, EazyPhoto.Site.GetNavigations">
+            <page name="fe" shutdown="EazyPhoto.Site.GetContext">
                 <actions>EazyPhoto.Site.GetForceStaticPage</actions>
                 <template>tmpl://fe/template.tmpl.php</template>
             </page>

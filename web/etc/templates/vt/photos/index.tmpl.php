@@ -1,107 +1,110 @@
 <?php
+    /** @var string[] $search */
+    /** @var bool $hideSearch */
+    /** @var string $sortField */
+    /** @var string $sortType */
+
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Site\Site;
+
     /** @var Photo[] $list */
+    /** @var Album[] $albums */
+    
 
-    $__pageTitle = LocaleLoader::Translate( "vt.screens.photo.list");
+    $__pageTitle = T( 'vt.screens.photo.list');
 
-    $grid = array(
-        "columns" => array(
-           LocaleLoader::Translate( "vt.photo.albumId" )
-            , LocaleLoader::Translate( "vt.photo.originalName" )
-            , LocaleLoader::Translate( "vt.photo.orderNumber" )
-            , LocaleLoader::Translate( "vt.photo.photoDate" )
-            , LocaleLoader::Translate( "vt.photo.statusId" )
-        )
-        , "colspans"	=> array( 0 => 2 )
-        , "sorts"		=> array(0 => "album.title", 1 => "originalName", 2 => "orderNumber", 3 => "photoDate", 4 => "statusId")
-        , "operations"	=> true
-        , "allowAdd"	=> true
-        , "canPages"	=> PhotoFactory::CanPages()
-        , "basepath"	=> Site::GetWebPath( "vt://photos/" )
-        , "addpath"		=> Site::GetWebPath( "vt://photos/add" )
-        , "title"		=> $__pageTitle
-		, "description"	=> ''
-        , "pageSize"	=> HtmlHelper::RenderToForm( $search["pageSize"] )
-        , "deleteStr"	=> LocaleLoader::Translate( "vt.photo.deleteString")
-    );
-	
-	$__breadcrumbs = array( array( 'link' => $grid['basepath'], 'title' => $__pageTitle ) );
-?>
-{increal:tmpl://vt/header.tmpl.php}
-<div class="main">
-	<div class="inner">
-		{increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
-		<div class="pagetitle">
-			<? if( $grid['allowAdd'] ) { ?>
-			<div class="controls"><a href="{$grid[addpath]}" class="add"><span>{lang:vt.common.add}</span></a></div>
-			<? } ?>
-			<h1>{$__pageTitle}</h1>
-		</div>
-		{$grid[description]}
-		<div class="search<?= $hideSearch == "true" ? " closed" : ""  ?>">
-			<a href="#" class="search-close"><span>{lang:vt.common.closeSearch}</span></a>
-			<a href="#" class="search-open"><span>{lang:vt.common.openSearch}</span></a>
-			<form class="search-form" id="searchForm" method="post" action="{$grid[basepath]}">
-				<input type="hidden" value="1" name="searchForm" />
-				<input type="hidden" value="" id="pageId" name="page" />
-				<input type="hidden" value="{$grid[pageSize]}" id="pageSize" name="search[pageSize]" />
-				<input type="hidden" value="{form:$sortField}" id="sortField" name="sortField" />
-				<input type="hidden" value="{form:$sortType}" id="sortType" name="sortType" />
-                <div class="row">
-                    <label>{lang:vt.photo.albumId}</label>
-                    <?= FormHelper::FormSelect( "search[albumId]", $albums, "albumId", "title", $search['albumId'], null, null, true ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.photo.originalName}</label>
-                    <?= FormHelper::FormInput( "search[originalName]", $search['originalName'], 'originalName', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.photo.orderNumber}</label>
-                    <?= FormHelper::FormInput( "search[orderNumber]", $search['orderNumber'], 'orderNumber', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.photo.afterText}</label>
-                    <?= FormHelper::FormInput( "search[afterText]", $search['afterText'], 'afterText', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.photo.title}</label>
-                    <?= FormHelper::FormInput( "search[title]", $search['title'], 'title', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.photo.statusId}</label>
-                    <?= FormHelper::FormSelect( "search[statusId]", StatusUtility::$Common[$__currentLang], "", "", $search['statusId'], null, null, true ); ?>
-                </div>
-				<input type="submit" value="{lang:vt.common.find}" />
-			</form>
-		</div>
-		
-		<!-- GRID -->
-		{increal:tmpl://vt/elements/datagrid/header.tmpl.php}
-<?php
-    $langEdit   = LocaleLoader::Translate( "vt.common.edit" );
-    $langDelete = LocaleLoader::Translate( "vt.common.delete" );
+    $grid = [
+        'columns'     => [
+            T( 'vt.photo.albumId' ),
+            T( 'vt.photo.originalName' ),
+            T( 'vt.photo.orderNumber' ),
+            T( 'vt.photo.photoDate' ),
+            T( 'vt.photo.statusId' ),
+            T( 'vt.photo.fileSizeHd' ),
+        ],
+        'colspans'    => [],
+        'sorts'       => [ 0 => 'album.title', 1 => 'originalName', 2 => 'orderNumber', 3 => 'photoDate', 4 => 'statusId', 5 => 'fileSizeHd', ],
+        'operations'  => true,
+        'allowAdd'    => true,
+        'canPages'    => PhotoFactory::CanPages(),
+        'basePath'    => Site::GetWebPath( 'vt://photos/' ),
+        'addPath'     => Site::GetWebPath( 'vt://photos/add' ),
+        'title'       => $__pageTitle,
+        'description' => '',
+        'pageSize'    => FormHelper::RenderToForm( $search['pageSize'] ),
+        'deleteStr'   => T( 'vt.photo.deleteString' ),
+    ];
 
-    foreach ( $list as $object )  {
-        $id         = $object->photoId;
-        $editpath   = $grid['basepath'] . "edit/" . $id;
+    $__breadcrumbs = [ [ 'link' => $grid['basePath'], 'title' => $__pageTitle ] ];
 ?>
-			<tr data-object-id="{$id}">
-                <td><img src="<?= LinkUtility::GetPhotoThumb( $object, true ) ?>" width="30"></td>
-                <td>{$object.album.title}</td>
-                <td>{$object.originalName}</td>
-                <td>{$object.orderNumber}</td>
-                <td><?= ( !empty( $object->photoDate ) ? $object->photoDate->DefaultFormat() : '' ) ?></td>
-                <td><?= StatusUtility::GetStatusTemplate($object->statusId) ?></td>
-				<td width="10%">
-					<ul class="actions">
-						<li class="edit"><a href="{$editpath}" title="{$langEdit}">{$langEdit}</a></li><li class="delete"><a href="#" class="delete-object" title="{$langDelete}">{$langDelete}</a></li>
-					</ul>
-				</td>
-	        </tr>
-<?php
-    }
-?>
-		{increal:tmpl://vt/elements/datagrid/footer.tmpl.php}
-		<!-- EOF GRID -->
-	</div>
-</div>
-{increal:tmpl://vt/footer.tmpl.php}
+{increal:tmpl://vt/elements/header.tmpl.php}
+<main role="main">
+    {increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
+    <div class="container"><? if( $grid['allowAdd'] ) { ?><a href="{$grid[addPath]}" class="button _big floatRight marginAntiTopHalfBase"><i class="foundicon-add-doc"></i> {lang:vt.common.add}</a><? }?>
+        <h1>{$__pageTitle}</h1>
+        <form id="searchForm" method="post" action="{$grid[basePath]}">
+            <?= FormHelper::FormHidden( 'searchForm', 1 ); ?>
+            <?= FormHelper::FormHidden( 'page', '', 'pageId' ); ?>
+            <?= FormHelper::FormHidden( 'search[pageSize]', $grid['pageSize'], 'pageSize' ); ?>
+            <?= FormHelper::FormHidden( 'sortField', $sortField, 'sortField' ); ?>
+            <?= FormHelper::FormHidden( 'sortType', $sortType, 'sortType' ); ?>
+
+            <div class="plate cont">
+                <div class="form fsMedium">
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="albumId" class="blockLabel _shiftToRight">{lang:vt.photo.albumId}</label></div>
+                        <div class="col6"><?= FormHelper::FormSelect( 'search[albumId]', $albums, 'albumId', 'title', $search['albumId'], null, null, true ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="originalName" class="blockLabel _shiftToRight">{lang:vt.photo.originalName}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[originalName]', $search['originalName'], 'originalName' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="orderNumber" class="blockLabel _shiftToRight">{lang:vt.photo.orderNumber}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[orderNumber]', $search['orderNumber'], 'orderNumber' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="afterText" class="blockLabel _shiftToRight">{lang:vt.photo.afterText}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[afterText]', $search['afterText'], 'afterText' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="title" class="blockLabel _shiftToRight">{lang:vt.photo.title}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[title]', $search['title'], 'title' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="statusId" class="blockLabel _shiftToRight">{lang:vt.photo.statusId}</label></div>
+                        <div class="col6"><?= FormHelper::FormSelect( 'search[statusId]', StatusUtility::$Common[$__currentLang], '', '', $search['statusId'], null, null, true ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="fileSizeHd" class="blockLabel _shiftToRight">{lang:vt.photo.fileSizeHd}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[fileSizeHd]', $search['fileSizeHd'], 'fileSizeHd' ); ?></div>
+                    </div>
+                    
+                    <div class="row _fluid _p"><div class="col6 offset3"><button type="submit">{lang:vt.common.find}</button></div></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {increal:tmpl://vt/elements/datagrid/paginator.tmpl.php}
+    {increal:tmpl://vt/elements/datagrid/header.tmpl.php}
+    <?php
+        $langEdit   = T( 'vt.common.edit' );
+        $langDelete = T( 'vt.common.delete' );
+
+        foreach ( $list as $object )  {
+            $id       = $object->photoId;
+            $editPath = $grid['basePath'] . 'edit/' . $id;
+    ?>
+                <tr data-object-id="{$id}">
+                    <td>{$object.album.title}</td>
+                    <td>{form:$object.originalName}</td>
+                    <td class="alignRight"><? if ( $object->orderNumber !== null ) { ?>{num:$object.orderNumber}<? } ?></td>
+                    <td class="alignCenter"><?= $object->photoDate ? $object->photoDate->DefaultFormat() : '' ?></td>
+                    <td><?= StatusUtility::GetStatusTemplate( $object->statusId ) ?></td>
+                    <td class="alignRight"><? if ( $object->fileSizeHd !== null ) { ?>{num:$object.fileSizeHd}<? } ?></td>
+                    <td class="tableControls"><a href="{$editPath}" title="{$langEdit}"><i class="foundicon-edit"></i> {$langEdit}</a> <a href="#" class="delete-object" title="{langDelete}"><i class="foundicon-remove"></i></a></td>
+                </tr>
+    <? } ?>
+    {increal:tmpl://vt/elements/datagrid/footer.tmpl.php}
+</main>
+{increal:tmpl://vt/elements/footer.tmpl.php}

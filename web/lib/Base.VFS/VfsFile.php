@@ -1,8 +1,5 @@
 <?php
-    /**
-     * WTF MFD EG 1.6 [t:trunk]
-     * Copyright (c) The 1ADW. All rights reserved.
-     */
+
 
     /**
      * VfsFile
@@ -48,7 +45,9 @@
         /** @var Status */
         public $status;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $createdAt;
+
+        # user defined code goes below
+
     }
-?>

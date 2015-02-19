@@ -1,8 +1,11 @@
 <?php
+
+
     /**
      * Navigation Utility
      */
     class NavigationUtility {
+
         /**
          * Main Menu
          */
@@ -16,14 +19,14 @@
 
         /**
          * Get Navigations by alias
-         * @param array  $navigations   source array
-         * @param string $alias         navigation type alias
+         * @param array  $navigations source array
+         * @param string $alias       navigation type alias
          * @return array
          */
         public static function GetByAlias( $navigations, $alias ) {
-            $result = array();
-            foreach( $navigations as $navigation ) {
-                if ( $navigation->navigationType->alias == $alias ) {
+            $result = [ ];
+            foreach ( $navigations as $navigation ) {
+                if ( $navigation->navigationType->alias === $alias ) {
                     $result[$navigation->navigationId] = $navigation;
                 }
             }
@@ -31,4 +34,3 @@
             return $result;
         }
     }
-?>

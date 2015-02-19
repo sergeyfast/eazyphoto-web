@@ -1,8 +1,9 @@
-    </tbody>
-</table>
-
+        </tbody>
+    </table>
+</div>
 <?
-    if ( $grid["canPages"] ) {
+    /** @var array $grid */
+    if ( $grid['canPages'] ) {
         $__paginatorMode = 'pageSizes';
         ?>{increal:tmpl://vt/elements/datagrid/paginator.tmpl.php}<?
     }

@@ -1,11 +1,14 @@
 <?php
     /** @var Album $album */
+    use Eaze\Helpers\CssHelper;
+    use Eaze\Helpers\JsHelper;
+
     /** @var Photo[] $photos */
 
-    $__breadcrumbs = array(
-        array( 'title' => $album->startDate->format('Y'), 'path' => LinkUtility::GetAlbumsUrl( $album->startDate->format('Y') ) )
-        , array( 'title' => $album->title, 'path' => LinkUtility::GetAlbumUrl( $album ) )
-    );
+    $__breadcrumbs = [
+        [ 'title' => $album->startDate->format('Y'), 'path' => LinkUtility::GetAlbumsUrl( $album->startDate->format('Y') ) ]
+        , [ 'title' => $album->title, 'path' => LinkUtility::GetAlbumUrl( $album ) ]
+    ];
 
     $__pageTitle = $album->title;
     $firstPhoto  = $photos ? reset( $photos ) : null;

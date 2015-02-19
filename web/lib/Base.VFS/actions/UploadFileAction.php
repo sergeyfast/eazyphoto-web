@@ -1,4 +1,8 @@
 <?php
+    use Eaze\Core\Request;
+    use Eaze\Helpers\ObjectHelper;
+    use Eaze\Site\Page;
+
     /**
      * Upload File Action
      * @package    Base
@@ -48,5 +52,3 @@
             echo ObjectHelper::ToJSON( $response );
         }
     }
-
-?>

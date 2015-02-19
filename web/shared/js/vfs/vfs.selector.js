@@ -10,6 +10,12 @@ function VfsWindow(url, title, width, height) {
 
 
 function VfsSelector(path) {
+    this.title = '';
+    this.height = 760;
+    this.width = 860;
+    this.left = (screen.width/2)-(this.width/2);
+    this.top  = (screen.height/2)-(this.height/2);
+
     this.path = path;
     this.currentElementId = null;
     this.lastFile = null;
@@ -24,7 +30,7 @@ function VfsSelector(path) {
         }
 
         this.vfsDialog = VfsWindow( this.path + "?folderId=" + folderId, this.title, this.width, this.height );
-    }
+    };
 
 
     this.OpenFile = function (fileId, currentElementId, mode) {
@@ -34,14 +40,14 @@ function VfsSelector(path) {
         } else if ( mode == 'fileId' ) {
             this.vfsDialog = VfsWindow(this.path + "?fileId=" + fileId, this.title, this.width, this.height);
         }
-    }
+    };
 
 
     this.Feedback = function (result) {
         this.lastFile = result;
         this.setFileObject(this.currentElementId);
         this.drawFile($("#" + this.currentElementId));
-    }
+    };
 
     /**
      * Init Draw
@@ -51,13 +57,13 @@ function VfsSelector(path) {
         $(".vfsFile").each(function () {
             vfsSelector.drawFile($(this))
         });
-    }
+    };
 
 
     this.DeleteFile = function (fileId) {
         $("#" + fileId).val('-1');
         this.drawFile($("#" + fileId));
-    }
+    };
 
 
     /**
@@ -75,7 +81,7 @@ function VfsSelector(path) {
         } else if ( mode == "path" ) {
             $("#" + vfsFileId).attr("vfs:name", this.lastFile.shortPath).val(this.lastFile.shortPath).attr("vfs:src", this.lastFile.path);
         }
-    }
+    };
 
 
     /**
@@ -87,32 +93,49 @@ function VfsSelector(path) {
         $("#" + areaId).remove();
 
         var mode = current.data( 'mode' ); // fileId or path
-        var xhtml = '<div id="' + areaId + '" class="fileinput">';
+        var $xhtml = $('<div class="fileinput"/>').attr('id', areaId);
 
         if (current.val() == '' || current.val() == '-1') {
-            xhtml = xhtml + '<a href="javascript:vfsSelector.Open( null, \'' + current.attr('id') + '\' );">' + vfsConstants.langOpen + '</a>';
+            $xhtml.append(
+                $('<a class="_add"><i class="foundicon-plus fsSmall"></i> ' + vfsConstants.langOpen + '</a>').click(function (e) {
+                    e.preventDefault();
+                    vfsSelector.Open(null, current.attr('id'));
+                }).addClass( current.attr('vfs:previewType') == vfsSelector.ImagePreviewType ? 'imgThumb' : 'theFile')
+            );
         } else {
+            var $a = $('<a/>').attr({href: current.attr('vfs:src'), title: current.attr('vfs:name')});
+
             if (current.attr('vfs:previewType') == vfsSelector.ImagePreviewType) {
-                xhtml += '<a href="' + current.attr('vfs:src') + '" class="fancy"><img class="image" width="50" height="50" src="' + current.attr('vfs:src') + '"/></a>';
-                xhtml += '<div class="info">';
+                $a.css('background-image', 'url(' + current.attr('vfs:src') + ')').addClass('fancy imgThumb');
             } else {
-                xhtml = xhtml + '<div class="info-short">';
+                $a.addClass('theFile').attr('target', '_blank').append( current.attr('vfs:name'))
             }
 
-            xhtml += '<p><a class="filename" href="' + current.attr('vfs:src') + '" target="_blank">' + current.attr('vfs:name') + '</a>&nbsp;&nbsp;';
-            xhtml += '<a class="delete" href="javascript:vfsSelector.DeleteFile( \'' + current.attr('id') + '\' );" title="' + vfsConstants.langDelete + '">' + vfsConstants.langDelete + '</a>';
-            xhtml += '</p>';
-            xhtml += '<a class="edit" href="javascript:vfsSelector.OpenFile( \'' + current.val() + '\',\'' + current.attr('id') + "','" + mode + "' );\">" + vfsConstants.langEdit + '</a> ';
-            xhtml += '</div>';
+            $a.append($('<span title="' + vfsConstants.langEdit + '" class="_edit"></span>')).find('span._edit').click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                vfsSelector.OpenFile(current.val(), current.attr('id'), mode);
+            });
+
+            $a.append($('<span title="' + vfsConstants.langDelete + '" class="_del"></span>')).find('span._del').click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                vfsSelector.DeleteFile(current.attr('id'));
+            });
+
+            $xhtml.append( $a )
         }
 
-        xhtml = xhtml + '</div>';
 
-        current.after(xhtml);
+        current.after($xhtml);
         $('a.fancy').fancybox();
     }
 }
 
-VfsSelector.prototype = new BaseSelector;
-
 var vfsConstants = new VFSConstants('');
+var vfsSelector;
+
+$(function(){
+    vfsSelector = new VfsSelector( root + "vt/vfs/" );
+    vfsSelector.Init();
+});

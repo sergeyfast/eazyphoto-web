@@ -1,4 +1,15 @@
 <?php
+    use Eaze\Core\Convert;
+    use Eaze\Core\DateTimeWrapper;
+    use Eaze\Core\DirectoryInfo;
+    use Eaze\Core\Logger;
+    use Eaze\Database\ConnectionFactory;
+    use Eaze\Database\SqlCommand;
+    use Eaze\Helpers\ArrayHelper;
+    use Eaze\Helpers\ImageHelper;
+    use Eaze\Model\BaseFactory;
+    use Eaze\Site\Site;
+
     /**
      * AlbumUtility
      * @package    EazyPhoto
@@ -40,7 +51,7 @@
          * @return bool
          */
         public static function CreateDirs( Album $album ) {
-            foreach ( array( self::HD, self::Source, self::Thumbs ) as $folderType ) {
+            foreach ( [ self::HD, self::Source, self::Thumbs ] as $folderType ) {
                 $path = self::GetRealPath( $album, $folderType );
                 if ( !is_dir( $path ) ) {
                     $old = umask( 0 );
@@ -69,7 +80,7 @@
         public static function QueueAlbum( $album, BTSyncClient $client ) {
             $result = false;
             do {
-                if ( $album->statusId != StatusUtility::InQueue ) {
+                if ( $album->statusId !== StatusUtility::InQueue ) {
                     Logger::Debug( 'Invalid Albums status for Queue' );
                     break;
                 }
@@ -98,7 +109,8 @@
                 $album->statusId   = StatusUtility::Enabled;
                 $album->modifiedAt = DateTimeWrapper::Now();
                 $album->roSecretHd = $hdSecret['rosecret'];
-                $errHd             = $client->AddSyncFolder( $pathHd, $hdSecret['secret'] );
+
+                $errHd = $client->AddSyncFolder( $pathHd, $hdSecret['secret'] );
                 // TODO Handle errHd
 
                 if ( !AlbumFactory::Update( $album ) ) {
@@ -149,7 +161,7 @@
             self::CreateDirs( $album );
 
             $sph     = SiteParamHelper::GetInstance();
-            $photos  = PhotoFactory::Get( array( 'albumId' => $album->albumId ), array( BaseFactory::WithoutPages => true, BaseFactory::WithColumns => '`photoId`,`filename`, `originalName`, `statusId`' ) );
+            $photos  = PhotoFactory::Get( [ 'albumId' => $album->albumId ], [ BaseFactory::WithoutPages => true, BaseFactory::WithColumns => '"photoId","filename", "originalName", "statusId"' ] );
             $fileDir = DirectoryInfo::GetInstance( self::GetRealPath( $album, self::Source ) );
             $cPhotos = ArrayHelper::Collapse( $photos, 'originalName', false );
             $maxId   = self::GetMaxPhoto( $cPhotos );
@@ -205,7 +217,7 @@
                 }
 
                 if ( !$p->exif ) {
-                    $p->exif = array();
+                    $p->exif = [];
                 }
 
                 if ( !PhotoFactory::Add( $p ) ) {
@@ -243,19 +255,19 @@
          * @param Album $album
          */
         public static function FillMetaInfo( Album $album ) {
-            $count = PhotoFactory::Count( array( 'albumId' => $album->albumId, 'pageSize' => 1, 'statusId' => 1 ), array( BaseFactory::WithoutPages => true ) );
+            $count = PhotoFactory::Count( [ 'albumId' => $album->albumId, 'pageSize' => 1, 'statusId' => StatusUtility::Enabled ], [ BaseFactory::WithoutPages => true ] );
             list( $fs, $fh ) = self::GetFileSize( $album );
 
-            $photos = PhotoFactory::Get( array( 'albumId' => $album->albumId, 'pageSize' => self::DefaultPreviewCount )
-                , array( BaseFactory::WithColumns => '`photoId`', BaseFactory::OrderBy => 'ISNULL(`orderNumber`), `orderNumber`, `photoDate` ' . ( $album->isDescSort ? 'DESC' : 'ASC' )  )
+            $photos = PhotoFactory::Get( [ 'albumId' => $album->albumId, 'pageSize' => self::DefaultPreviewCount ]
+                , [ BaseFactory::WithColumns => '"photoId"', BaseFactory::OrderBy => '"orderNumber", "photoDate" ' . ( $album->isDescSort ? 'DESC' : 'ASC' )  ]
             );
 
-            $album->metaInfo = array(
-                'count'      => $count
-                , 'size'     => $fs
-                , 'sizeHd'   => $fh
-                , 'photoIds' => array_keys( $photos )
-            );
+            $album->metaInfo = [
+                'count'      => $count,
+                'size'     => $fs,
+                'sizeHd'   => $fh,
+                'photoIds' => array_keys( $photos ),
+            ];
         }
 
 
@@ -267,9 +279,9 @@
         public static function GetFileSize( Album $album ) {
             $conn = ConnectionFactory::Get();
             $sql  = <<<sql
-                SELECT sum( `fileSize` ) as fs, sum( `fileSizeHd` ) as fh
-                FROM `photos`
-                WHERE `statusId` = 1 AND `albumId` = @albumId
+                SELECT sum( "fileSize" ) as fs, sum( "fileSizeHd" ) as fh
+                FROM "photos"
+                WHERE "statusId" = 1 AND "albumId" = @albumId
 sql;
 
             $cmd = new SqlCommand( $sql, $conn );
@@ -278,11 +290,9 @@ sql;
 
 
             if ( $ds->Next() ) {
-                return array( $ds->GetInteger( 'fs' ), $ds->GetInteger( 'fh' ) );
+                return [ $ds->GetInteger( 'fs' ), $ds->GetInteger( 'fh' ) ];
             }
 
-            return array( 0, 0 );
+            return [ 0, 0 ];
         }
     }
-
-?>

@@ -1,33 +1,35 @@
 <?php
+
+    use Eaze\Model\BaseFactory;
+    use Eaze\Core\Response;
+
     /**
      * Get StaticPage List Action
-     * 
-     * @package PandaTrunk
+     *
+     * @package EazyPhoto
      * @subpackage Common
+     * @property StaticPage[] list
      */
-    class GetStaticPageListAction extends BaseGetAction {
+    class GetStaticPageListAction extends Eaze\Model\BaseGetAction {
 
         /**
          * Constructor
          */
         public function __construct() {
-            $this->options = array(
-                BaseFactory::WithoutDisabled => false
-                , BaseFactory::WithLists     => false
-            );
-
-            $this->sortFields = array( 'parentStaticPage.title' );
+            $this->options = [
+                BaseFactory::WithoutDisabled  => false,
+                BaseFactory::WithLists        => false,
+            ];
 
             parent::$factory = new StaticPageFactory();
         }
-        
-        
+
+
         /**
          * Set Foreign Lists
          */
         protected function setForeignLists() {
             $staticPages = StaticPageUtility::GetData();
-            Response::setArray( "staticPages", $staticPages );
+            Response::setArray( 'staticPages', $staticPages );
         }
     }
-?>

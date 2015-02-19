@@ -167,25 +167,25 @@
   vertical-align: middle;
   cursor: pointer;
   border-radius: 4px;
-  background: #c1c3c5 url("../../images/vfs/icon_star.png") no-repeat 50% 50%;
+  background: #c1c3c5 url("../../img/vfs/icon_star.png") no-repeat 50% 50%;
 }
 .vfs_cont_panel_header ul li._button_new_folder {
-  background-image: url("../../images/vfs/icon_new_folder.png");
+  background-image: url("../../img/vfs/icon_new_folder.png");
 }
 .vfs_cont_panel_header ul li._button_view_thumb {
-  background-image: url("../../images/vfs/icon_view_thumb.png");
+  background-image: url("../../img/vfs/icon_view_thumb.png");
 }
 .vfs_cont_panel_header ul li._button_view_list {
-  background-image: url("../../images/vfs/icon_view_list.png");
+  background-image: url("../../img/vfs/icon_view_list.png");
 }
 .vfs_cont_panel_header ul li._button_paste {
-  background-image: url("../../images/vfs/icon_paste_move.png");
+  background-image: url("../../img/vfs/icon_paste_move.png");
 }
 .vfs_cont_panel_header ul li._button_cut {
-  background-image: url("../../images/vfs/icon_paste_copy.png");
+  background-image: url("../../img/vfs/icon_paste_copy.png");
 }
 .vfs_cont_panel_header ul li._button_delete {
-  background-image: url("../../images/vfs/icon_del_all.png");
+  background-image: url("../../img/vfs/icon_del_all.png");
 }
 .vfs_cont_panel_header ul li._button_delete._active {
   background-color: #f89614;
@@ -195,7 +195,7 @@
   padding: 0 10px 0 24px;
   margin-left: 4px;
   background-color: #7bc919;
-  background-image: url("../../images/vfs/icon_add.png");
+  background-image: url("../../img/vfs/icon_add.png");
   background-position: 8px 50%;
 }
 .vfs_cont_panel_header ul li._active {
@@ -279,7 +279,7 @@
   height: 24px;
   border: 1px solid transparent;
   border-radius: 2px;
-  background: url("../../images/vfs/icon_link.png") no-repeat 50% 50%;
+  background: url("../../img/vfs/icon_link.png") no-repeat 50% 50%;
 }
 .vfs_contol_dropdown li a {
   display: block;
@@ -291,16 +291,16 @@
   background-color: rgba(123,201,25,0.15);
 }
 .vfs_contol_dropdown li.vfs_dropdown_favorite {
-  background-image: url("../../images/vfs/icon_star3.png");
+  background-image: url("../../img/vfs/icon_star3.png");
 }
 .vfs_contol_dropdown li.vfs_dropdown_cut {
-  background-image: url("../../images/vfs/icon_copy.png");
+  background-image: url("../../img/vfs/icon_copy.png");
 }
 .vfs_contol_dropdown li.vfs_dropdown_rename {
-  background-image: url("../../images/vfs/icon_edit.png");
+  background-image: url("../../img/vfs/icon_edit.png");
 }
 .vfs_contol_dropdown li.vfs_dropdown_delete {
-  background-image: url("../../images/vfs/icon_del.png");
+  background-image: url("../../img/vfs/icon_del.png");
 }
 .vfs_contol_dropdown li.vfs_dropdown_delete:hover {
   border-color: #cb0011;
@@ -309,10 +309,10 @@
 .vfs_folder_list a {
   display: inline-block;
   padding-left: 23px;
-  background: url("../../images/vfs/icon_folder.png") no-repeat 0 0;
+  background: url("../../img/vfs/icon_folder.png") no-repeat 0 0;
 }
 .vfs_folder_list a._folder_current {
-  background-image: url("../../images/vfs/icon_folder_opened.png");
+  background-image: url("../../img/vfs/icon_folder_opened.png");
 }
 .vfs_folder_list ._folderState {
   display: inline-block;
@@ -321,10 +321,10 @@
   margin-right: 0.65em;
   text-align: center;
   color: #ededed;
-  background: url("../../images/vfs/icon_star2.png") no-repeat 0 0;
+  background: url("../../img/vfs/icon_star2.png") no-repeat 0 0;
 }
 .vfs_folder_list ._is_favorite {
-  background-image: url("../../images/vfs/icon_star3.png");
+  background-image: url("../../img/vfs/icon_star3.png");
 }
 .vfs_file_list dl:nth-child(even) {
   background: #ededed;
@@ -338,52 +338,53 @@
   padding-left: 22px;
   text-align: left;
   color: #c1c3c5;
-  background: url("../../images/vfs/file_.png") no-repeat 0 50%;
+  background: url("../../img/vfs/file_.png") no-repeat 0 50%;
 }
 .vfs_file_list ._file_name a._png,
 .vfs_file_list ._file_name a._jpg,
 .vfs_file_list ._file_name a._jpeg {
-  background-image: url("../../images/vfs/file_img.png");
+  background-image: url("../../img/vfs/file_img.png");
 }
 .vfs_file_list ._file_name a._zip,
 .vfs_file_list ._file_name a._rar,
 .vfs_file_list ._file_name a._7z {
-  background-image: url("../../images/vfs/file_arc.png");
+  background-image: url("../../img/vfs/file_arc.png");
 }
 .vfs_file_list ._file_name a._mp3,
 .vfs_file_list ._file_name a._wav,
 .vfs_file_list ._file_name a._ogg {
-  background-image: url("../../images/vfs/file_audio.png");
+  background-image: url("../../img/vfs/file_audio.png");
 }
 .vfs_file_list ._file_name a._doc {
-  background-image: url("../../images/vfs/file_doc.png");
+  background-image: url("../../img/vfs/file_doc.png");
 }
 .vfs_file_list ._file_name a._pdf {
-  background-image: url("../../images/vfs/file_pdf.png");
+  background-image: url("../../img/vfs/file_pdf.png");
 }
 .vfs_file_list ._file_name a._swf {
-  background-image: url("../../images/vfs/file_swf.png");
+  background-image: url("../../img/vfs/file_swf.png");
 }
 .vfs_file_list ._file_name a._txt,
 .vfs_file_list ._file_name a._md {
-  background-image: url("../../images/vfs/file_txt.png");
+  background-image: url("../../img/vfs/file_txt.png");
 }
 .vfs_file_list ._file_name a._mp4,
 .vfs_file_list ._file_name a._avi,
 .vfs_file_list ._file_name a._mov,
-.vfs_file_list ._file_name a._mkv,
-.vfs_file_list ._file_name a background-image: url(pathToIMG + 'file_video.png'),
+.vfs_file_list ._file_name a._mkv {
+  background-image: url("../../img/vfs/file_video.png")
+}
 .vfs_file_list ._file_name a._xls {
-  background-image: url("../../images/vfs/file_xls.png");
+  background-image: url("../../img/vfs/file_xls.png");
 }
 .vfs_file_list ._file_name a._js {
-  background-image: url("../../images/vfs/file_js.png");
+  background-image: url("../../img/vfs/file_js.png");
 }
 .vfs_file_list ._file_name a._html {
-  background-image: url("../../images/vfs/file_html.png");
+  background-image: url("../../img/vfs/file_html.png");
 }
 .vfs_file_list ._file_name a._css {
-  background-image: url("../../images/vfs/file_css.png");
+  background-image: url("../../img/vfs/file_css.png");
 }
 .vfs_file_list ._file_name a span {
   color: #069;
@@ -597,7 +598,7 @@
   background-color: rgba(203,0,17,0.15) !important;
 }
 .uploadify-queue-item .cancel a {
-  background: url("../../images/vfs/icon_del.png") no-repeat 50% 50%;
+  background: url("../../img/vfs/icon_del.png") no-repeat 50% 50%;
   float: right;
   height: 13px;
   text-indent: -9999px;

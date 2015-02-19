@@ -1,8 +1,10 @@
 <?php
+
+
     /**
      * Navigation
      *
-     * @package Panda
+     * @package EazyPhoto
      * @subpackage Common
      */
     class Navigation {
@@ -35,20 +37,34 @@
         public $statusId;
 
         /** @var Status */
-        public $status = null;
+        public $status;
 
-        public function getLink() {
-            if (!empty( $this->staticPageId ) && !empty( $this->staticPage->url ) ) {
-                return Site::GetWebPath($this->staticPage->url);
-            } else  if (!empty( $this->url)) {
-                if ( mb_strpos($this->url, 'http') === 0 ) {
-                    return $this->url;
-                } else {
-                    return Site::GetWebPath($this->url);
+        /** @var array */
+        public $nodes;
+
+        /** @var array */
+        public $params;
+
+        # user defined code goes below
+
+        /**
+         * Get Link
+         * StaticPage, Url, Behavior
+         * @param bool $withWebPath
+         * @return string
+         */
+        public function GetLink( $withWebPath = false ) {
+            $url = '#';
+            if ( $this->staticPageId && $this->staticPage->url ) {
+                $url = $this->staticPage->url;
+            } else if ( $this->url ) {
+                $url = $this->url;
+                if ( mb_strpos( $this->url, 'http' ) === 0 || mb_strpos( $this->url, 'mailto:' ) === 0 ) {
+                    $withWebPath = false;
                 }
-            } else {
-                return '/404';
             }
+
+            return $withWebPath ? \Eaze\Site\Site::GetWebPath( $url ) : $url;
         }
+
     }
-?>

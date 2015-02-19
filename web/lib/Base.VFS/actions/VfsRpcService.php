@@ -1,4 +1,9 @@
 <?php
+    use Eaze\Core\Request;
+    use Eaze\Database\ConnectionFactory;
+    use Eaze\Model\BaseFactory;
+    use Eaze\Site\Site;
+
     /**
      * Vfs Rpc Service
      * @package    Base
@@ -100,8 +105,8 @@
             // check for jailed
             $folderId = VfsUtility::SetJailRoot( $folderId, $this->jailRootFolderId );
 
-            $search  = array( 'folderId' => $folderId, 'title%' => $query, 'page' => $page, 'pageSize' => $pageSize );
-            $options = array( BaseFactory::OrderBy => array( array( 'name' => $sortField, 'sort' => $isDescending ? 'DESC' : 'ASC' ) ) );
+            $search  = [ 'folderId' => $folderId, 'title%' => $query, 'page' => $page, 'pageSize' => $pageSize ];
+            $options = [ BaseFactory::OrderBy => [ [ 'name' => $sortField, 'sort' => $isDescending ? 'DESC' : 'ASC' ] ] ];
             $result  = VfsFileFactory::Get( $search, $options );
 
             return array_values( array_map( 'VfsObjectConverter::GetVfsFile', $result ) );
@@ -162,7 +167,7 @@
                 throw new Exception( 'Empty file ids', 404 );
             }
 
-            $fileIds = array_filter( array_map( 'Convert::ToInt', $fileIds ) );
+            $fileIds = array_filter( array_map( '\Eaze\Core\Convert::ToInt', $fileIds ) );
             if ( !$fileIds ) {
                 throw new Exception( 'Invalid file ids', 404 );
             }
@@ -190,7 +195,7 @@
                 throw new Exception( 'Empty file ids', 404 );
             }
 
-            $fileIds = array_filter( array_map( 'Convert::ToInt', $fileIds ) );
+            $fileIds = array_filter( array_map( '\Eaze\Core\Convert::ToInt', $fileIds ) );
             if ( !$fileIds ) {
                 throw new Exception( 'Invalid file ids', 404 );
             }

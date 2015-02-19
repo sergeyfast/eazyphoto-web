@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Base.VFS</Name>
+  <Entities>
+    <Entity Name="VfsFolder" PackageName="Base.VFS" Table="vfsFolders" View="getVfsFolders" DefaultConnection="">
+      <Attributes>
+        <Attribute Name="folderId" Key="true" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="folderId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="parentFolderId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="parentFolder" ForeignKey="VfsFolder" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="title" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="title" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_ILIKE" />
+        <Attribute Name="isFavorite" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="isFavorite" FieldType="TYPE_BOOLEAN" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="createdAt" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="createdAt" FieldType="TYPE_DATETIME" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+      </Attributes>
+      <Search>
+        <Attribute Name="_id" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="folderId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_ARRAY" />
+        <Attribute Name="exactTitle" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="title" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+      </Search>
+      <Flags>
+        <EFlag>CanCache</EFlag>
+        <EFlag>IsTree</EFlag>
+        <EFlag>WithoutTemplates</EFlag>
+      </Flags>
+      <Lists />
+    </Entity>
+    <Entity Name="VfsFile" PackageName="Base.VFS" Table="vfsFiles" View="getVfsFiles" DefaultConnection="">
+      <Attributes>
+        <Attribute Name="fileId" Key="true" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="fileId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="folderId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="folder" ForeignKey="VfsFolder" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="title" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="title" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="path" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="path" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="params" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="params" FieldType="TYPE_ARRAY" ComplexType="json" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="isFavorite" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="isFavorite" FieldType="TYPE_BOOLEAN" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="mimeType" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="mimeType" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="fileSize" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="fileSize" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="fileExists" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="fileExists" FieldType="TYPE_BOOLEAN" Nullable="No" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="createdAt" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="createdAt" FieldType="TYPE_DATETIME" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+      </Attributes>
+      <Search>
+        <Attribute Name="title%" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="title" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_RIGHT_LIKE" />
+        <Attribute Name="_fileId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="fileId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_ARRAY" />
+        <Attribute Name="page" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="page" DefaultValue="0" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="pageSize" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="pageSize" DefaultValue="25" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+      </Search>
+      <Flags>
+        <EFlag>CanPages</EFlag>
+        <EFlag>CanCache</EFlag>
+        <EFlag>WithoutTemplates</EFlag>
+      </Flags>
+      <Lists />
+    </Entity>
+  </Entities>
+</Package>

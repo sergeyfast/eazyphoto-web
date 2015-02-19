@@ -1,5 +1,7 @@
 <?
     /** @var Album[] $albums */
+    use Eaze\Helpers\ArrayHelper;
+
     /** @var Photo[] $photos */
     foreach ( $albums as $album ) {
         if ( !$album->metaInfo || empty( $album->metaInfo['count'] ) || empty( $album->metaInfo['photoIds'] ) ) {

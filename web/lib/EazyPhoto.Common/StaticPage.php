@@ -1,6 +1,11 @@
 <?php
+
+
     /**
      * StaticPage
+     *
+     * @package EazyPhoto
+     * @subpackage Common
      */
     class StaticPage {
 
@@ -15,15 +20,6 @@
 
         /** @var string */
         public $content;
-
-        /** @var string */
-        public $pageTitle;
-
-        /** @var string */
-        public $metaKeywords;
-
-        /** @var string */
-        public $metaDescription;
 
         /** @var int */
         public $orderNumber;
@@ -42,5 +38,10 @@
 
         /** @var array */
         public $nodes;
+
+        /** @var array */
+        public $images;
+
+        # user defined code goes below
+
     }
-?>

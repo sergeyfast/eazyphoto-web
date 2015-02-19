@@ -1,81 +1,87 @@
 <?php
     /** @var Album $object */
+    /** @var User[] $users */
+    
 
-    $prefix = "album";
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Helpers\JsHelper;
 
-    if ( empty( $errors ) ) $errors = array();
-	if ( empty( $jsonErrors ) ) $jsonErrors = '{}';
+    $prefix = 'album';
 
-    if ( !empty($errors["fatal"] ) ) {
-		?><h3 class="error"><?= LocaleLoader::Translate( 'errors.fatal.' . $errors["fatal"] ); ?></h3><?
-	}
+    if ( empty( $errors ) ) {
+        $errors = [];
+    }
+
+    JsHelper::PushLine( sprintf( 'var jsonErrors = %s;', !empty( $jsonErrors ) ? $jsonErrors : '{}' ) );
+    JsHelper::PushFile( 'js://vt/edit.js' );
 ?>
+<? if ( !empty( $errors["fatal"] ) ) { ?>
+<h4 class="_error"><?= T( 'errors.fatal.%s', $errors['fatal'] ); ?></h4>
+<? } ?>
 <div class="tabs">
-	<?= FormHelper::FormHidden( 'selectedTab', !empty( $selectedTab ) ? $selectedTab : 0, 'selectedTab' ); ?>
-    <ul class="tabs-list">
-        <li><a href="#page-0">{lang:vt.common.commonInfo}</a></li>
-    </ul>
-
-    <div id="page-0" class="tab-page rows">
-        <div data-row="title" class="row required">
-            <label>{lang:vt.album.title}</label>
-            <?= FormHelper::FormInput( $prefix . '[title]', $object->title, 'title', null, array( 'size' => 80 ) ); ?>
+    <?= FormHelper::FormHidden( 'selectedTab', !empty( $selectedTab ) ? $selectedTab : 0, 'selectedTab' ); ?>
+    <div class="tabs_head">
+        <ul>
+            <li><span>{lang:vt.common.commonInfo}</span></li>
+        </ul>
+    </div>
+    <div class="tabs_cont fsMedium">
+    	<div class="row _fluid _p" data-row="title">
+            <div class="col2 required"><label for="title" class="blockLabel">{lang:vt.album.title}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[title]', $object->title, 'title' ); ?></div>
         </div>
-        <div data-row="description" class="row">
-            <label>{lang:vt.album.description}</label>
-            <?= FormHelper::FormTextArea( $prefix . '[description]', $object->description, 'description', null, array( 'rows' => 5, 'cols' => 80 ) ); ?>
+    	<div class="row _fluid _p" data-row="description">
+            <div class="col2"><label for="description" class="blockLabel">{lang:vt.album.description}</label></div>
+            <div class="col6"><?= FormHelper::FormTextArea( $prefix . '[description]', $object->description, 'description', null, [ 'rows' => 5, 'cols' => 80 ] ); ?></div>
         </div>
-        <div data-row="alias" class="row required">
-            <label>{lang:vt.album.alias}</label>
-            <?= FormHelper::FormInput( $prefix . '[alias]', $object->alias, 'alias', null, array( 'size' => 80 ) ); ?>
+    	<div class="row _fluid _p" data-row="alias">
+            <div class="col2 required"><label for="alias" class="blockLabel">{lang:vt.album.alias}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[alias]', $object->alias, 'alias' ); ?></div>
         </div>
-        <div data-row="isPrivate" class="row">
-            <label>{lang:vt.album.isPrivate}</label>
-            <?= FormHelper::FormCheckBox( $prefix . '[isPrivate]', null, 'isPrivate', null, $object->isPrivate ); ?>
+    	<div class="row _fluid _p" data-row="isPrivate">
+            <div class="col2"><label for="isPrivate" class="blockLabel">{lang:vt.album.isPrivate}</label></div>
+            <div class="col6"><?= FormHelper::FormCheckbox( $prefix . '[isPrivate]', null, 'isPrivate', null, $object->isPrivate ); ?></div>
         </div>
-        <div data-row="startDate" class="row required">
-            <label>{lang:vt.album.startDate}</label>
-            <?= FormHelper::FormDate( $prefix . '[startDate]', $object->startDate, 'd.m.Y' ); ?>
+    	<div class="row _fluid _p" data-row="startDate">
+            <div class="col2 required"><label for="startDate" class="blockLabel">{lang:vt.album.startDate}</label></div>
+            <div class="col6"><?= FormHelper::FormDate( $prefix . '[startDate]', $object->startDate, 'd.m.Y' ); ?></div>
         </div>
-        <div data-row="endDate" class="row">
-            <label>{lang:vt.album.endDate}</label>
-            <?= FormHelper::FormDate( $prefix . '[endDate]', $object->endDate, 'd.m.Y' ); ?>
+    	<div class="row _fluid _p" data-row="endDate">
+            <div class="col2"><label for="endDate" class="blockLabel">{lang:vt.album.endDate}</label></div>
+            <div class="col6"><?= FormHelper::FormDate( $prefix . '[endDate]', $object->endDate, 'd.m.Y' ); ?></div>
         </div>
-        <div data-row="orderNumber" class="row inline">
-            <label>{lang:vt.album.orderNumber}</label>
-            <?= FormHelper::FormInput( $prefix . '[orderNumber]', $object->orderNumber, 'orderNumber', null, array( 'size' => 3 ) ); ?>
+    	<div class="row _fluid _p" data-row="orderNumber">
+            <div class="col2"><label for="orderNumber" class="blockLabel">{lang:vt.album.orderNumber}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[orderNumber]', $object->orderNumber, 'orderNumber' ); ?></div>
         </div>
-        <div data-row="folderPath" class="row required">
-            <label>{lang:vt.album.folderPath}</label>
-            <?= FormHelper::FormInput( $prefix . '[folderPath]', $object->folderPath, 'folderPath', null, array( 'size' => 80, 'readonly' => 'readonly' ) ); ?>
+    	<div class="row _fluid _p" data-row="folderPath">
+            <div class="col2 required"><label for="folderPath" class="blockLabel">{lang:vt.album.folderPath}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[folderPath]', $object->folderPath, 'folderPath' ); ?></div>
         </div>
-        <div data-row="roSecret" class="row required">
-            <label>{lang:vt.album.roSecret}</label>
-            <?= FormHelper::FormInput( $prefix . '[roSecret]', $object->roSecret, 'roSecret', null, array( 'size' => 80 ) ); ?>
+    	<div class="row _fluid _p" data-row="roSecret">
+            <div class="col2 required"><label for="roSecret" class="blockLabel">{lang:vt.album.roSecret}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[roSecret]', $object->roSecret, 'roSecret' ); ?></div>
         </div>
-        <div data-row="roSecretHd" class="row">
-            <label>{lang:vt.album.roSecretHd}</label>
-            <?= FormHelper::FormInput( $prefix . '[roSecretHd]', $object->roSecretHd, 'roSecretHd', null, array( 'size' => 80 ) ); ?>
+    	<div class="row _fluid _p" data-row="roSecretHd">
+            <div class="col2"><label for="roSecretHd" class="blockLabel">{lang:vt.album.roSecretHd}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[roSecretHd]', $object->roSecretHd, 'roSecretHd' ); ?></div>
         </div>
-        <div data-row="deleteOriginalsAfter" class="row inline">
-            <label>{lang:vt.album.deleteOriginalsAfter}</label>
-            <?= FormHelper::FormInput( $prefix . '[deleteOriginalsAfter]', $object->deleteOriginalsAfter, 'deleteOriginalsAfter', null, array( 'size' => 3 ) ); ?>
+    	<div class="row _fluid _p" data-row="deleteOriginalsAfter">
+            <div class="col2"><label for="deleteOriginalsAfter" class="blockLabel">{lang:vt.album.deleteOriginalsAfter}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[deleteOriginalsAfter]', $object->deleteOriginalsAfter, 'deleteOriginalsAfter' ); ?></div>
         </div>
-        <div data-row="isDescSort" class="row required">
-            <label>{lang:vt.album.isDescSort}</label>
-            <?= FormHelper::FormCheckBox( $prefix . '[isDescSort]', null, 'isDescSort', null, $object->isDescSort ); ?>
+    	<div class="row _fluid _p" data-row="isDescSort">
+            <div class="col2"><label for="isDescSort" class="blockLabel">{lang:vt.album.isDescSort}</label></div>
+            <div class="col6"><?= FormHelper::FormCheckbox( $prefix . '[isDescSort]', null, 'isDescSort', null, $object->isDescSort ); ?></div>
         </div>
-        <div data-row="userId" class="row required">
-            <label>{lang:vt.album.userId}</label>
-            <?= FormHelper::FormSelect( $prefix . '[userId]', $users, "userId", "login", $object->userId, null, null, false ); ?>
+    	<div class="row _fluid _p" data-row="userId">
+            <div class="col2 required"><label for="userId" class="blockLabel">{lang:vt.album.userId}</label></div>
+            <div class="col6"><?= FormHelper::FormSelect( $prefix . '[userId]', $users, 'userId', 'login', $object->userId, null, null, false ); ?></div>
         </div>
-        <div data-row="statusId" class="row required">
-            <label>{lang:vt.album.statusId}</label>
-            <?= FormHelper::FormSelect( $prefix . '[statusId]', StatusUtility::$Album[$__currentLang], "", "", $object->statusId, null, null, false ); ?>
+    	<div class="row _fluid _p" data-row="statusId">
+            <div class="col2 required"><label for="statusId" class="blockLabel">{lang:vt.album.statusId}</label></div>
+            <div class="col6"><?= FormHelper::FormSelect( $prefix . '[statusId]', StatusUtility::$Common[$__currentLang], '', '', $object->statusId, null, null, false ); ?></div>
         </div>
-	</div>
+    </div>
 </div>
-<script type="text/javascript">
-	var jsonErrors = {$jsonErrors};
-</script>
- 
+

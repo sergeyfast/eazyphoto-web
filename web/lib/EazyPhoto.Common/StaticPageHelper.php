@@ -3,9 +3,15 @@
      * Static Page Helper
      */
     class StaticPageHelper {
+
         /**
-    	 * Form Pages
-    	 */
+         * Form Pages
+         * @param      $controlName
+         * @param      $pages
+         * @param      $value
+         * @param bool $showAll
+         * @return string
+         */
     	public static function FormSelect( $controlName, $pages, $value, $showAll = true ) {
 			$xhtml = sprintf( '<select name="%s"><option></option>'
 				, $controlName
@@ -37,4 +43,3 @@
 			}
 		}
     }
-?>

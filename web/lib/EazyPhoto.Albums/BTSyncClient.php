@@ -1,7 +1,9 @@
 <?php
+
+
     /**
      * BitTorrent Sync Client
-     * @author sergeyfast
+     * @author  sergeyfast
      * @version 1.0
      *
      * Not Implemented Methods:
@@ -26,9 +28,9 @@
          * Curl Options
          * @var array
          */
-        public $CurlOptions = array(
+        public $CurlOptions = [
             CURLOPT_RETURNTRANSFER => 1
-        );
+        ];
 
         /**
          * Cookie.txt
@@ -39,7 +41,7 @@
 
         /**
          * Create New BitTorrent SyncApp client
-         * @param string $serverUrl     like http://127.0.0.1:8888/
+         * @param string $serverUrl like http://127.0.0.1:8888/
          * @param string $user
          * @param string $password
          * @return self
@@ -62,9 +64,9 @@
          * @param string $url
          * @return array|object|bool
          */
-        protected function processCall( $params = array(), $rawData = false, $url = '/gui/' ) {
+        protected function processCall( $params = [ ], $rawData = false, $url = '/gui/' ) {
             $options = $this->CurlOptions;
-            $params  = $params ? : array();
+            $params  = $params ?: [ ];
 
             $params['t'] = time();
             if ( $this->token ) {
@@ -91,7 +93,7 @@
          * @return bool
          */
         public function RequestToken() {
-            $token = $this->processCall( array(), true, '/gui/token.html' );
+            $token = $this->processCall( [ ], true, '/gui/token.html' );
             if ( $token ) {
                 $this->token = strip_tags( $token );
                 return true;
@@ -106,7 +108,7 @@
          * @return array os
          */
         public function GetOsType() {
-            return $this->processCall( array( 'action' => 'getostype' ) );
+            return $this->processCall( [ 'action' => 'getostype' ] );
         }
 
 
@@ -115,7 +117,7 @@
          * @return string
          */
         public function GetVersion() {
-            $version = $this->processCall( array( 'action' => 'getversion' ) );
+            $version = $this->processCall( [ 'action' => 'getversion' ] );
             if ( $version ) {
                 $v = $version['version'];
                 return sprintf( '%d.%d.%d', ( $v & 0xFF000000 ) >> 24, ( $v & 0x00FF0000 ) >> 16, $v & 0x0000FFFF );
@@ -130,7 +132,7 @@
          * @return array rosecret,secret
          */
         public function GenerateSecret() {
-            return $this->processCall( array( 'action' => 'generatesecret' ) );
+            return $this->processCall( [ 'action' => 'generatesecret' ] );
         }
 
 
@@ -139,7 +141,7 @@
          * @return array settings[devicename,dlrate,listeningport,portmapping,ulrate]
          */
         public function GetSettings() {
-            return $this->processCall( array( 'action' => 'getsettings' ) );
+            return $this->processCall( [ 'action' => 'getsettings' ] );
         }
 
 
@@ -148,7 +150,7 @@
          * @return array folders[.. [name, peers ..[direct, name, status], secret, size] ], speed
          */
         public function GetSyncFolders() {
-            return $this->processCall( array( 'action' => 'getsyncfolders' ) );
+            return $this->processCall( [ 'action' => 'getsyncfolders' ] );
         }
 
 
@@ -157,7 +159,7 @@
          * @return array version[url,version]
          */
         public function CheckNewVersion() {
-            return $this->processCall( array( 'action' => 'checknewversion' ) );
+            return $this->processCall( [ 'action' => 'checknewversion' ] );
         }
 
 
@@ -169,7 +171,7 @@
          *
          */
         public function GetFolderPreferences( $path, $secret ) {
-            return $this->processCall( array( 'action' => 'getfolderpref', 'name' => $path, 'secret' => $secret ) );
+            return $this->processCall( [ 'action' => 'getfolderpref', 'name' => $path, 'secret' => $secret ] );
         }
 
 
@@ -180,7 +182,7 @@
          * @return array
          */
         public function GetHosts( $path, $secret ) {
-            return $this->processCall( array( 'action' => 'getknownhosts', 'name' => $path, 'secret' => $secret ) );
+            return $this->processCall( [ 'action' => 'getknownhosts', 'name' => $path, 'secret' => $secret ] );
         }
 
 
@@ -190,7 +192,7 @@
          * @return array folders
          */
         public function GetDir( $path = '' ) {
-            return $this->processCall( array( 'action' => 'getdir', 'dir' => $path ) );
+            return $this->processCall( [ 'action' => 'getdir', 'dir' => $path ] );
         }
 
 
@@ -203,7 +205,7 @@
          * @return array
          */
         public function AddHost( $path, $secret, $addr, $port ) {
-            return $this->processCall( array( 'action' => 'addknownhosts', 'name' => $path, 'secret' => $secret, 'addr' => $addr, 'port' => $port ) );
+            return $this->processCall( [ 'action' => 'addknownhosts', 'name' => $path, 'secret' => $secret, 'addr' => $addr, 'port' => $port ] );
         }
 
 
@@ -215,7 +217,7 @@
          * @return array
          */
         public function RemoveHost( $path, $secret, $index ) {
-            return $this->processCall( array( 'action' => 'removeknownhosts', 'name' => $path, 'secret' => $secret, 'index' => $index ) );
+            return $this->processCall( [ 'action' => 'removeknownhosts', 'name' => $path, 'secret' => $secret, 'index' => $index ] );
         }
 
 
@@ -227,7 +229,7 @@
          * @return array
          */
         public function UpdateSecret( $path, $secret, $newSecret ) {
-            return $this->processCall( array( 'action' => 'updatesecret', 'name' => $path, 'secret' => $secret, 'newsecret' => $newSecret ) );
+            return $this->processCall( [ 'action' => 'updatesecret', 'name' => $path, 'secret' => $secret, 'newsecret' => $newSecret ] );
         }
 
 
@@ -238,7 +240,7 @@
          * @return array
          */
         public function GenerateInvite( $path, $secret ) {
-            return $this->processCall( array( 'action' => 'generateinvite', 'name' => $path, 'secret' => $secret ) );
+            return $this->processCall( [ 'action' => 'generateinvite', 'name' => $path, 'secret' => $secret ] );
         }
 
 
@@ -249,7 +251,7 @@
          * @return array
          */
         public function GenerateReadOnlyInvite( $path, $secret ) {
-            return $this->processCall( array( 'action' => 'generateroinvite', 'name' => $path, 'secret' => $secret ) );
+            return $this->processCall( [ 'action' => 'generateroinvite', 'name' => $path, 'secret' => $secret ] );
         }
 
 
@@ -261,7 +263,7 @@
          * @return array error,  + message,n,secret
          */
         public function AddSyncFolder( $path, $secret, $force = false ) {
-            return $this->processCall( array( 'action' => 'addsyncfolder', 'name' => $path, 'secret' => $secret, 'force' => (int) $force ) );
+            return $this->processCall( [ 'action' => 'addsyncfolder', 'name' => $path, 'secret' => $secret, 'force' => (int) $force ] );
         }
 
 
@@ -272,9 +274,7 @@
          * @return array error,  + message,n,secret
          */
         public function RemoveSyncFolder( $path, $secret ) {
-            return $this->processCall( array( 'action' => 'removefolder', 'name' => $path, 'secret' => $secret ) );
+            return $this->processCall( [ 'action' => 'removefolder', 'name' => $path, 'secret' => $secret ] );
         }
 
     }
-
-?>

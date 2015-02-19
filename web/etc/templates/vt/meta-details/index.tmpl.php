@@ -1,104 +1,119 @@
 <?php
+    /** @var string[] $search */
+    /** @var bool $hideSearch */
+    /** @var string $sortField */
+    /** @var string $sortType */
+
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Site\Site;
+
     /** @var MetaDetail[] $list */
+    
 
-    $__pageTitle = LocaleLoader::Translate( "vt.screens.metaDetail.list");
+    $__pageTitle = T( 'vt.screens.metaDetail.list');
 
-    $grid = array(
-        "columns" => array(
-           LocaleLoader::Translate( "vt.metaDetail.url" )
-            , LocaleLoader::Translate( "vt.metaDetail.pageTitle" )
-            , LocaleLoader::Translate( "vt.metaDetail.metaKeywords" )
-            , LocaleLoader::Translate( "vt.metaDetail.metaDescription" )
-            , LocaleLoader::Translate( "vt.metaDetail.alt" )
-            , LocaleLoader::Translate( "vt.metaDetail.statusId" )
-        )
-        , "colspans"	=> array()
-        , "sorts"		=> array(0 => "url", 1 => "pageTitle", 2 => "metaKeywords", 3 => "metaDescription", 4 => "alt", 5 => "isInheritable", 6 => "statusId")
-        , "operations"	=> true
-        , "allowAdd"	=> true
-        , "canPages"	=> MetaDetailFactory::CanPages()
-        , "basepath"	=> Site::GetWebPath( "vt://meta-details/" )
-        , "addpath"		=> Site::GetWebPath( "vt://meta-details/add" )
-        , "title"		=> $__pageTitle
-		, "description"	=> ''
-        , "pageSize"	=> HtmlHelper::RenderToForm( $search["pageSize"] )
-        , "deleteStr"	=> LocaleLoader::Translate( "vt.metaDetail.deleteString")
-    );
-	
-	$__breadcrumbs = array( array( 'link' => $grid['basepath'], 'title' => $__pageTitle ) );
-?>
-{increal:tmpl://vt/header.tmpl.php}
-<div class="main">
-	<div class="inner">
-		{increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
-		<div class="pagetitle">
-			<? if( $grid['allowAdd'] ) { ?>
-			<div class="controls"><a href="{$grid[addpath]}" class="add"><span>{lang:vt.common.add}</span></a></div>
-			<? } ?>
-			<h1>{$__pageTitle}</h1>
-		</div>
-		{$grid[description]}
-		<div class="search<?= $hideSearch == "true" ? " closed" : ""  ?>">
-			<a href="#" class="search-close"><span>{lang:vt.common.closeSearch}</span></a>
-			<a href="#" class="search-open"><span>{lang:vt.common.openSearch}</span></a>
-			<form class="search-form" id="searchForm" method="post" action="{$grid[basepath]}">
-				<input type="hidden" value="1" name="searchForm" />
-				<input type="hidden" value="" id="pageId" name="page" />
-				<input type="hidden" value="{$grid[pageSize]}" id="pageSize" name="search[pageSize]" />
-				<input type="hidden" value="{form:$sortField}" id="sortField" name="sortField" />
-				<input type="hidden" value="{form:$sortType}" id="sortType" name="sortType" />
-                <div class="row">
-                    <label>{lang:vt.metaDetail.url}</label>
-                    <?= FormHelper::FormInput( "search[url]", $search['url'], 'url', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.metaDetail.pageTitle}</label>
-                    <?= FormHelper::FormInput( "search[pageTitle]", $search['pageTitle'], 'pageTitle', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.metaDetail.metaKeywords}</label>
-                    <?= FormHelper::FormInput( "search[metaKeywords]", $search['metaKeywords'], 'metaKeywords', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.metaDetail.metaDescription}</label>
-                    <?= FormHelper::FormInput( "search[metaDescription]", $search['metaDescription'], 'metaDescription', null, array( 'size' => 80 ) ); ?>
-                </div>
-                <div class="row">
-                    <label>{lang:vt.metaDetail.alt}</label>
-                    <?= FormHelper::FormInput( "search[alt]", $search['alt'], 'alt', null, array( 'size' => 80 ) ); ?>
-                </div>
-				<input type="submit" value="{lang:vt.common.find}" />
-			</form>
-		</div>
-		
-		<!-- GRID -->
-		{increal:tmpl://vt/elements/datagrid/header.tmpl.php}
-<?php
-    $langEdit   = LocaleLoader::Translate( "vt.common.edit" );
-    $langDelete = LocaleLoader::Translate( "vt.common.delete" );
+    $grid = [
+        'columns'     => [
+            T( 'vt.metaDetail.objectId' ),
+            T( 'vt.metaDetail.objectClass' ),
+            T( 'vt.metaDetail.url' ),
+            T( 'vt.metaDetail.pageTitle' ),
+            T( 'vt.metaDetail.metaKeywords' ),
+            T( 'vt.metaDetail.metaDescription' ),
+            T( 'vt.metaDetail.alt' ),
+            T( 'vt.metaDetail.canonicalUrl' ),
+            T( 'vt.metaDetail.statusId' ),
+        ],
+        'colspans'    => [],
+        'sorts'       => [ 0 => 'objectId', 1 => 'objectClass', 2 => 'url', 3 => 'pageTitle', 4 => 'metaKeywords', 5 => 'metaDescription', 6 => 'alt', 7 => 'canonicalUrl', 8 => 'statusId', ],
+        'operations'  => true,
+        'allowAdd'    => true,
+        'canPages'    => MetaDetailFactory::CanPages(),
+        'basePath'    => Site::GetWebPath( 'vt://meta-details/' ),
+        'addPath'     => Site::GetWebPath( 'vt://meta-details/add' ),
+        'title'       => $__pageTitle,
+        'description' => '',
+        'pageSize'    => FormHelper::RenderToForm( $search['pageSize'] ),
+        'deleteStr'   => T( 'vt.metaDetail.deleteString' ),
+    ];
 
-    foreach ( $list as $object )  {
-        $id         = $object->metaDetailId;
-        $editpath   = $grid['basepath'] . "edit/" . $id;
+    $__breadcrumbs = [ [ 'link' => $grid['basePath'], 'title' => $__pageTitle ] ];
 ?>
-			<tr data-object-id="{$id}">
-                <td class="header">{$object.url}</td>
-                <td>{$object.pageTitle}</td>
-                <td>{$object.metaKeywords}</td>
-                <td>{$object.metaDescription}</td>
-                <td>{$object.alt}</td>
-                <td><?= StatusUtility::GetStatusTemplate($object->statusId) ?></td>
-				<td width="10%">
-					<ul class="actions">
-						<li class="edit"><a href="{$editpath}" title="{$langEdit}">{$langEdit}</a></li><li class="delete"><a href="#" class="delete-object" title="{$langDelete}">{$langDelete}</a></li>
-					</ul>
-				</td>
-	        </tr>
-<?php
-    }
-?>
-		{increal:tmpl://vt/elements/datagrid/footer.tmpl.php}
-		<!-- EOF GRID -->
-	</div>
-</div>
-{increal:tmpl://vt/footer.tmpl.php}
+{increal:tmpl://vt/elements/header.tmpl.php}
+<main role="main">
+    {increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
+    <div class="container"><? if( $grid['allowAdd'] ) { ?><a href="{$grid[addPath]}" class="button _big floatRight marginAntiTopHalfBase"><i class="foundicon-add-doc"></i> {lang:vt.common.add}</a><? }?>
+        <h1>{$__pageTitle}</h1>
+        <form id="searchForm" method="post" action="{$grid[basePath]}">
+            <?= FormHelper::FormHidden( 'searchForm', 1 ); ?>
+            <?= FormHelper::FormHidden( 'page', '', 'pageId' ); ?>
+            <?= FormHelper::FormHidden( 'search[pageSize]', $grid['pageSize'], 'pageSize' ); ?>
+            <?= FormHelper::FormHidden( 'sortField', $sortField, 'sortField' ); ?>
+            <?= FormHelper::FormHidden( 'sortType', $sortType, 'sortType' ); ?>
+
+            <div class="plate cont">
+                <div class="form fsMedium">
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="url" class="blockLabel _shiftToRight">{lang:vt.metaDetail.url}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[url]', $search['url'], 'url' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="pageTitle" class="blockLabel _shiftToRight">{lang:vt.metaDetail.pageTitle}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[pageTitle]', $search['pageTitle'], 'pageTitle' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="metaKeywords" class="blockLabel _shiftToRight">{lang:vt.metaDetail.metaKeywords}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[metaKeywords]', $search['metaKeywords'], 'metaKeywords' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="metaDescription" class="blockLabel _shiftToRight">{lang:vt.metaDetail.metaDescription}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[metaDescription]', $search['metaDescription'], 'metaDescription' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="alt" class="blockLabel _shiftToRight">{lang:vt.metaDetail.alt}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[alt]', $search['alt'], 'alt' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="objectClass" class="blockLabel _shiftToRight">{lang:vt.metaDetail.objectClass}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[objectClass]', $search['objectClass'], 'objectClass' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="objectId" class="blockLabel _shiftToRight">{lang:vt.metaDetail.objectId}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[objectId]', $search['objectId'], 'objectId' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="canonicalUrl" class="blockLabel _shiftToRight">{lang:vt.metaDetail.canonicalUrl}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[canonicalUrl]', $search['canonicalUrl'], 'canonicalUrl' ); ?></div>
+                    </div>
+                    
+                    <div class="row _fluid _p"><div class="col6 offset3"><button type="submit">{lang:vt.common.find}</button></div></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {increal:tmpl://vt/elements/datagrid/paginator.tmpl.php}
+    {increal:tmpl://vt/elements/datagrid/header.tmpl.php}
+    <?php
+        $langEdit   = T( 'vt.common.edit' );
+        $langDelete = T( 'vt.common.delete' );
+
+        foreach ( $list as $object )  {
+            $id       = $object->metaDetailId;
+            $editPath = $grid['basePath'] . 'edit/' . $id;
+    ?>
+                <tr data-object-id="{$id}">
+                    <td class="alignRight"><? if ( $object->objectId !== null ) { ?>{num:$object.objectId}<? } ?></td>
+                    <td>{form:$object.objectClass}</td>
+                    <td>{form:$object.url}</td>
+                    <td>{form:$object.pageTitle}</td>
+                    <td>{form:$object.metaKeywords}</td>
+                    <td>{form:$object.metaDescription}</td>
+                    <td>{form:$object.alt}</td>
+                    <td>{form:$object.canonicalUrl}</td>
+                    <td><?= StatusUtility::GetStatusTemplate( $object->statusId ) ?></td>
+                    <td class="tableControls"><a href="{$editPath}" title="{$langEdit}"><i class="foundicon-edit"></i> {$langEdit}</a> <a href="#" class="delete-object" title="{langDelete}"><i class="foundicon-remove"></i></a></td>
+                </tr>
+    <? } ?>
+    {increal:tmpl://vt/elements/datagrid/footer.tmpl.php}
+</main>
+{increal:tmpl://vt/elements/footer.tmpl.php}

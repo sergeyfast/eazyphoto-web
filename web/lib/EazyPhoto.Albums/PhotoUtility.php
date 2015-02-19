@@ -1,13 +1,14 @@
 <?php
+
+
     /**
      * PhotoUtility
-     * @package EazyPhoto
+     * @package    EazyPhoto
      * @subpackage Albums
-     * @author Sergeyfast
+     * @author     Sergeyfast
      */
     class PhotoUtility {
 
-        public static $ThumbSize = array( 200, 200 );
+        public static $ThumbSize = [ 200, 200 ];
 
     }
-?>

@@ -1,18 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <actions>
-    <group name="album">
+    <group name="albums">
         <action name="GetAlbumList">
             <path>albums/GetAlbumListAction</path>
-            <parameters>
-                <response>
-                    <param name="__activeElement">'albums'</param>
-                </response>
-            </parameters>
         </action>
         <action name="SaveAlbum">
             <path>albums/SaveAlbumAction</path>
             <redirects>
-                <redirect name="success" path="vt://albums/"/>
+                <redirect name="success" path="vt://albums/"></redirect>
             </redirects>
         </action>
         <action name="DeleteAlbum">
@@ -24,19 +18,14 @@
             </parameters>
         </action>
     </group>
-    <group name="photo">
+    <group name="photos">
         <action name="GetPhotoList">
             <path>photos/GetPhotoListAction</path>
-            <parameters>
-                <response>
-                    <param name="__activeElement">'photos'</param>
-                </response>
-            </parameters>
         </action>
         <action name="SavePhoto">
             <path>photos/SavePhotoAction</path>
             <redirects>
-                <redirect name="success" path="vt://photos/"/>
+                <redirect name="success" path="vt://photos/"></redirect>
             </redirects>
         </action>
         <action name="DeletePhoto">

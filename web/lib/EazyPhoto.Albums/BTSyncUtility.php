@@ -1,4 +1,6 @@
 <?php
+
+
     /**
      * BTSyncUtility
      * @package    EazyPhoto
@@ -11,13 +13,13 @@
          * Params
          * @var string[]
          */
-        private static $params = array();
+        private static $params = [ ];
 
 
         /**
          * Init Module
          *
-         * @param DOMNodeList $params  the params node list
+         * @param DOMNodeList $params the params node list
          * @static
          */
         public static function Init( DOMNodeList $params ) {
@@ -52,5 +54,3 @@
             return new BTSyncClient( sprintf( 'http://%s:%d', self::$params['host'], self::$params['port'] ), self::$params['user'], self::$params['password'] );
         }
     }
-
-?>

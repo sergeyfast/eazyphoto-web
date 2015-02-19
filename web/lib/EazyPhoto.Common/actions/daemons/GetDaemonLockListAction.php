@@ -1,39 +1,31 @@
 <?php
+
+    use Eaze\Model\BaseFactory;
+
     /**
      * Get DaemonLock List Action
-     * 
+     *
+     * @package %project%
+     * @subpackage Common
+     * @property DaemonLock[] list
      */
-    class GetDaemonLockListAction extends BaseGetAction {
+    class GetDaemonLockListAction extends Eaze\Model\BaseGetAction {
 
         /**
          * Constructor
          */
         public function __construct() {
-            $this->options = array(
-                "hideDisabled" => false
-                , "withLists"  => false
-            );
+            $this->options = [
+                BaseFactory::WithoutDisabled  => false,
+                BaseFactory::WithLists        => false,
+            ];
 
             parent::$factory = new DaemonLockFactory();
         }
-        
-        
-        /**
-         * Get Search Array
-         *
-         * @return array
-         */
-        protected function getSearch() {
-            $search = Request::getArray( "search" );
-            
-            return $search;
-        }
-        
-        
+
+
         /**
          * Set Foreign Lists
-         *
          */
         protected function setForeignLists() {}
     }
-?>

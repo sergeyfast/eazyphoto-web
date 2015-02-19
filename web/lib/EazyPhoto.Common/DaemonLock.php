@@ -1,11 +1,11 @@
 <?php
-    /**
-     * WTF MFD EG 1.6 [t:trunk]
-     * Copyright (c) The 1ADW. All rights reserved.
-     */
+
 
     /**
      * DaemonLock
+     *
+     * @package EazyPhoto
+     * @subpackage Common
      */
     class DaemonLock {
 
@@ -21,13 +21,15 @@
         /** @var string */
         public $methodName;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $runAt;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $maxExecutionTime;
 
         /** @var bool */
         public $isActive;
+
+        # user defined code goes below
+
     }
-?>

@@ -11,6 +11,7 @@
     <max><![CDATA[Превышено максимальное значение]]></max>
     <min><![CDATA[Минимальное значение меньше допустимого]]></min>
     <null><![CDATA[Значение не может быть пустым]]></null>
+    <unique><![CDATA[Значение должно быть уникальным]]></unique>
   </errors>
   <vt>
     <grid>
@@ -174,6 +175,7 @@
       <exit><![CDATA[Выход]]></exit>
       <albums><![CDATA[Альбомы]]></albums>
       <photos><![CDATA[Фотографии]]></photos>
+      <daemons><![CDATA[Блокировки]]></daemons>
     </menu>
     <metaDetail>
       <deleteString><![CDATA[Вы действительно хотите удалить параметр страницы?]]></deleteString>

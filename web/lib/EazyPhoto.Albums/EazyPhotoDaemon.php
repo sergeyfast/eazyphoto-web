@@ -1,4 +1,7 @@
 <?php
+    use Eaze\Helpers\ArrayHelper;
+    use Eaze\Site\IModule;
+
     /**
      * EazyPhotoDaemon
      * @package    EazyPhoto
@@ -21,15 +24,15 @@
          * Params
          * @var string[]
          */
-        private static $params = array();
+        private static $params = [];
 
         /**
          * Curl Options
          * @var int[]
          */
-        public static $CurlOptions = array(
+        public static $CurlOptions = [
             CURLOPT_RETURNTRANSFER => 1
-        );
+        ];
 
 
         /**
@@ -86,7 +89,6 @@
 
         /**
          * Queue Albums
-         * @internal param int $albumId
          * @return bool
          */
         public static function QueueAlbums() {
@@ -115,5 +117,3 @@
             return ArrayHelper::GetValue( self::$params, 'enabled', false );
         }
     }
-
-?>

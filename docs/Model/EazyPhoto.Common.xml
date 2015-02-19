@@ -14,7 +14,7 @@
       </Flags>
       <Lists />
     </Entity>
-    <Entity Name="SiteParam" PackageName="EazyPhoto.Common" Table="siteParams" View="getSiteParams">
+    <Entity Name="SiteParam" PackageName="EazyPhoto.Common" Table="siteParams" View="getSiteParams" DefaultConnection="">
       <Attributes>
         <Attribute Name="siteParamId" Key="true" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="siteParamId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="alias" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="32" DbName="alias" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
@@ -33,38 +33,19 @@
       </Flags>
       <Lists />
     </Entity>
-    <Entity Name="MetaDetail" PackageName="EazyPhoto.Common" Table="metaDetails" View="getMetaDetails">
-      <Attributes>
-        <Attribute Name="metaDetailId" Key="true" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="metaDetailId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
-        <Attribute Name="url" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="url" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
-        <Attribute Name="pageTitle" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="pageTitle" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_LIKE" />
-        <Attribute Name="metaKeywords" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="1024" DbName="metaKeywords" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_LIKE" />
-        <Attribute Name="metaDescription" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="1024" DbName="metaDescription" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_LIKE" />
-        <Attribute Name="alt" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="alt" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_LIKE" />
-        <Attribute Name="isInheritable" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="isInheritable" FieldType="TYPE_BOOLEAN" Nullable="No" SearchType="SEARCHTYPE_EQUALS" />
-        <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
-      </Attributes>
-      <Search>
-        <Attribute Name="startUrl" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="url" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_RIGHT_ILIKE" />
-        <Attribute Name="page" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="page" DefaultValue="0" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
-        <Attribute Name="pageSize" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="pageSize" DefaultValue="25" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
-      </Search>
-      <Flags>
-        <EFlag>CanPages</EFlag>
-        <EFlag>CanCache</EFlag>
-      </Flags>
-      <Lists />
-    </Entity>
-    <Entity Name="User" PackageName="EazyPhoto.Common" Table="users" View="getUsers">
+    <Entity Name="User" PackageName="EazyPhoto.Common" Table="users" View="getUsers" DefaultConnection="">
       <Attributes>
         <Attribute Name="userId" Key="true" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="userId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="login" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="64" DbName="login" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="password" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="64" DbName="password" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="lastActivityAt" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" FieldType="TYPE_DATETIME" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="authKey" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="32" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
       </Attributes>
       <Search>
         <Attribute Name="page" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="page" DefaultValue="0" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="pageSize" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="pageSize" DefaultValue="25" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="!userId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="userId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_NOT_EQUALS" />
       </Search>
       <Flags>
         <EFlag>CanPages</EFlag>
@@ -72,23 +53,22 @@
       </Flags>
       <Lists />
     </Entity>
-    <Entity Name="StaticPage" PackageName="EazyPhoto.Common" Table="staticPages" View="getStaticPages">
+    <Entity Name="StaticPage" PackageName="EazyPhoto.Common" Table="staticPages" View="getStaticPages" DefaultConnection="">
       <Attributes>
         <Attribute Name="staticPageId" Key="true" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="staticPageId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="title" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="title" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_ILIKE" />
         <Attribute Name="url" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="url" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="content" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="content" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_ILIKE" />
-        <Attribute Name="pageTitle" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="pageTitle" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
-        <Attribute Name="metaKeywords" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="2048" DbName="metaKeywords" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
-        <Attribute Name="metaDescription" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="2048" DbName="metaDescription" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="orderNumber" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="orderNumber" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="parentStaticPageId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="parentStaticPage" ForeignKey="StaticPage" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="nodes" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" FieldType="TYPE_ARRAY" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="images" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" FieldType="TYPE_ARRAY" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
       </Attributes>
       <Search>
         <Attribute Name="page" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="page" DefaultValue="0" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="pageSize" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="pageSize" DefaultValue="25" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="!staticPageId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="staticPageId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_NOT_EQUALS" />
       </Search>
       <Flags>
         <EFlag>CanPages</EFlag>
@@ -121,6 +101,7 @@
         <Attribute Name="url" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="url" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="nodes" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="nodes" FieldType="TYPE_ARRAY" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="params" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="params" FieldType="TYPE_ARRAY" ComplexType="json" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
       </Attributes>
       <Search>
         <Attribute Name="navigationType.alias" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="navigationType.alias" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
@@ -142,6 +123,47 @@
         <Attribute Name="isActive" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="isActive" FieldType="TYPE_BOOLEAN" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
       </Attributes>
       <Search />
+      <Flags>
+        <EFlag>ReadOnlyTemplates</EFlag>
+      </Flags>
+      <Lists />
+    </Entity>
+    <Entity Name="MetaDetail" PackageName="EazyPhoto.Common" Table="metaDetails" View="getMetaDetails" DefaultConnection="">
+      <Attributes>
+        <Attribute Name="metaDetailId" Key="true" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="metaDetailId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="url" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="url" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="objectClass" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="32" DbName="objectClass" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="objectId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="objectId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="pageTitle" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="pageTitle" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="metaKeywords" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="1024" DbName="metaKeywords" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="metaDescription" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="1024" DbName="metaDescription" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="alt" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="alt" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="canonicalUrl" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="1024" DbName="canonicalUrl" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+      </Attributes>
+      <Search>
+        <Attribute Name="page" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="page" DefaultValue="0" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="pageSize" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="pageSize" DefaultValue="25" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+      </Search>
+      <Flags>
+        <EFlag>CanPages</EFlag>
+      </Flags>
+      <Lists />
+    </Entity>
+    <Entity Name="ObjectImage" PackageName="EazyPhoto.Common" Table="objectImages" View="getObjectImages" DefaultConnection="">
+      <Attributes>
+        <Attribute Name="objectImageId" Key="true" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="objectImageId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="objectClass" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="32" DbName="objectClass" FieldType="TYPE_STRING" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="objectId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="objectId" FieldType="TYPE_INTEGER" Nullable="No" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="title" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="255" DbName="title" FieldType="TYPE_STRING" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="orderNumber" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="orderNumber" FieldType="TYPE_INTEGER" Nullable="No" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="smallImageId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="smallImage" ForeignKey="VfsFile" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="bigImageId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="bigImage" ForeignKey="VfsFile" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+      </Attributes>
+      <Search>
+        <Attribute Name="_objectId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="objectId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_ARRAY" />
+      </Search>
       <Flags>
         <EFlag>WithoutTemplates</EFlag>
       </Flags>

@@ -1,6 +1,11 @@
 <?php
+
+
     /**
      * Status
+     *
+     * @package EazyPhoto
+     * @subpackage Common
      */
     class Status {
 
@@ -12,5 +17,7 @@
 
         /** @var string */
         public $alias;
+
+        # user defined code goes below
+
     }
-?>

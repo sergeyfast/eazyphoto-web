@@ -1,14 +1,11 @@
 <?php
-    /**
-     * WTF MFD EG 1.6 [t:trunk]
-     * Copyright (c) The 1ADW. All rights reserved.
-     */
+
 
     /**
      * VfsFolder
      *
-     * @package PandaTrunk
-     * @subpackage Common
+     * @package Base
+     * @subpackage VFS
      */
     class VfsFolder extends BaseTreeObject {
 
@@ -27,7 +24,7 @@
         /** @var bool */
         public $isFavorite;
 
-        /** @var DateTimeWrapper */
+        /** @var \Eaze\Core\DateTimeWrapper */
         public $createdAt;
 
         /** @var int */
@@ -35,5 +32,7 @@
 
         /** @var Status */
         public $status;
+
+        # user defined code goes below
+
     }
-?>

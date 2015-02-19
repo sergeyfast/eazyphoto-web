@@ -1,35 +1,37 @@
 <?php
+
+    use Eaze\Model\BaseFactory;
+    use Eaze\Core\Response;
+
     /**
      * Get Navigation List Action
-     * 
-     * @package PandaTrunk
+     *
+     * @package EazyPhoto
      * @subpackage Common
+     * @property Navigation[] list
      */
-    class GetNavigationListAction extends BaseGetAction {
+    class GetNavigationListAction extends Eaze\Model\BaseGetAction {
 
         /**
          * Constructor
          */
         public function __construct() {
-            $this->options = array(
-                BaseFactory::WithoutDisabled => false
-                , BaseFactory::WithLists     => false
-            );
-
-            $this->sortFields = array( 'navigationType.title', 'staticPage.title' );
+            $this->options = [
+                BaseFactory::WithoutDisabled  => false,
+                BaseFactory::WithLists        => false,
+            ];
 
             parent::$factory = new NavigationFactory();
         }
-        
-        
+
+
         /**
          * Set Foreign Lists
          */
         protected function setForeignLists() {
-            $navigationTypes = NavigationTypeFactory::Get( null, array( BaseFactory::WithoutPages => true ) );
-            Response::setArray( "navigationTypes", $navigationTypes );
-            $staticPages = StaticPageUtility::GetCollapsedData();
-            Response::setArray( "staticPages", $staticPages );
+            $navigationTypes = NavigationTypeFactory::Get( [], [BaseFactory::WithoutPages => true ] );
+            Response::setArray( 'navigationTypes', $navigationTypes );
+            $staticPages = StaticPageFactory::Get( [], [BaseFactory::WithoutPages => true ] );
+            Response::setArray( 'staticPages', $staticPages );
         }
     }
-?>

@@ -1,53 +1,66 @@
 <?php
     /** @var MetaDetail $object */
+    
 
-    $prefix = "metaDetail";
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Helpers\JsHelper;
 
-    if ( empty( $errors ) ) $errors = array();
-	if ( empty( $jsonErrors ) ) $jsonErrors = '{}';
+    $prefix = 'metaDetail';
 
-    if ( !empty($errors["fatal"] ) ) {
-		?><h3 class="error"><?= LocaleLoader::Translate( 'errors.fatal.' . $errors["fatal"] ); ?></h3><?
-	}
+    if ( empty( $errors ) ) {
+        $errors = [];
+    }
+
+    JsHelper::PushLine( sprintf( 'var jsonErrors = %s;', !empty( $jsonErrors ) ? $jsonErrors : '{}' ) );
+    JsHelper::PushFile( 'js://vt/edit.js' );
 ?>
+<? if ( !empty( $errors["fatal"] ) ) { ?>
+<h4 class="_error"><?= T( 'errors.fatal.%s', $errors['fatal'] ); ?></h4>
+<? } ?>
 <div class="tabs">
-	<?= FormHelper::FormHidden( 'selectedTab', !empty( $selectedTab ) ? $selectedTab : 0, 'selectedTab' ); ?>
-    <ul class="tabs-list">
-        <li><a href="#page-0">{lang:vt.common.commonInfo}</a></li>
-    </ul>
-
-    <div id="page-0" class="tab-page rows">
-        <div data-row="url" class="row required">
-            <label>{lang:vt.metaDetail.url}</label>
-            <?= FormHelper::FormInput( $prefix . '[url]', $object->url, 'url', null, array( 'size' => 80 ) ); ?>
+    <?= FormHelper::FormHidden( 'selectedTab', !empty( $selectedTab ) ? $selectedTab : 0, 'selectedTab' ); ?>
+    <div class="tabs_head">
+        <ul>
+            <li><span>{lang:vt.common.commonInfo}</span></li>
+        </ul>
+    </div>
+    <div class="tabs_cont fsMedium">
+    	<div class="row _fluid _p" data-row="objectId">
+            <div class="col2"><label for="objectId" class="blockLabel">{lang:vt.metaDetail.objectId}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[objectId]', $object->objectId, 'objectId' ); ?></div>
         </div>
-        <div data-row="pageTitle" class="row">
-            <label>{lang:vt.metaDetail.pageTitle}</label>
-            <?= FormHelper::FormInput( $prefix . '[pageTitle]', $object->pageTitle, 'pageTitle', null, array( 'size' => 80 ) ); ?>
+    	<div class="row _fluid _p" data-row="objectClass">
+            <div class="col2"><label for="objectClass" class="blockLabel">{lang:vt.metaDetail.objectClass}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[objectClass]', $object->objectClass, 'objectClass' ); ?></div>
         </div>
-        <div data-row="metaKeywords" class="row">
-            <label>{lang:vt.metaDetail.metaKeywords}</label>
-            <?= FormHelper::FormInput( $prefix . '[metaKeywords]', $object->metaKeywords, 'metaKeywords', null, array( 'size' => 80 ) ); ?>
+    	<div class="row _fluid _p" data-row="url">
+            <div class="col2"><label for="url" class="blockLabel">{lang:vt.metaDetail.url}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[url]', $object->url, 'url' ); ?></div>
         </div>
-        <div data-row="metaDescription" class="row">
-            <label>{lang:vt.metaDetail.metaDescription}</label>
-            <?= FormHelper::FormInput( $prefix . '[metaDescription]', $object->metaDescription, 'metaDescription', null, array( 'size' => 80 ) ); ?>
+    	<div class="row _fluid _p" data-row="pageTitle">
+            <div class="col2"><label for="pageTitle" class="blockLabel">{lang:vt.metaDetail.pageTitle}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[pageTitle]', $object->pageTitle, 'pageTitle' ); ?></div>
         </div>
-        <div data-row="alt" class="row">
-            <label>{lang:vt.metaDetail.alt}</label>
-            <?= FormHelper::FormInput( $prefix . '[alt]', $object->alt, 'alt', null, array( 'size' => 80 ) ); ?>
+    	<div class="row _fluid _p" data-row="metaKeywords">
+            <div class="col2"><label for="metaKeywords" class="blockLabel">{lang:vt.metaDetail.metaKeywords}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[metaKeywords]', $object->metaKeywords, 'metaKeywords' ); ?></div>
         </div>
-        <div data-row="isInheritable" class="row required">
-            <label>{lang:vt.metaDetail.isInheritable}</label>
-            <?= FormHelper::FormCheckBox( $prefix . '[isInheritable]', null, 'isInheritable', null, $object->isInheritable ); ?>
+    	<div class="row _fluid _p" data-row="metaDescription">
+            <div class="col2"><label for="metaDescription" class="blockLabel">{lang:vt.metaDetail.metaDescription}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[metaDescription]', $object->metaDescription, 'metaDescription' ); ?></div>
         </div>
-        <div data-row="statusId" class="row required">
-            <label>{lang:vt.metaDetail.statusId}</label>
-            <?= FormHelper::FormSelect( $prefix . '[statusId]', StatusUtility::$Common[$__currentLang], "", "", $object->statusId, null, null, false ); ?>
+    	<div class="row _fluid _p" data-row="alt">
+            <div class="col2"><label for="alt" class="blockLabel">{lang:vt.metaDetail.alt}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[alt]', $object->alt, 'alt' ); ?></div>
         </div>
-	</div>
+    	<div class="row _fluid _p" data-row="canonicalUrl">
+            <div class="col2"><label for="canonicalUrl" class="blockLabel">{lang:vt.metaDetail.canonicalUrl}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[canonicalUrl]', $object->canonicalUrl, 'canonicalUrl' ); ?></div>
+        </div>
+    	<div class="row _fluid _p" data-row="statusId">
+            <div class="col2 required"><label for="statusId" class="blockLabel">{lang:vt.metaDetail.statusId}</label></div>
+            <div class="col6"><?= FormHelper::FormSelect( $prefix . '[statusId]', StatusUtility::$Common[$__currentLang], '', '', $object->statusId, null, null, false ); ?></div>
+        </div>
+    </div>
 </div>
-<script type="text/javascript">
-	var jsonErrors = {$jsonErrors};
-</script>
- 
+

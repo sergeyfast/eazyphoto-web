@@ -1,6 +1,8 @@
 <?
     /** @var SiteParamHelper $sph */
-    /** @var Navigation[] $__footerMenu */
+	use Eaze\Helpers\JsHelper;
+
+	/** @var Navigation[] $__footerMenu */
 ?>
 <div id="copyright">
     <div class="row full-width">
@@ -9,7 +11,7 @@
         </div>
         <div class="large-8 columns">
             <ul class="inline-list right">
-                <? foreach( $__footerMenu as $n ) { ?>
+                <? foreach( Context::$FooterNav as $n ) { ?>
                 <li><a href="{$n.GetLink()}">{$n.title}</a></li>
                 <? } ?>
             </ul>

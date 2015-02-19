@@ -9,7 +9,7 @@
 // error_reporting(E_ALL | E_STRICT);
 // ini_set('display_errors', 'on');
 
-require_once( '../lib/Eaze.Core/Package.php' );
+require_once( '../lib.eaze/Eaze.Core/Package.php' );
 
 if (!defined('MINIFY_BASE_DIR')) {
   /** 
@@ -104,7 +104,7 @@ class Minify {
     try {
       $minify = new Minify($type, $files);
   
-      header("Content-Type: $type;charset=".MINIFY_ENCODING);
+      header("Content-Type: $type; charset=".MINIFY_ENCODING);
 
       $minify->browserCache();
       echo $minify->combine();
@@ -125,7 +125,7 @@ class Minify {
    *   Minify::TYPE_JS)
    * @return string minified string
    */
-  public static function run($string, $type = self::TYPE_JS) {    
+  public static function run($string, $type = self::TYPE_JS) {
     return $type === self::TYPE_JS ? self::minifyJS($string) :
         self::minifyCSS($string);
   }
@@ -135,7 +135,7 @@ class Minify {
    *
    * @param string $css CSS string
    * @return string minified string
-   * @see run()
+   * @see minify()
    * @see minifyJS()
    */
   protected static function minifyCSS($css) {
@@ -182,10 +182,13 @@ class Minify {
     $relativePath = preg_replace('/([\(\),\s\'"])/', '\\\$1', str_replace( dirname(__FILE__), '', $path) );
     $relativePath = substr( $relativePath , 1, strlen($relativePath) - 1 );
     
-    return str_replace( "\\", "/", preg_replace('/url\(\s*[\'"]?\/?(.+?)[\'"]?\s*\)/i', 'url('. $relativePath.'/$1)', $css) );
-   
+    //return str_replace( "\\", "/", preg_replace('/url\(\s*[\'"]?\/?(.+?)[\'"]?\s*\)/i', 'url('. $relativePath.'/$1)', $css) );
+    //return str_replace( "\\", "/", preg_replace('/url\(\s*[\'"]?\/?(?![\'"]?http)(.+?)[\'"]?\s*\)/i', 'url('. $relativePath.'/$1)', $css) );
+    return str_replace( "\\", "\\", preg_replace('/url\(\s*[\'"]?\/?(?![\'"]?http)(.+?)[\'"]?\s*\)/i', 'url('. $relativePath.'/$1)', $css) );
+
     //$relativePath = preg_replace('/([\(\),\s\'"])/', '\\\$1',  str_replace('\\', '/', str_replace(MINIFY_BASE_DIR, '', $path)));
     //return preg_replace('/url\(\s*[\'"]?([^\/\'"\s].+?)[\'"]?\s*\)/i', 'url('. $relativePath.'/$1)', $css);
+    //return $css;
   }
 
   // -- Public Instance Methods ------------------------------------------------

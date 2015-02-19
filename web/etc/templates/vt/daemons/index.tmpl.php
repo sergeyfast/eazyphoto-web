@@ -1,79 +1,91 @@
 <?php
-    $__pageTitle = LocaleLoader::Translate( "vt.screens.daemonLock.list");
+    /** @var string[] $search */
+    /** @var bool $hideSearch */
+    /** @var string $sortField */
+    /** @var string $sortType */
 
-    $grid = array(
-        "columns" => array(
-           LocaleLoader::Translate( "vt.daemonLock.title" )
-            , LocaleLoader::Translate( "vt.daemonLock.packageName" )
-            , LocaleLoader::Translate( "vt.daemonLock.methodName" )
-            , LocaleLoader::Translate( "vt.daemonLock.runAt" )
-            , LocaleLoader::Translate( "vt.daemonLock.maxExecutionTime" )
-            , LocaleLoader::Translate( "vt.daemonLock.isActive" )
-        )
-        , "colspans"   => array()
-        , "operations" => false
-        , "allowAdd"   => false
-        , "canPages"   => DaemonLockFactory::CanPages()
-        , "basepath"   => Site::GetWebPath( "vt://daemons/" )
-        , "title"      => $__pageTitle
-        , "pageSize"   => FormHelper::RenderToForm( $search["pageSize"] )
-        , "deleteStr"  => LocaleLoader::Translate( "vt.screens.daemonLock.deleteString")
-    );
-?>
-{increal:tmpl://vt/header.tmpl.php}
-<div id="wrap">
-	<div id="cont">
-		<h1><?= ($grid["allowAdd"]) ? sprintf( "<span><a href=\"%sadd\">%s</a></span>", $grid["basepath"], LocaleLoader::Translate("vt.common.add") ) : "" ?> {$__pageTitle}</h1>
-		<div class="blockEtc">
-			<p class="blockHeader" title="{lang:vt.common.search}"><span><img src="{web:images://vt/find.png}" width="16" height="16" alt="" /> <strong>{lang:vt.common.search}</strong></span></p>
-			<form id="searchForm" name="searchForm" method="post" action="#" class="<?= $hideSearch == "true" ? "hidden" : ""  ?>">
-				<input type="hidden" value="1" name="searchForm" />
-				<input type="hidden" value="" id="pageId" name="page" />
-				<input type="hidden" value="{$grid[pageSize]}" id="pageSize" name="search[pageSize]" />
-				<table class="vertList" cellspacing="0">
-                    <tr>
-                        <th>{lang:vt.daemonLock.title}</th>
-                        <td><?= FormHelper::FormInput( "search[title]", $search["title"], "80", "title" ); ?></td>
-                    </tr>
-                    <tr>
-                        <th>{lang:vt.daemonLock.packageName}</th>
-                        <td><?= FormHelper::FormInput( "search[packageName]", $search["packageName"], "80", "packageName" ); ?></td>
-                    </tr>
-                    <tr>
-                        <th>{lang:vt.daemonLock.methodName}</th>
-                        <td><?= FormHelper::FormInput( "search[methodName]", $search["methodName"], "80", "methodName" ); ?></td>
-                    </tr>
-					<tr>
-						<th>&nbsp;</th>
-						<td><input name="find" type="submit" value="{lang:vt.common.find}" /></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-    <!-- GRID -->
-{increal:tmpl://vt/elements/datagrid/header.tmpl.php}
-<?php
-    $langEdit   = LocaleLoader::Translate( "vt.common.edit" );
-    $langDelete = LocaleLoader::Translate( "vt.common.delete" );
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Site\Site;
 
-    foreach ( $list as $object )  {
-        $id         = $object->daemonLockId;
-        $editpath   = $grid['basepath'] . "edit/" . $id;
+    /** @var DaemonLock[] $list */
+    
+
+    $__pageTitle = T( 'vt.screens.daemonLock.list');
+
+    $grid = [
+        'columns'     => [
+            T( 'vt.daemonLock.title' ),
+            T( 'vt.daemonLock.packageName' ),
+            T( 'vt.daemonLock.methodName' ),
+            T( 'vt.daemonLock.runAt' ),
+            T( 'vt.daemonLock.maxExecutionTime' ),
+            T( 'vt.daemonLock.isActive' ),
+        ],
+        'colspans'    => [],
+        'sorts'       => [ 0 => 'title', 1 => 'packageName', 2 => 'methodName', 3 => 'runAt', 4 => 'maxExecutionTime', 5 => 'isActive', ],
+        'operations'  => false,
+        'allowAdd'    => false,
+        'canPages'    => DaemonLockFactory::CanPages(),
+        'basePath'    => Site::GetWebPath( 'vt://daemons/' ),
+        'addPath'     => Site::GetWebPath( 'vt://daemons/add' ),
+        'title'       => $__pageTitle,
+        'description' => '',
+        'pageSize'    => FormHelper::RenderToForm( $search['pageSize'] ),
+        'deleteStr'   => T( 'vt.daemonLock.deleteString' ),
+    ];
+
+    $__breadcrumbs = [ [ 'link' => $grid['basePath'], 'title' => $__pageTitle ] ];
 ?>
-			<tr class="lr" id="row_{$id}">
-            <td>{$object.title}</td>
-            <td>{$object.packageName}</td>
-            <td>{$object.methodName}</td>
-            <td><?= ( !empty( $object->runAt ) ? $object->runAt->DefaultFormat() : '' ) ?></td>
-            <td>{$object.maxExecutionTime.DefaultTimeFormat()}</td>
-            <td>{$object.isActive}</td>
-                
-	        </tr>
-<?php
-    }
-?>
-{increal:tmpl://vt/elements/datagrid/footer.tmpl.php}
-    <!-- EOF GRID -->
-    	</div>
-</div>
-{increal:tmpl://vt/footer.tmpl.php}
+{increal:tmpl://vt/elements/header.tmpl.php}
+<main role="main">
+    {increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
+    <div class="container"><? if( $grid['allowAdd'] ) { ?><a href="{$grid[addPath]}" class="button _big floatRight marginAntiTopHalfBase"><i class="foundicon-add-doc"></i> {lang:vt.common.add}</a><? }?>
+        <h1>{$__pageTitle}</h1>
+        <form id="searchForm" method="post" action="{$grid[basePath]}">
+            <?= FormHelper::FormHidden( 'searchForm', 1 ); ?>
+            <?= FormHelper::FormHidden( 'page', '', 'pageId' ); ?>
+            <?= FormHelper::FormHidden( 'search[pageSize]', $grid['pageSize'], 'pageSize' ); ?>
+            <?= FormHelper::FormHidden( 'sortField', $sortField, 'sortField' ); ?>
+            <?= FormHelper::FormHidden( 'sortType', $sortType, 'sortType' ); ?>
+
+            <div class="plate cont">
+                <div class="form fsMedium">
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="title" class="blockLabel _shiftToRight">{lang:vt.daemonLock.title}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[title]', $search['title'], 'title' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="packageName" class="blockLabel _shiftToRight">{lang:vt.daemonLock.packageName}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[packageName]', $search['packageName'], 'packageName' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="methodName" class="blockLabel _shiftToRight">{lang:vt.daemonLock.methodName}</label></div>
+                        <div class="col6"><?= FormHelper::FormInput( 'search[methodName]', $search['methodName'], 'methodName' ); ?></div>
+                    </div>
+                    <div class="row _fluid _p"><div class="col6 offset3"><button type="submit">{lang:vt.common.find}</button></div></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {increal:tmpl://vt/elements/datagrid/paginator.tmpl.php}
+    {increal:tmpl://vt/elements/datagrid/header.tmpl.php}
+    <?php
+        $langEdit   = T( 'vt.common.edit' );
+        $langDelete = T( 'vt.common.delete' );
+
+        foreach ( $list as $object )  {
+            $id       = $object->daemonLockId;
+            $editPath = $grid['basePath'] . 'edit/' . $id;
+    ?>
+                <tr data-object-id="{$id}">
+                    <td><strong>{$object.title}</strong></td>
+                    <td>{form:$object.packageName}</td>
+                    <td>{form:$object.methodName}</td>
+                    <td class="alignCenter"><?= $object->runAt ? $object->runAt->DefaultFormat() : '' ?></td>
+                    <td class="alignCenter"><?= $object->maxExecutionTime ? $object->maxExecutionTime->DefaultFormat() : '' ?></td>
+                    <td><?= VtHelper::GetBoolTemplate( $object->isActive ) ?></td>
+                    </tr>
+    <? } ?>
+    {increal:tmpl://vt/elements/datagrid/footer.tmpl.php}
+</main>
+{increal:tmpl://vt/elements/footer.tmpl.php}

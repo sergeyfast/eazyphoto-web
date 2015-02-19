@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<ArrayOfEazeEntity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EazeEntity Name="VfsFolder">
+    <TerminalPath>vfsFolders</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies>vfsFolders</CacheDependencies>
+    <Search>
+      <TemplateAttribute Name="folderId" TitleKey="vt.vfsFolder.folderId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="folderId" />
+          <AttributeParameter Key="value" Value="folderId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="folderId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentFolderId" TitleKey="vt.vfsFolder.parentFolderId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentFolderId" />
+          <AttributeParameter Key="values" Value="$parentFolders" />
+          <AttributeParameter Key="dataKey" Value="parentFolderId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentFolderId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.vfsFolder.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isFavorite" TitleKey="vt.vfsFolder.isFavorite" Type="HTML_CHECKBOX" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isFavorite" />
+          <AttributeParameter Key="value" Value="isFavorite" />
+          <AttributeParameter Key="controlId" Value="isFavorite" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="createdAt" TitleKey="vt.vfsFolder.createdAt" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="createdAt" />
+          <AttributeParameter Key="value" Value="createdAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.vfsFolder.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="folderId" TitleKey="vt.vfsFolder.folderId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="folderId" />
+          <AttributeParameter Key="value" Value="folderId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="folderId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentFolderId" TitleKey="vt.vfsFolder.parentFolderId" TitleValue="parentFolderId" Type="HTML_SELECT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentFolderId" />
+          <AttributeParameter Key="values" Value="$parentFolders" />
+          <AttributeParameter Key="dataKey" Value="parentFolderId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentFolderId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentFolder.title" TitleKey="vt.vfsFolder.parentFolderId" TitleValue="" Type="HTML_INPUT" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentFolderId" />
+          <AttributeParameter Key="values" Value="$parentFolders" />
+          <AttributeParameter Key="dataKey" Value="parentFolderId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentFolderId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.vfsFolder.title" TitleValue="Заголовок" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isFavorite" TitleKey="vt.vfsFolder.isFavorite" TitleValue="isFavorite" Type="HTML_CHECKBOX" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isFavorite" />
+          <AttributeParameter Key="value" Value="isFavorite" />
+          <AttributeParameter Key="controlId" Value="isFavorite" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="createdAt" TitleKey="vt.vfsFolder.createdAt" TitleValue="Дата создания" Type="HTML_DATETIME" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="createdAt" />
+          <AttributeParameter Key="value" Value="createdAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.vfsFolder.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="VfsFile">
+    <TerminalPath>vfsFiles</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies>vfsFolders</CacheDependencies>
+    <Search>
+      <TemplateAttribute Name="fileId" TitleKey="vt.vfsFile.fileId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileId" />
+          <AttributeParameter Key="value" Value="fileId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="fileId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="folderId" TitleKey="vt.vfsFile.folderId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="folderId" />
+          <AttributeParameter Key="values" Value="$folders" />
+          <AttributeParameter Key="dataKey" Value="folderId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="folderId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.vfsFile.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="path" TitleKey="vt.vfsFile.path" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="path" />
+          <AttributeParameter Key="value" Value="path" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="path" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="params" TitleKey="vt.vfsFile.params" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="params" />
+          <AttributeParameter Key="value" Value="params" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="params" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isFavorite" TitleKey="vt.vfsFile.isFavorite" Type="HTML_CHECKBOX" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isFavorite" />
+          <AttributeParameter Key="value" Value="isFavorite" />
+          <AttributeParameter Key="controlId" Value="isFavorite" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="mimeType" TitleKey="vt.vfsFile.mimeType" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="mimeType" />
+          <AttributeParameter Key="value" Value="mimeType" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="mimeType" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="fileSize" TitleKey="vt.vfsFile.fileSize" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileSize" />
+          <AttributeParameter Key="value" Value="fileSize" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="fileSize" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="fileExists" TitleKey="vt.vfsFile.fileExists" Type="HTML_CHECKBOX" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileExists" />
+          <AttributeParameter Key="value" Value="fileExists" />
+          <AttributeParameter Key="controlId" Value="fileExists" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.vfsFile.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="createdAt" TitleKey="vt.vfsFile.createdAt" Type="HTML_DATETIME" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="createdAt" />
+          <AttributeParameter Key="value" Value="createdAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="fileId" TitleKey="vt.vfsFile.fileId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileId" />
+          <AttributeParameter Key="value" Value="fileId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="fileId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="folderId" TitleKey="vt.vfsFile.folderId" TitleValue="folderId" Type="HTML_SELECT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="folderId" />
+          <AttributeParameter Key="values" Value="$folders" />
+          <AttributeParameter Key="dataKey" Value="folderId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="folderId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="folder.title" TitleKey="vt.vfsFile.folderId" TitleValue="" Type="HTML_INPUT" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="folderId" />
+          <AttributeParameter Key="values" Value="$folders" />
+          <AttributeParameter Key="dataKey" Value="folderId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="folderId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.vfsFile.title" TitleValue="Заголовок" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="path" TitleKey="vt.vfsFile.path" TitleValue="path" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="path" />
+          <AttributeParameter Key="value" Value="path" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="path" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="params" TitleKey="vt.vfsFile.params" TitleValue="params" Type="HTML_EDITOR" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="params" />
+          <AttributeParameter Key="value" Value="params" />
+          <AttributeParameter Key="rows" Value="5" />
+          <AttributeParameter Key="cols" Value="80" />
+          <AttributeParameter Key="controlId" Value="params" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isFavorite" TitleKey="vt.vfsFile.isFavorite" TitleValue="isFavorite" Type="HTML_CHECKBOX" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isFavorite" />
+          <AttributeParameter Key="value" Value="isFavorite" />
+          <AttributeParameter Key="controlId" Value="isFavorite" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="mimeType" TitleKey="vt.vfsFile.mimeType" TitleValue="mimeType" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="mimeType" />
+          <AttributeParameter Key="value" Value="mimeType" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="mimeType" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="fileSize" TitleKey="vt.vfsFile.fileSize" TitleValue="fileSize" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileSize" />
+          <AttributeParameter Key="value" Value="fileSize" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="fileSize" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="fileExists" TitleKey="vt.vfsFile.fileExists" TitleValue="fileExists" Type="HTML_CHECKBOX" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="fileExists" />
+          <AttributeParameter Key="value" Value="fileExists" />
+          <AttributeParameter Key="controlId" Value="fileExists" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.vfsFile.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="createdAt" TitleKey="vt.vfsFile.createdAt" TitleValue="Дата создания" Type="HTML_DATETIME" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="createdAt" />
+          <AttributeParameter Key="value" Value="createdAt" />
+          <AttributeParameter Key="format" Value="d.m.Y G:i" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+</ArrayOfEazeEntity>

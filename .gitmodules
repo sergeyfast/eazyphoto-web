@@ -1,0 +1,3 @@
+[submodule "web/lib.eaze"]
+	path = web/lib.eaze
+	url = https://git.1adw.com/eaze/lib.git

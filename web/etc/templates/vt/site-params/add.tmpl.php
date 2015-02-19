@@ -1,33 +1,33 @@
 <?php
     /** @var SiteParam $object */
 
-    $__pageTitle = LocaleLoader::Translate( "vt.screens.siteParam.addTitle");
-	
-	$__breadcrumbs = array( 
-		array( 'link' => Site::GetWebPath( "vt://site-params/" ) , 'title' => LocaleLoader::Translate( "vt.screens.siteParam.list" ) )
-		, array( 'link' => Site::GetWebPath( "vt://site-params/add" ) , 'title' => LocaleLoader::Translate( "vt.common.crumbAdd" ) ) 
-	);
+    use Eaze\Helpers\FormHelper;
+    use Eaze\Helpers\SecureTokenHelper;
+    use Eaze\Model\BaseSaveAction;
+    use Eaze\Site\Site;
+
+    $__pageTitle   = T( 'vt.screens.siteParam.addTitle' );
+    $__breadcrumbs = [
+        [ 'link' => Site::GetWebPath( 'vt://site-params/' ), 'title' => T( 'vt.screens.siteParam.list' ) ],
+        [ 'link' => Site::GetWebPath( 'vt://site-params/add' ), 'title' => T( 'vt.common.crumbAdd' ) ],
+    ];
 ?>
-{increal:tmpl://vt/header.tmpl.php}
-<div class="main">
-	<div class="inner">
-		<form method="post" action="" enctype="multipart/form-data" id="data-form">
-			{increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
-			<div class="pagetitle">
-				<h1>{$__pageTitle}</h1>
-			</div>
-			
-			<?= FormHelper::FormHidden( 'action', BaseSaveAction::AddAction ); ?>
-			
-			{increal:tmpl://vt/site-params/data.tmpl.php}
-			
-			<div class="buttons">
-				<a href="{web:vt://site-params/}" class="back">&larr; {lang:vt.common.back}</a>
-				<div class="buttons-inner">
-					<?= FormHelper::FormSubmit( 'add', LocaleLoader::Translate( 'vt.common.saveChanges' ), null, 'large' ); ?>
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
-{increal:tmpl://vt/footer.tmpl.php}
+{increal:tmpl://vt/elements/header.tmpl.php}
+<main role="main">
+    {increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
+    <div class="container"><a href="{web:vt://site-params/}" class="linkBlock cLink fsBigX floatRight">← <span class="link">{lang:vt.common.back}</span></a>
+        <h1>{$__pageTitle}</h1>
+        <form method="post" action="{web:vt://site-params/}add" enctype="multipart/form-data" id="data-form">
+            <?= FormHelper::FormHidden( 'action', BaseSaveAction::AddAction ); ?>
+            <?= SecureTokenHelper::FormHidden(); ?>
+            {increal:tmpl://vt/site-params/data.tmpl.php}
+            <div class="tabsFakeCont">
+                <div class="row _fluid">
+                    <div class="col2"><p><a href="{web:vt://site-params/}" class="linkInlineBlock cLink fsBigX linkInlineBlock">← <span class="link">{lang:vt.common.back}</span></a></p></div>
+                    <div class="col6"><button type="submit" class="button _big marginRightBase"><i class="fsText foundicon-checkmark"></i> {lang:vt.common.saveChanges}</button></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+{increal:tmpl://vt/elements/footer.tmpl.php}

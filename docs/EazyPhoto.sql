@@ -1,193 +1,301 @@
 /*
-Created		05.05.2009
-Modified		13.05.2013
+Created		16.08.2008
+Modified		19.02.2015
 Project		
-Model		
+Model			
 Company		
 Author		
 Version		
-Database		mySQL 5 
+Database		PostgreSQL 8.1 
 */
 
 
-Create table `vfsFiles` (
-	`fileId` Int NOT NULL AUTO_INCREMENT,
-	`folderId` Int NOT NULL,
-	`title` Varchar(255) NOT NULL,
-	`path` Varchar(255) NOT NULL,
-	`params` Text,
-	`isFavorite` Bool DEFAULT false,
-	`mimeType` Varchar(255) NOT NULL,
-	`fileSize` Int DEFAULT 0,
-	`fileExists` Bool NOT NULL DEFAULT true,
-	`statusId` Int NOT NULL,
-	`createdAt` Timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
- Primary Key (`fileId`)) ENGINE = InnoDB;
-
-Create table `vfsFolders` (
-	`folderId` Int NOT NULL AUTO_INCREMENT,
-	`parentFolderId` Int,
-	`title` Varchar(255) NOT NULL,
-	`isFavorite` Bool DEFAULT false,
-	`createdAt` Timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`statusId` Int NOT NULL,
-	Index `AI_folderId` (`folderId`),
- Primary Key (`folderId`)) ENGINE = InnoDB;
-
-Create table `vfsFoldersTree` (
-	`objectId` Int NOT NULL,
-	`parentId` Int,
-	`path` Char(255),
-	`rKey` Int,
-	`lKey` Int,
-	`level` Int,
- Primary Key (`objectId`)) ENGINE = InnoDB;
-
-Create table `metaDetails` (
-	`metaDetailId` Int NOT NULL AUTO_INCREMENT,
-	`url` Varchar(255) NOT NULL,
-	`pageTitle` Varchar(255),
-	`metaKeywords` Varchar(1024),
-	`metaDescription` Varchar(1024),
-	`alt` Varchar(255),
-	`isInheritable` Bool NOT NULL DEFAULT false,
-	`statusId` Int NOT NULL,
-	Index `AI_metaDetailId` (`metaDetailId`),
- Primary Key (`metaDetailId`)) ENGINE = InnoDB;
-
-Create table `users` (
-	`userId` Int NOT NULL AUTO_INCREMENT,
-	`login` Varchar(64) NOT NULL,
-	`password` Varchar(64) NOT NULL,
-	`statusId` Int NOT NULL,
-	Index `AI_userId` (`userId`),
- Primary Key (`userId`)) ENGINE = InnoDB;
-
-Create table `siteParams` (
-	`siteParamId` Int NOT NULL AUTO_INCREMENT,
-	`alias` Varchar(32) NOT NULL,
-	`value` Varchar(255) NOT NULL,
-	`description` Varchar(255),
-	`statusId` Int NOT NULL,
-	Index `AI_siteParamId` (`siteParamId`),
- Primary Key (`siteParamId`)) ENGINE = InnoDB;
-
-Create table `statuses` (
-	`statusId` Int NOT NULL AUTO_INCREMENT,
-	`title` Varchar(255) NOT NULL,
-	`alias` Varchar(64) NOT NULL,
-	UNIQUE (`alias`),
-	Index `AI_statusId` (`statusId`),
- Primary Key (`statusId`)) ENGINE = InnoDB;
-
-Create table `daemonLocks` (
-	`daemonLockId` Int NOT NULL AUTO_INCREMENT,
-	`title` Varchar(255) NOT NULL,
-	`packageName` Varchar(255) NOT NULL,
-	`methodName` Varchar(255) NOT NULL,
-	`runAt` Timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`maxExecutionTime` Time NOT NULL DEFAULT '00:03:00',
-	Index `AI_daemonLockId` (`daemonLockId`),
- Primary Key (`daemonLockId`)) ENGINE = InnoDB;
-
-Create table `staticPages` (
-	`staticPageId` Int NOT NULL AUTO_INCREMENT,
-	`title` Varchar(255) NOT NULL,
-	`url` Varchar(255) NOT NULL,
-	`content` Text,
-	`pageTitle` Varchar(255),
-	`metaKeywords` Varchar(2048),
-	`metaDescription` Varchar(2048),
-	`orderNumber` Int,
-	`parentStaticPageId` Int,
-	`statusId` Int NOT NULL,
-	Index `AI_staticPageId` (`staticPageId`),
- Primary Key (`staticPageId`)) ENGINE = InnoDB;
-
-Create table `navigationTypes` (
-	`navigationTypeId` Int NOT NULL AUTO_INCREMENT,
-	`title` Varchar(255) NOT NULL,
-	`alias` Varchar(32) NOT NULL,
-	`statusId` Int NOT NULL,
-	Index `AI_navigationTypeId` (`navigationTypeId`),
- Primary Key (`navigationTypeId`)) ENGINE = InnoDB;
-
-Create table `navigations` (
-	`navigationId` Int NOT NULL AUTO_INCREMENT,
-	`navigationTypeId` Int NOT NULL,
-	`title` Varchar(255),
-	`orderNumber` Int NOT NULL DEFAULT 1,
-	`staticPageId` Int,
-	`url` Varchar(255),
-	`statusId` Int NOT NULL,
-	Index `AI_navigationId` (`navigationId`),
- Primary Key (`navigationId`)) ENGINE = InnoDB;
-
-Create table `albums` (
-	`albumId` Serial NOT NULL,
-	`title` Varchar(255) NOT NULL,
-	`description` Varchar(4096),
-	`alias` Varchar(255) NOT NULL,
-	`isPrivate` Bool NOT NULL DEFAULT false,
-	`startDate` Date NOT NULL,
-	`endDate` Date,
-	`orderNumber` Int,
-	`folderPath` Varchar(255) NOT NULL,
-	`roSecret` Varchar(1024) NOT NULL,
-	`roSecretHd` Varchar(1024),
-	`deleteOriginalsAfter` Int,
-	`isDescSort` Bool NOT NULL DEFAULT false,
-	`createdAt` Timestamp NOT NULL DEFAULT now(),
-	`modifiedAt` Timestamp,
-	`metaInfo` Text NOT NULL,
-	`userId` Int NOT NULL,
-	`statusId` Int NOT NULL,
- Primary Key (`albumId`)) ENGINE = InnoDB;
-
-Create table `photos` (
-	`photoId` Serial NOT NULL,
-	`albumId` Bigint UNSIGNED NOT NULL,
-	`originalName` Varchar(255) NOT NULL,
-	`filename` Varchar(255) NOT NULL,
-	`fileSize` Int NOT NULL,
-	`fileSizeHd` Int NOT NULL,
-	`orderNumber` Int,
-	`afterText` Text,
-	`title` Varchar(255),
-	`exif` Text,
-	`createdAt` Timestamp NOT NULL DEFAULT now(),
-	`photoDate` Timestamp,
-	`statusId` Int NOT NULL,
- Primary Key (`photoId`)) ENGINE = InnoDB;
+/* Create Domains */
 
 
-Create Index `IX_vfsFoldersTreeTreePath` ON `vfsFoldersTree` (`path`);
-Create Index `IX_vfsFoldersTreeTreeRKey` ON `vfsFoldersTree` (`rKey`);
-Create Index `IX_vfsFoldersTreeTreeLKey` ON `vfsFoldersTree` (`lKey`);
-Create UNIQUE Index `IX_daemonLock` Using BTREE ON `daemonLocks` (`title`,`packageName`,`methodName`);
+/* Create Sequences */
 
 
-Alter table `vfsFolders` add Constraint `FK_vfsFoldersFolderId` Foreign Key (`parentFolderId`) references `vfsFolders` (`folderId`) on delete  restrict on update  restrict;
-Alter table `vfsFiles` add Constraint `FK_vfsFilesFolderId` Foreign Key (`folderId`) references `vfsFolders` (`folderId`) on delete  restrict on update  restrict;
-Alter table `vfsFoldersTree` add Constraint `FK_vfsFoldersTreeFolderId` Foreign Key (`objectId`) references `vfsFolders` (`folderId`) on delete  restrict on update  restrict;
-Alter table `vfsFoldersTree` add Constraint `FK_vfsFoldersTreeParentId` Foreign Key (`parentId`) references `vfsFolders` (`folderId`) on delete  restrict on update  restrict;
-Alter table `albums` add Constraint `FK_albums_userId` Foreign Key (`userId`) references `users` (`userId`) on delete  restrict on update  restrict;
-Alter table `users` add Constraint `FK_usersStatusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `metaDetails` add Constraint `FK_metaDetailsStatusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `siteParams` add Constraint `FK_siteParamsStatusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `vfsFiles` add Constraint `FK_vfsFoldersStatusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `vfsFolders` add Constraint `FK_vfsFilesStatusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `staticPages` add Constraint `FK_staticPagesStatusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `navigationTypes` add Constraint `FK_navigationTypesStatusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `navigations` add Constraint `FK_navigationsStatusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `albums` add Constraint `FK_albums_statusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `photos` add Constraint `FK_photos_statusId` Foreign Key (`statusId`) references `statuses` (`statusId`) on delete  restrict on update  restrict;
-Alter table `staticPages` add Constraint `FK_staticPagesParentStaticPageId` Foreign Key (`parentStaticPageId`) references `staticPages` (`staticPageId`) on delete  restrict on update  restrict;
-Alter table `navigations` add Constraint `FK_navigationsStaticPageId` Foreign Key (`staticPageId`) references `staticPages` (`staticPageId`) on delete  restrict on update  restrict;
-Alter table `navigations` add Constraint `FK_navigationsNavigationTypeId` Foreign Key (`navigationTypeId`) references `navigationTypes` (`navigationTypeId`) on delete  restrict on update  restrict;
-Alter table `photos` add Constraint `FK_photos_albumId` Foreign Key (`albumId`) references `albums` (`albumId`) on delete  restrict on update  restrict;
+/* Create Tables */
 
 
-/* Users permissions */
+Create table "users"
+(
+	"userId" Serial NOT NULL,
+	"login" Varchar(64) NOT NULL,
+	"password" Varchar(64) NOT NULL,
+	"authKey" Varchar(32),
+	"lastActivityAt" Timestamp Default now(),
+	"statusId" Integer NOT NULL,
+ primary key ("userId")
+) Without Oids;
+
+
+Create table "statuses"
+(
+	"statusId" Serial NOT NULL,
+	"title" Varchar(255) NOT NULL,
+	"alias" Varchar(64) NOT NULL UNIQUE,
+ primary key ("statusId")
+) Without Oids;
+
+
+Create table "daemonLocks"
+(
+	"daemonLockId" Serial NOT NULL,
+	"title" Varchar(255) NOT NULL,
+	"packageName" Varchar(255) NOT NULL,
+	"methodName" Varchar(255) NOT NULL,
+	"runAt" Timestamp NOT NULL Default now(),
+	"maxExecutionTime" Interval NOT NULL Default '00:03:00',
+ primary key ("daemonLockId")
+) Without Oids;
+
+
+Create table "vfsFiles"
+(
+	"fileId" Serial NOT NULL,
+	"folderId" Integer NOT NULL,
+	"title" Varchar(255) NOT NULL,
+	"path" Varchar(255) NOT NULL,
+	"params" Text,
+	"isFavorite" Boolean Default false,
+	"mimeType" Varchar(255) NOT NULL,
+	"fileSize" Integer Default 0,
+	"fileExists" Boolean NOT NULL Default true,
+	"createdAt" Timestamp NOT NULL Default now(),
+	"statusId" Integer NOT NULL,
+ primary key ("fileId")
+) Without Oids;
+
+
+Create table "vfsFoldersTree"
+(
+	"objectId" Integer NOT NULL,
+	"parentId" Integer,
+	"path"  "ltree",
+	"rKey" Integer,
+	"lKey" Integer,
+ primary key ("objectId")
+) Without Oids;
+
+
+Create table "vfsFolders"
+(
+	"folderId" Serial NOT NULL,
+	"parentFolderId" Integer,
+	"title" Varchar(255) NOT NULL,
+	"isFavorite" Boolean Default false,
+	"createdAt" Timestamp NOT NULL Default now(),
+	"statusId" Integer NOT NULL,
+ primary key ("folderId")
+) Without Oids;
+
+
+Create table "siteParams"
+(
+	"siteParamId" Serial NOT NULL,
+	"alias" Varchar(32) NOT NULL,
+	"value" Varchar(255) NOT NULL,
+	"description" Varchar(255),
+	"statusId" Integer NOT NULL,
+ primary key ("siteParamId")
+) Without Oids;
+
+
+Create table "staticPages"
+(
+	"staticPageId" Serial NOT NULL,
+	"title" Varchar(255) NOT NULL,
+	"url" Varchar(255) NOT NULL,
+	"content" Text,
+	"orderNumber" Integer,
+	"parentStaticPageId" Integer,
+	"statusId" Integer NOT NULL,
+ primary key ("staticPageId")
+) Without Oids;
+
+
+Create table "navigations"
+(
+	"navigationId" Serial NOT NULL,
+	"navigationTypeId" Integer NOT NULL,
+	"title" Varchar(255),
+	"orderNumber" Integer NOT NULL Default 1,
+	"staticPageId" Integer,
+	"url" Varchar(255),
+	"params" Text,
+	"statusId" Integer NOT NULL,
+ primary key ("navigationId")
+) Without Oids;
+
+
+Create table "navigationTypes"
+(
+	"navigationTypeId" Serial NOT NULL,
+	"title" Varchar(255) NOT NULL,
+	"alias" Varchar(32) NOT NULL,
+	"statusId" Integer NOT NULL,
+ primary key ("navigationTypeId")
+) Without Oids;
+
+
+Create table "objectImages"
+(
+	"objectImageId" Serial NOT NULL,
+	"objectClass" Varchar(32) NOT NULL,
+	"objectId" Integer NOT NULL,
+	"title" Varchar(255),
+	"orderNumber" Integer NOT NULL,
+	"smallImageId" Integer NOT NULL,
+	"bigImageId" Integer NOT NULL,
+	"statusId" Integer NOT NULL,
+ primary key ("objectImageId")
+) Without Oids;
+
+
+Create table "metaDetails"
+(
+	"metaDetailId" Serial NOT NULL,
+	"url" Varchar(255),
+	"objectClass" Varchar(32),
+	"objectId" Integer,
+	"pageTitle" Varchar(255),
+	"metaKeywords" Varchar(1024),
+	"metaDescription" Varchar(1024),
+	"alt" Varchar(255),
+	"canonicalUrl" Varchar(1024),
+	"statusId" Integer NOT NULL,
+ primary key ("metaDetailId")
+) Without Oids;
+
+
+Create table "albums"
+(
+	"albumId" Serial NOT NULL,
+	"title" Varchar(255) NOT NULL,
+	"description" Varchar(4096),
+	"alias" Varchar(255) NOT NULL,
+	"isPrivate" Boolean NOT NULL Default false,
+	"startDate" Date NOT NULL,
+	"endDate" Date,
+	"orderNumber" Integer,
+	"folderPath" Varchar(255) NOT NULL,
+	"roSecret" Varchar(1024) NOT NULL,
+	"roSecretHd" Varchar(1024),
+	"deleteOriginalsAfter" Integer,
+	"isDescSort" Boolean NOT NULL Default false,
+	"createdAt" Timestamp NOT NULL Default now(),
+	"modifiedAt" Timestamp,
+	"metaInfo" Text NOT NULL,
+	"userId" Integer NOT NULL,
+	"statusId" Integer NOT NULL,
+ primary key ("albumId")
+) Without Oids;
+
+
+Create table "photos"
+(
+	"photoId" Serial NOT NULL,
+	"albumId" Integer NOT NULL,
+	"originalName" Varchar(255) NOT NULL,
+	"filename" Varchar(255) NOT NULL,
+	"fileSize" Integer NOT NULL,
+	"fileSizeHd" Integer NOT NULL,
+	"orderNumber" Integer,
+	"afterText" Text,
+	"title" Varchar(255),
+	"exif" Text,
+	"createdAt" Timestamp NOT NULL Default now(),
+	"photoDate" Timestamp,
+	"statusId" Integer NOT NULL,
+ primary key ("photoId")
+) Without Oids;
+
+
+/* Create Tab 'Others' for Selected Tables */
+
+
+/* Create Alternate Keys */
+
+
+/* Create Indexes */
+Create unique index "IX_daemonLock" on "daemonLocks" using btree ("title","packageName","methodName");
+Create index "IX_vfsFoldersTreeTreePath" on "vfsFoldersTree" using gist ("path");
+Create index "IX_vfsFoldersTreeTreeRKey" on "vfsFoldersTree" using btree ("rKey");
+Create index "IX_vfsFoldersTreeTreeLKey" on "vfsFoldersTree" using btree ("lKey");
+
+
+/* Create Foreign Keys */
+Create index "IX_FK_albums_userId_albums" on "albums" ("userId");
+Alter table "albums" add  foreign key ("userId") references "users" ("userId") on update restrict on delete restrict;
+Create index "IX_FK_users_statusId_users" on "users" ("statusId");
+Alter table "users" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_siteParams_statusId_siteParams" on "siteParams" ("statusId");
+Alter table "siteParams" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_staticPages_statusId_staticPages" on "staticPages" ("statusId");
+Alter table "staticPages" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_navigationTypes_statusId_navigationTypes" on "navigationTypes" ("statusId");
+Alter table "navigationTypes" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_navigations_statusId_navigations" on "navigations" ("statusId");
+Alter table "navigations" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_vfsFolders_statusId_vfsFolders" on "vfsFolders" ("statusId");
+Alter table "vfsFolders" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_vfsFiles_statusId_vfsFiles" on "vfsFiles" ("statusId");
+Alter table "vfsFiles" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_objectImages_statusId_objectImages" on "objectImages" ("statusId");
+Alter table "objectImages" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_metaDetails_statusId_metaDetails" on "metaDetails" ("statusId");
+Alter table "metaDetails" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_albums_statusId_albums" on "albums" ("statusId");
+Alter table "albums" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_photos_statusId_photos" on "photos" ("statusId");
+Alter table "photos" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_objectImages_smallImageId_objectImages" on "objectImages" ("smallImageId");
+Alter table "objectImages" add  foreign key ("smallImageId") references "vfsFiles" ("fileId") on update restrict on delete restrict;
+Create index "IX_FK_objectImages_bigImageId_objectImages" on "objectImages" ("bigImageId");
+Alter table "objectImages" add  foreign key ("bigImageId") references "vfsFiles" ("fileId") on update restrict on delete restrict;
+Create index "IX_FK_vfsFolders_folderId_vfsFolders" on "vfsFolders" ("parentFolderId");
+Alter table "vfsFolders" add  foreign key ("parentFolderId") references "vfsFolders" ("folderId") on update restrict on delete restrict;
+Create index "IX_FK_vfsFiles_folderId_vfsFiles" on "vfsFiles" ("folderId");
+Alter table "vfsFiles" add  foreign key ("folderId") references "vfsFolders" ("folderId") on update restrict on delete restrict;
+Create index "IX_FK_vfsFoldersTree_folderId_vfsFoldersTree" on "vfsFoldersTree" ("objectId");
+Alter table "vfsFoldersTree" add  foreign key ("objectId") references "vfsFolders" ("folderId") on update restrict on delete restrict;
+Create index "IX_FK_vfsFoldersTree_parentId_vfsFoldersTree" on "vfsFoldersTree" ("parentId");
+Alter table "vfsFoldersTree" add  foreign key ("parentId") references "vfsFolders" ("folderId") on update restrict on delete restrict;
+Create index "IX_FK_navigations_staticPageId_navigations" on "navigations" ("staticPageId");
+Alter table "navigations" add  foreign key ("staticPageId") references "staticPages" ("staticPageId") on update restrict on delete restrict;
+Create index "IX_FK_staticPages_parentStaticPageId_staticPages" on "staticPages" ("parentStaticPageId");
+Alter table "staticPages" add  foreign key ("parentStaticPageId") references "staticPages" ("staticPageId") on update restrict on delete restrict;
+Create index "IX_FK_navigations_navigationTypeId_navigations" on "navigations" ("navigationTypeId");
+Alter table "navigations" add  foreign key ("navigationTypeId") references "navigationTypes" ("navigationTypeId") on update restrict on delete restrict;
+Create index "IX_FK_photos_albumId_photos" on "photos" ("albumId");
+Alter table "photos" add  foreign key ("albumId") references "albums" ("albumId") on update restrict on delete restrict;
+
+
+/* Create Procedures */
+
+
+/* Create Views */
+
+
+/* Create Referential Integrity Triggers */
+
+
+/* Create User-Defined Triggers */
+
+
+/* Create Roles */
+
+
+/* Add Roles To Roles */
+
+
+/* Create Role Permissions */
+/* Role permissions on tables */
+
+/* Role permissions on views */
+
+/* Role permissions on procedures */
 
 
