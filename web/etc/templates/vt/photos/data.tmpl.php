@@ -28,8 +28,21 @@
     <div class="tabs_cont fsMedium">
     	<div class="row _fluid _p" data-row="albumId">
             <div class="col2 required"><label for="albumId" class="blockLabel">{lang:vt.photo.albumId}</label></div>
-            <div class="col6"><?= FormHelper::FormSelect( $prefix . '[albumId]', $albums, 'albumId', 'title', $object->albumId, null, null, false ); ?></div>
+            <div class="col6"><?= FormHelper::FormSelect( $prefix . '[albumId]', $albums, 'albumId', 'title', $object->albumId, null, 'select2', false ); ?></div>
         </div>
+        <div class="row _fluid _p" data-row="afterText">
+            <div class="col2"><label for="afterText" class="blockLabel">{lang:vt.photo.afterText}</label></div>
+            <div class="col6"><?= FormHelper::FormTextArea( $prefix . '[afterText]', $object->afterText, 'afterText', null, [ 'rows' => 5, 'cols' => 80 ] ); ?></div>
+        </div>
+        <div class="row _fluid _p" data-row="title">
+            <div class="col2"><label for="title" class="blockLabel">{lang:vt.photo.title}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[title]', $object->title, 'title' ); ?></div>
+        </div>
+        <div class="row _fluid _p" data-row="orderNumber">
+            <div class="col2"><label for="orderNumber" class="blockLabel">{lang:vt.photo.orderNumber}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[orderNumber]', $object->orderNumber, 'orderNumber' ); ?></div>
+        </div>
+        <h3>Параметры файла</h3>
     	<div class="row _fluid _p" data-row="originalName">
             <div class="col2 required"><label for="originalName" class="blockLabel">{lang:vt.photo.originalName}</label></div>
             <div class="col6"><?= FormHelper::FormInput( $prefix . '[originalName]', $object->originalName, 'originalName' ); ?></div>
@@ -42,18 +55,6 @@
             <div class="col2 required"><label for="fileSize" class="blockLabel">{lang:vt.photo.fileSize}</label></div>
             <div class="col6"><?= FormHelper::FormInput( $prefix . '[fileSize]', $object->fileSize, 'fileSize' ); ?></div>
         </div>
-    	<div class="row _fluid _p" data-row="orderNumber">
-            <div class="col2"><label for="orderNumber" class="blockLabel">{lang:vt.photo.orderNumber}</label></div>
-            <div class="col6"><?= FormHelper::FormInput( $prefix . '[orderNumber]', $object->orderNumber, 'orderNumber' ); ?></div>
-        </div>
-    	<div class="row _fluid _p" data-row="afterText">
-            <div class="col2"><label for="afterText" class="blockLabel">{lang:vt.photo.afterText}</label></div>
-            <div class="col6"><?= FormHelper::FormTextArea( $prefix . '[afterText]', $object->afterText, 'afterText', null, [ 'rows' => 5, 'cols' => 80 ] ); ?></div>
-        </div>
-    	<div class="row _fluid _p" data-row="title">
-            <div class="col2"><label for="title" class="blockLabel">{lang:vt.photo.title}</label></div>
-            <div class="col6"><?= FormHelper::FormInput( $prefix . '[title]', $object->title, 'title' ); ?></div>
-        </div>
     	<div class="row _fluid _p" data-row="createdAt">
             <div class="col2"><label for="createdAt" class="blockLabel">{lang:vt.photo.createdAt}</label></div>
             <div class="col6"><?= FormHelper::FormDateTime( $prefix . '[createdAt]', $object->createdAt, 'd.m.Y G:i' ); ?></div>
@@ -62,13 +63,13 @@
             <div class="col2"><label for="photoDate" class="blockLabel">{lang:vt.photo.photoDate}</label></div>
             <div class="col6"><?= FormHelper::FormDateTime( $prefix . '[photoDate]', $object->photoDate, 'd.m.Y G:i' ); ?></div>
         </div>
+        <div class="row _fluid _p" data-row="fileSizeHd">
+            <div class="col2 required"><label for="fileSizeHd" class="blockLabel">{lang:vt.photo.fileSizeHd}</label></div>
+            <div class="col6"><?= FormHelper::FormInput( $prefix . '[fileSizeHd]', $object->fileSizeHd, 'fileSizeHd' ); ?></div>
+        </div>
     	<div class="row _fluid _p" data-row="statusId">
             <div class="col2 required"><label for="statusId" class="blockLabel">{lang:vt.photo.statusId}</label></div>
             <div class="col6"><?= FormHelper::FormSelect( $prefix . '[statusId]', StatusUtility::$Common[$__currentLang], '', '', $object->statusId, null, null, false ); ?></div>
-        </div>
-    	<div class="row _fluid _p" data-row="fileSizeHd">
-            <div class="col2 required"><label for="fileSizeHd" class="blockLabel">{lang:vt.photo.fileSizeHd}</label></div>
-            <div class="col6"><?= FormHelper::FormInput( $prefix . '[fileSizeHd]', $object->fileSizeHd, 'fileSizeHd' ); ?></div>
         </div>
     </div>
 </div>

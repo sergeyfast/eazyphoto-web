@@ -20,10 +20,9 @@
             T( 'vt.photo.orderNumber' ),
             T( 'vt.photo.photoDate' ),
             T( 'vt.photo.statusId' ),
-            T( 'vt.photo.fileSizeHd' ),
         ],
         'colspans'    => [],
-        'sorts'       => [ 0 => 'album.title', 1 => 'originalName', 2 => 'orderNumber', 3 => 'photoDate', 4 => 'statusId', 5 => 'fileSizeHd', ],
+        'sorts'       => [ 0 => 'album.title', 1 => 'originalName', 2 => 'orderNumber', 3 => 'photoDate', 4 => 'statusId', ],
         'operations'  => true,
         'allowAdd'    => true,
         'canPages'    => PhotoFactory::CanPages(),
@@ -53,33 +52,31 @@
                 <div class="form fsMedium">
                     <div class="row _fluid _p">
                         <div class="col3 alignRight"><label for="albumId" class="blockLabel _shiftToRight">{lang:vt.photo.albumId}</label></div>
-                        <div class="col6"><?= FormHelper::FormSelect( 'search[albumId]', $albums, 'albumId', 'title', $search['albumId'], null, null, true ); ?></div>
+                        <div class="col6"><?= FormHelper::FormSelect( 'search[albumId]', $albums, 'albumId', 'title', $search['albumId'], null, 'select2', true ); ?></div>
+                        <?= VtHelper::GetExtendedSearchHtml(); ?>
                     </div>
                     <div class="row _fluid _p">
                         <div class="col3 alignRight"><label for="originalName" class="blockLabel _shiftToRight">{lang:vt.photo.originalName}</label></div>
                         <div class="col6"><?= FormHelper::FormInput( 'search[originalName]', $search['originalName'], 'originalName' ); ?></div>
                     </div>
-                    <div class="row _fluid _p">
-                        <div class="col3 alignRight"><label for="orderNumber" class="blockLabel _shiftToRight">{lang:vt.photo.orderNumber}</label></div>
-                        <div class="col6"><?= FormHelper::FormInput( 'search[orderNumber]', $search['orderNumber'], 'orderNumber' ); ?></div>
+                    <div id="ExtendedSearch" class="displayNone" style="display: none;">
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="orderNumber" class="blockLabel _shiftToRight">{lang:vt.photo.orderNumber}</label></div>
+                            <div class="col6"><?= FormHelper::FormInput( 'search[orderNumber]', $search['orderNumber'], 'orderNumber' ); ?></div>
+                        </div>
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="afterText" class="blockLabel _shiftToRight">{lang:vt.photo.afterText}</label></div>
+                            <div class="col6"><?= FormHelper::FormInput( 'search[afterText]', $search['afterText'], 'afterText' ); ?></div>
+                        </div>
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="title" class="blockLabel _shiftToRight">{lang:vt.photo.title}</label></div>
+                            <div class="col6"><?= FormHelper::FormInput( 'search[title]', $search['title'], 'title' ); ?></div>
+                        </div>
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="statusId" class="blockLabel _shiftToRight">{lang:vt.photo.statusId}</label></div>
+                            <div class="col6"><?= FormHelper::FormSelect( 'search[statusId]', StatusUtility::$Common[$__currentLang], '', '', $search['statusId'], null, null, true ); ?></div>
+                        </div>
                     </div>
-                    <div class="row _fluid _p">
-                        <div class="col3 alignRight"><label for="afterText" class="blockLabel _shiftToRight">{lang:vt.photo.afterText}</label></div>
-                        <div class="col6"><?= FormHelper::FormInput( 'search[afterText]', $search['afterText'], 'afterText' ); ?></div>
-                    </div>
-                    <div class="row _fluid _p">
-                        <div class="col3 alignRight"><label for="title" class="blockLabel _shiftToRight">{lang:vt.photo.title}</label></div>
-                        <div class="col6"><?= FormHelper::FormInput( 'search[title]', $search['title'], 'title' ); ?></div>
-                    </div>
-                    <div class="row _fluid _p">
-                        <div class="col3 alignRight"><label for="statusId" class="blockLabel _shiftToRight">{lang:vt.photo.statusId}</label></div>
-                        <div class="col6"><?= FormHelper::FormSelect( 'search[statusId]', StatusUtility::$Common[$__currentLang], '', '', $search['statusId'], null, null, true ); ?></div>
-                    </div>
-                    <div class="row _fluid _p">
-                        <div class="col3 alignRight"><label for="fileSizeHd" class="blockLabel _shiftToRight">{lang:vt.photo.fileSizeHd}</label></div>
-                        <div class="col6"><?= FormHelper::FormInput( 'search[fileSizeHd]', $search['fileSizeHd'], 'fileSizeHd' ); ?></div>
-                    </div>
-                    
                     <div class="row _fluid _p"><div class="col6 offset3"><button type="submit">{lang:vt.common.find}</button></div></div>
                 </div>
             </div>
@@ -101,7 +98,6 @@
                     <td class="alignRight"><? if ( $object->orderNumber !== null ) { ?>{num:$object.orderNumber}<? } ?></td>
                     <td class="alignCenter"><?= $object->photoDate ? $object->photoDate->DefaultFormat() : '' ?></td>
                     <td><?= StatusUtility::GetStatusTemplate( $object->statusId ) ?></td>
-                    <td class="alignRight"><? if ( $object->fileSizeHd !== null ) { ?>{num:$object.fileSizeHd}<? } ?></td>
                     <td class="tableControls"><a href="{$editPath}" title="{$langEdit}"><i class="foundicon-edit"></i> {$langEdit}</a> <a href="#" class="delete-object" title="{langDelete}"><i class="foundicon-remove"></i></a></td>
                 </tr>
     <? } ?>

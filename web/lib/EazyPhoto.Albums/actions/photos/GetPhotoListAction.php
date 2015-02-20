@@ -29,7 +29,7 @@
          * Set Foreign Lists
          */
         protected function setForeignLists() {
-            $albums = AlbumFactory::Get( [], [BaseFactory::WithoutPages => true ] );
+            $albums = AlbumFactory::Get( [ 'statusId' => StatusUtility::Enabled ], [BaseFactory::WithoutPages => true, BaseFactory::WithColumns => ' "albumId", "title" ' ] );
             Response::setArray( 'albums', $albums );
         }
     }
