@@ -69,6 +69,9 @@
         /** @var Status */
         public $status;
 
+        /** @var array */
+        public $tagIds;
+
         # user defined code goes below
 
     }

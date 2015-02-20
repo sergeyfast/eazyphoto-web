@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <language name="ru">
   <errors>
     <desc>
@@ -99,10 +99,10 @@
       <siteParam>
         <addTitle><![CDATA[Добавление параметра]]></addTitle>
         <editTitle><![CDATA[Редактирование параметра]]></editTitle>
-        <list><![CDATA[Список параметров]]></list>
+        <list><![CDATA[Параметры]]></list>
       </siteParam>
       <metaDetail>
-        <list><![CDATA[Список параметров страниц]]></list>
+        <list><![CDATA[Параметры страниц]]></list>
         <addTitle><![CDATA[Добавление параметра страницы]]></addTitle>
         <editTitle><![CDATA[Редактирование параметра страницы]]></editTitle>
       </metaDetail>
@@ -112,34 +112,39 @@
         <list><![CDATA[Список пользователей]]></list>
       </user>
       <daemonLock>
-        <list><![CDATA[Список блокировок]]></list>
+        <list><![CDATA[Блокировки]]></list>
         <deleteString><![CDATA[Вы действительно хотите удалить блокировку?]]></deleteString>
       </daemonLock>
       <staticPage>
-        <list><![CDATA[Список страниц]]></list>
+        <list><![CDATA[Страницы]]></list>
         <addTitle><![CDATA[Добавление страницы]]></addTitle>
         <editTitle><![CDATA[Редактирование страницы]]></editTitle>
       </staticPage>
       <navigationType>
-        <list><![CDATA[Список типов навигации]]></list>
+        <list><![CDATA[Типы навигации]]></list>
         <addTitle><![CDATA[Добавление типа навигации]]></addTitle>
         <editTitle><![CDATA[Редактирование типа навигации]]></editTitle>
       </navigationType>
       <navigation>
-        <list><![CDATA[Список элементов навигации]]></list>
+        <list><![CDATA[Элементы навигации]]></list>
         <addTitle><![CDATA[Добавление элемента навигации]]></addTitle>
         <editTitle><![CDATA[Редактирование элемента навигации]]></editTitle>
       </navigation>
       <album>
-        <list><![CDATA[Список альбомов]]></list>
+        <list><![CDATA[Альбомы]]></list>
         <addTitle><![CDATA[Добавление альбома]]></addTitle>
         <editTitle><![CDATA[Редактирование альбома]]></editTitle>
       </album>
       <photo>
-        <list><![CDATA[Список фотографий]]></list>
+        <list><![CDATA[Фотографии]]></list>
         <addTitle><![CDATA[Добавление фотографии]]></addTitle>
         <editTitle><![CDATA[Редактирование фотографии]]></editTitle>
       </photo>
+      <tag>
+        <list><![CDATA[Теги]]></list>
+        <addTitle><![CDATA[Добавление тега]]></addTitle>
+        <editTitle><![CDATA[Редактирование тега]]></editTitle>
+      </tag>
     </screens>
     <vfs>
       <queue>
@@ -176,6 +181,7 @@
       <albums><![CDATA[Альбомы]]></albums>
       <photos><![CDATA[Фотографии]]></photos>
       <daemons><![CDATA[Блокировки]]></daemons>
+      <tags><![CDATA[Теги]]></tags>
     </menu>
     <metaDetail>
       <deleteString><![CDATA[Вы действительно хотите удалить параметр страницы?]]></deleteString>
@@ -188,6 +194,9 @@
       <isInheritable><![CDATA[Наследовать параметры]]></isInheritable>
       <content><![CDATA[Содержимое]]></content>
       <header><![CDATA[Параметры страниц]]></header>
+      <objectId><![CDATA[Идентификатор объекта]]></objectId>
+      <objectClass><![CDATA[Объект]]></objectClass>
+      <canonicalUrl><![CDATA[Каноническая ссылка]]></canonicalUrl>
     </metaDetail>
     <user>
       <deleteString><![CDATA[Вы действительно хотите удалить пользователя?]]></deleteString>
@@ -195,6 +204,8 @@
       <login><![CDATA[Имя пользователя]]></login>
       <password><![CDATA[Пароль]]></password>
       <statusId><![CDATA[Статус]]></statusId>
+      <lastActivityAt><![CDATA[Дата последней активности]]></lastActivityAt>
+      <authKey><![CDATA[Ключ]]></authKey>
     </user>
     <staticPage>
       <deleteString><![CDATA[Вы действительно хотите удалить страницу?]]></deleteString>
@@ -211,6 +222,7 @@
       <commonInfo><![CDATA[Общая информация]]></commonInfo>
       <metaDetails><![CDATA[Параметры страницы]]></metaDetails>
       <nodes><![CDATA[nodes]]></nodes>
+      <images><![CDATA[images]]></images>
     </staticPage>
     <navigationType>
       <deleteString><![CDATA[Вы действительно хотите удалить типа навигации?]]></deleteString>
@@ -229,6 +241,7 @@
       <staticPageId><![CDATA[Страница]]></staticPageId>
       <statusId><![CDATA[Статус]]></statusId>
       <nodes><![CDATA[nodes]]></nodes>
+      <params><![CDATA[Параметры]]></params>
     </navigation>
     <album>
       <deleteString><![CDATA[Вы действительно хотите удалить альбом?]]></deleteString>
@@ -249,6 +262,8 @@
       <modifiedAt><![CDATA[Дата изменения]]></modifiedAt>
       <userId><![CDATA[Пользователь]]></userId>
       <statusId><![CDATA[Статус]]></statusId>
+      <metaInfo><![CDATA[metaInfo]]></metaInfo>
+      <tagIds>Теги</tagIds>
     </album>
     <photo>
       <deleteString><![CDATA[Вы действительно хотите удалить фотографию?]]></deleteString>
@@ -266,6 +281,18 @@
       <photoDate><![CDATA[Дата снимка]]></photoDate>
       <statusId><![CDATA[Статус]]></statusId>
     </photo>
+    <tag>
+      <deleteString><![CDATA[Вы действительно хотите удалить тег?]]></deleteString>
+      <header><![CDATA[теги]]></header>
+      <title><![CDATA[Название]]></title>
+      <alias><![CDATA[Системное имя]]></alias>
+      <description><![CDATA[Описание]]></description>
+      <orderNumber><![CDATA[Порядковый номер]]></orderNumber>
+      <photoPath><![CDATA[Путь до фотографии]]></photoPath>
+      <photoId><![CDATA[Номер фотографии]]></photoId>
+      <parentTagId><![CDATA[Родительский тэг]]></parentTagId>
+      <statusId><![CDATA[Статус]]></statusId>
+    </tag>
   </vt>
   <objects>
     <siteParam>
@@ -324,5 +351,12 @@
       <singleGenitive><![CDATA[фотографии]]></singleGenitive>
       <singleAccusative><![CDATA[фотографию]]></singleAccusative>
     </photo>
+    <tag>
+      <single><![CDATA[тег]]></single>
+      <plural><![CDATA[теги]]></plural>
+      <pluralGenitive><![CDATA[тегов]]></pluralGenitive>
+      <singleGenitive><![CDATA[тега]]></singleGenitive>
+      <singleAccusative><![CDATA[тег]]></singleAccusative>
+    </tag>
   </objects>
 </language>

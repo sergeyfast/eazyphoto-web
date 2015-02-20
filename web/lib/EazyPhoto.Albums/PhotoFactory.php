@@ -44,7 +44,7 @@
                     'type'        => TYPE_STRING,
                     'max'         => 255,
                     'nullable'    => 'CheckEmpty',
-                    'searchType'  => SEARCHTYPE_LIKE,
+                    'searchType'  => SEARCHTYPE_ILIKE,
                 ],
                 'filename'     => [
                     'name'        => 'filename',
@@ -70,13 +70,13 @@
                     'name'        => 'afterText',
                     'type'        => TYPE_STRING,
                     'max'         => 65535,
-                    'searchType'  => SEARCHTYPE_LIKE,
+                    'searchType'  => SEARCHTYPE_ILIKE,
                 ],
                 'title'        => [
                     'name'        => 'title',
                     'type'        => TYPE_STRING,
                     'max'         => 255,
-                    'searchType'  => SEARCHTYPE_LIKE,
+                    'searchType'  => SEARCHTYPE_ILIKE,
                 ],
                 'exif'         => [
                     'name'        => 'exif',

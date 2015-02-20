@@ -24,8 +24,18 @@
             LocaleLoader::Ru => [
                 self::Enabled  => 'Опубликован',
                 self::Disabled => 'Не опубликован',
-                self::InQueue => 'Новый',
             ]
+        ];
+
+
+        /**
+         * Album Statuses
+         * @var array
+         */
+        public static $Album = [
+            self::InQueue => 'Новый',
+            self::Enabled  => 'Опубликован',
+            self::Disabled => 'Не опубликован',
         ];
 
 
@@ -36,12 +46,15 @@
          * @return string
          */
         public static function GetStatusTemplate( $statusId ) {
-            $status = self::$Common[LocaleLoader::$CurrentLanguage][$statusId];
+            $status = \Eaze\Helpers\ArrayHelper::GetValue( self::$Common[LocaleLoader::$CurrentLanguage], $statusId );
+            if ( !$status ) {
+                $status = \Eaze\Helpers\ArrayHelper::GetValue( self::$Album, $statusId );
+            }
 
             switch ( $statusId ) {
-                case 1:
+                case self::Enabled:
                     return sprintf( '<span class="status" title="%s">%1$s</span>', $status );
-                case 5:
+                case self::InQueue:
                     return sprintf( '<span class="status _b" title="%s">%1$s</span>', $status );
                 default:
                     return sprintf( '<span class="status _fade" title="%s">%1$s</span>', $status );

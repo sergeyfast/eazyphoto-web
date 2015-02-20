@@ -2,6 +2,11 @@
     <group name="albums">
         <action name="GetAlbumList">
             <path>albums/GetAlbumListAction</path>
+            <parameters>
+                <response>
+                    <param name="__activeElement">'albums'</param>
+                </response>
+            </parameters>
         </action>
         <action name="SaveAlbum">
             <path>albums/SaveAlbumAction</path>
@@ -21,6 +26,11 @@
     <group name="photos">
         <action name="GetPhotoList">
             <path>photos/GetPhotoListAction</path>
+            <parameters>
+                <response>
+                    <param name="__activeElement">'photos'</param>
+                </response>
+            </parameters>
         </action>
         <action name="SavePhoto">
             <path>photos/SavePhotoAction</path>
@@ -30,6 +40,30 @@
         </action>
         <action name="DeletePhoto">
             <path>photos/SavePhotoAction</path>
+            <parameters>
+                <request>
+                    <param name="action">'delete'</param>
+                </request>
+            </parameters>
+        </action>
+    </group>
+    <group name="tags">
+        <action name="GetTagList">
+            <path>tags/GetTagListAction</path>
+            <parameters>
+                <response>
+                    <param name="__activeElement">'tags'</param>
+                </response>
+            </parameters>
+        </action>
+        <action name="SaveTag">
+            <path>tags/SaveTagAction</path>
+            <redirects>
+                <redirect name="success" path="vt://tags/"></redirect>
+            </redirects>
+        </action>
+        <action name="DeleteTag">
+            <path>tags/SaveTagAction</path>
             <parameters>
                 <request>
                     <param name="action">'delete'</param>

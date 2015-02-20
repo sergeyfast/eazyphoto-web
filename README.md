@@ -3,7 +3,7 @@ eazyphoto-web
 
 Web Albums Implementation
 
-Install 
+Installation 
 ------
   * Create database from docs/dump.sql (utf8)
   * Change settings in web/etc/conf/sites.xml
@@ -19,5 +19,9 @@ PHP Indexer (w/o eazyphotod): http://eazyphoto/int/daemons/sync-photos
 
 Changelog
 ------
+
+v0.2
+ * Migration to Eaze 2 (PHP 5.4+, PostgreSQL)
+
 v0.1
   * Proof of Concept

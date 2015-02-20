@@ -163,6 +163,23 @@
                             <template>tmpl://vt/photos/edit.tmpl.php</template>
                         </page>
                     </pageGroup>
+                    <pageGroup name="tags">
+                        <page uri="vt://tags/">
+                            <actions>Eaze.Helpers.ProcessSearchFilter, EazyPhoto.Albums.GetTagList</actions>
+                            <template>tmpl://vt/tags/index.tmpl.php</template>
+                        </page>
+                        <page uri="vt://tags/add">
+                            <actions>EazyPhoto.Albums.SaveTag</actions>
+                            <template>tmpl://vt/tags/add.tmpl.php</template>
+                        </page>
+                        <page uri="vt://tags/edit/([0-9]+)">
+                            <actions>EazyPhoto.Albums.SaveTag</actions>
+                            <template>tmpl://vt/tags/edit.tmpl.php</template>
+                        </page>
+                        <page uri="vt://tags/delete/([0-9]+)">
+                            <actions>EazyPhoto.Albums.DeleteTag</actions>
+                        </page>
+                    </pageGroup>
                 </pageGroup>
                 <pageGroup name="daemonLocks">
                     <page uri="vt://daemons/">

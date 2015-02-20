@@ -16,6 +16,7 @@ CREATE OR REPLACE VIEW "getAlbums" AS
         , "albums"."modifiedAt"
         , "albums"."metaInfo"
         , "albums"."userId"
+        , "albums"."tagIds"
         , "albums"."statusId"
         , "user"."userId" AS "user.userId"
         , "user"."login" AS "user.login"
@@ -51,3 +52,24 @@ CREATE OR REPLACE VIEW "getPhotos" AS
         INNER JOIN "albums" "album" ON "album"."albumId" = "photos"."albumId"
     WHERE "photos"."statusId" IN ( 1, 2 )
     ORDER BY "photos"."orderNumber", "photoId" DESC;
+
+
+CREATE OR REPLACE VIEW "getTags" AS
+SELECT "public"."tags"."tagId"
+	, "public"."tags"."title"
+	, "public"."tags"."alias"
+	, "public"."tags"."description"
+	, "public"."tags"."orderNumber"
+	, "public"."tags"."photoPath"
+	, "public"."tags"."photoId"
+	, "public"."tags"."parentTagId"
+	, "public"."tags"."statusId"
+	, "parentTag"."tagId" AS "parentTag.tagId"
+	, "parentTag"."title" AS "parentTag.title"
+	, "parentTag"."alias" AS "parentTag.alias"
+	, "parentTag"."parentTagId" AS "parentTag.parentTagId"
+ FROM "public"."tags"
+	LEFT JOIN "public"."tags" "parentTag" ON
+		"parentTag"."tagId" = "public"."tags"."parentTagId"
+	WHERE "public"."tags"."statusId" IN (1,2)
+	ORDER BY "orderNumber", "title";

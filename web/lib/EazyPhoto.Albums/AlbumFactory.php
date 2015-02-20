@@ -38,13 +38,13 @@
                     'type'        => TYPE_STRING,
                     'max'         => 255,
                     'nullable'    => 'CheckEmpty',
-                    'searchType'  => SEARCHTYPE_LIKE,
+                    'searchType'  => SEARCHTYPE_ILIKE,
                 ],
                 'description'          => [
                     'name'        => 'description',
                     'type'        => TYPE_STRING,
                     'max'         => 4096,
-                    'searchType'  => SEARCHTYPE_LIKE,
+                    'searchType'  => SEARCHTYPE_ILIKE,
                 ],
                 'alias'                => [
                     'name'        => 'alias',
@@ -125,19 +125,14 @@
                     'nullable'    => 'CheckEmpty',
                     'foreignKey'  => 'Status',
                 ],
+                'tagIds'               => [
+                    'name'        => 'tagIds',
+                    'type'        => TYPE_ARRAY,
+                    'complexType' => 'int[]',
+                ],
             ],
             'lists'     => [],
             'search'    => [
-                'page'        => [
-                    'name'       => 'page',
-                    'type'       => TYPE_INTEGER,
-                    'default'    => 0,
-                ],
-                'pageSize'    => [
-                    'name'       => 'pageSize',
-                    'type'       => TYPE_INTEGER,
-                    'default'    => 25,
-                ],
                 'geStartDate' => [
                     'name'       => 'startDate',
                     'type'       => TYPE_DATE,
@@ -147,6 +142,21 @@
                     'name'       => 'startDate',
                     'type'       => TYPE_DATE,
                     'searchType' => SEARCHTYPE_LE,
+                ],
+                '!albumId'    => [
+                    'name'       => 'albumId',
+                    'type'       => TYPE_INTEGER,
+                    'searchType' => SEARCHTYPE_NOT_EQUALS,
+                ],
+                'page'        => [
+                    'name'       => 'page',
+                    'type'       => TYPE_INTEGER,
+                    'default'    => 0,
+                ],
+                'pageSize'    => [
+                    'name'       => 'pageSize',
+                    'type'       => TYPE_INTEGER,
+                    'default'    => 25,
                 ],
             ],
         ];

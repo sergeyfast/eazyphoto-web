@@ -68,6 +68,18 @@
         protected function validate( $object ) {
             $errors = parent::$factory->Validate( $object );
 
+            if ( $object->alias ) { // url unique
+                if ( !$this->originalObject ) {
+                    $this->originalObject          = new Album();
+                    $this->originalObject->albumId = -1;
+                }
+
+                $objects = parent::$factory->Get( [ 'alias' => $object->alias, '!albumId' => $this->originalObject->albumId ], [ BaseFactory::WithoutPages => true ] );
+                if ( $objects ) {
+                    $errors['fields']['alias']['unique'] = 'unique';
+                }
+            }
+
             return $errors;
         }
 
@@ -112,6 +124,9 @@
          */
         protected function setForeignLists() {
             $users = UserFactory::Get( [ ], [ BaseFactory::WithoutPages => true ] );
+            $tags  = TagFactory::Get();
+
             Response::setArray( 'users', $users );
+            Response::setArray( 'tags', $tags );
         }
     }

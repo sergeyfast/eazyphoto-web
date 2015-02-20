@@ -21,6 +21,10 @@
             'title' => 'vt.menu.photos',
             'link'  => 'vt://photos/',
         ],
+        'tags' => [
+            'title' => 'vt.menu.tags',
+            'link'  => 'vt://tags/',
+        ],
         'static-pages' => [
             'title' => 'vt.menu.staticPages',
             'link'  => 'vt://static-pages/',

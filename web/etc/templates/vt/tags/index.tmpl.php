@@ -7,31 +7,31 @@
     use Eaze\Helpers\FormHelper;
     use Eaze\Site\Site;
 
-    /** @var Album[] $list */
-    /** @var User[] $users */
+    /** @var Tag[] $list */
+    /** @var Tag[] $parentTags */
     
 
-    $__pageTitle = T( 'vt.screens.album.list');
+    $__pageTitle = T( 'vt.screens.tag.list');
 
     $grid = [
         'columns'     => [
-            T( 'vt.album.title' ),
-            T( 'vt.album.isPrivate' ),
-            T( 'vt.album.startDate' ),
-            T( 'vt.album.roSecret' ),
-            T( 'vt.album.statusId' ),
+            T( 'vt.tag.title' ),
+            T( 'vt.tag.alias' ),
+            T( 'vt.tag.orderNumber' ),
+            T( 'vt.tag.parentTagId' ),
+            T( 'vt.tag.statusId' ),
         ],
         'colspans'    => [],
-        'sorts'       => [ 0 => 'title', 1 => 'isPrivate', 2 => 'startDate', 3 => 'roSecret', 4 => 'statusId', ],
+        'sorts'       => [ 0 => 'title', 1 => 'alias', 2 => 'orderNumber', 3 => 'parentTag.title', 4 => 'statusId', ],
         'operations'  => true,
         'allowAdd'    => true,
-        'canPages'    => AlbumFactory::CanPages(),
-        'basePath'    => Site::GetWebPath( 'vt://albums/' ),
-        'addPath'     => Site::GetWebPath( 'vt://albums/add' ),
+        'canPages'    => TagFactory::CanPages(),
+        'basePath'    => Site::GetWebPath( 'vt://tags/' ),
+        'addPath'     => Site::GetWebPath( 'vt://tags/add' ),
         'title'       => $__pageTitle,
         'description' => '',
         'pageSize'    => FormHelper::RenderToForm( $search['pageSize'] ),
-        'deleteStr'   => T( 'vt.album.deleteString' ),
+        'deleteStr'   => T( 'vt.tag.deleteString' ),
     ];
 
     $__breadcrumbs = [ [ 'link' => $grid['basePath'], 'title' => $__pageTitle ] ];
@@ -51,27 +51,27 @@
             <div class="plate cont">
                 <div class="form fsMedium">
                     <div class="row _fluid _p">
-                        <div class="col3 alignRight"><label for="title" class="blockLabel _shiftToRight">{lang:vt.album.title}</label></div>
+                        <div class="col3 alignRight"><label for="title" class="blockLabel _shiftToRight">{lang:vt.tag.title}</label></div>
                         <div class="col6"><?= FormHelper::FormInput( 'search[title]', $search['title'], 'title' ); ?></div>
-                        <?= VtHelper::GetExtendedSearchHtml(); ?>
+                        <?= VtHelper::GetExtendedSearchHtml() ?>
+                    </div>
+                    <div class="row _fluid _p">
+                        <div class="col3 alignRight"><label for="parentTagId" class="blockLabel _shiftToRight">{lang:vt.tag.parentTagId}</label></div>
+                        <div class="col6"><?= FormHelper::FormSelect( 'search[parentTagId]', $parentTags, 'tagId', 'title', $search['parentTagId'], null, 'select2', true ); ?></div>
                     </div>
                     <div id="ExtendedSearch" class="displayNone" style="display: none;">
                         <div class="row _fluid _p">
-                            <div class="col3 alignRight"><label for="description" class="blockLabel _shiftToRight">{lang:vt.album.description}</label></div>
-                            <div class="col6"><?= FormHelper::FormInput( 'search[description]', $search['description'], 'description' ); ?></div>
-                        </div>
-                        <div class="row _fluid _p">
-                            <div class="col3 alignRight"><label for="alias" class="blockLabel _shiftToRight">{lang:vt.album.alias}</label></div>
+                            <div class="col3 alignRight"><label for="alias" class="blockLabel _shiftToRight">{lang:vt.tag.alias}</label></div>
                             <div class="col6"><?= FormHelper::FormInput( 'search[alias]', $search['alias'], 'alias' ); ?></div>
                         </div>
                         <div class="row _fluid _p">
-                            <div class="col3 alignRight"><label for="roSecret" class="blockLabel _shiftToRight">{lang:vt.album.roSecret}</label></div>
-                            <div class="col6"><?= FormHelper::FormInput( 'search[roSecret]', $search['roSecret'], 'roSecret' ); ?></div>
+                            <div class="col3 alignRight"><label for="orderNumber" class="blockLabel _shiftToRight">{lang:vt.tag.orderNumber}</label></div>
+                            <div class="col6"><?= FormHelper::FormInput( 'search[orderNumber]', $search['orderNumber'], 'orderNumber' ); ?></div>
                         </div>
-                    </div>
-                    <div class="row _fluid _p">
-                        <div class="col3 alignRight"><label for="statusId" class="blockLabel _shiftToRight">{lang:vt.album.statusId}</label></div>
-                        <div class="col6"><?= FormHelper::FormSelect( 'search[statusId]', StatusUtility::$Album, '', '', $search['statusId'], null, null, true ); ?></div>
+                        <div class="row _fluid _p">
+                            <div class="col3 alignRight"><label for="statusId" class="blockLabel _shiftToRight">{lang:vt.tag.statusId}</label></div>
+                            <div class="col6"><?= FormHelper::FormSelect( 'search[statusId]', StatusUtility::$Common[$__currentLang], '', '', $search['statusId'], null, null, true ); ?></div>
+                        </div>
                     </div>
                     <div class="row _fluid _p"><div class="col6 offset3"><button type="submit">{lang:vt.common.find}</button></div></div>
                 </div>
@@ -85,14 +85,14 @@
         $langDelete = T( 'vt.common.delete' );
 
         foreach ( $list as $object )  {
-            $id       = $object->albumId;
+            $id       = $object->tagId;
             $editPath = $grid['basePath'] . 'edit/' . $id;
     ?>
                 <tr data-object-id="{$id}">
                     <td><strong>{$object.title}</strong></td>
-                    <td><?= VtHelper::GetBoolTemplate( $object->isPrivate ) ?></td>
-                    <td class="alignCenter"><?= $object->startDate ? $object->startDate->DefaultDateFormat() : '' ?></td>
-                    <td>{form:$object.roSecret}</td>
+                    <td>{form:$object.alias}</td>
+                    <td class="alignRight"><? if ( $object->orderNumber !== null ) { ?>{num:$object.orderNumber}<? } ?></td>
+                    <td><?= $object->parentTag ? $object->parentTag->title : '' ?></td>
                     <td><?= StatusUtility::GetStatusTemplate( $object->statusId ) ?></td>
                     <td class="tableControls"><a href="{$editPath}" title="{$langEdit}"><i class="foundicon-edit"></i> {$langEdit}</a> <a href="#" class="delete-object" title="{langDelete}"><i class="foundicon-remove"></i></a></td>
                 </tr>

@@ -1,6 +1,6 @@
 /*
 Created		16.08.2008
-Modified		19.02.2015
+Modified		20.02.2015
 Project		
 Model			
 Company		
@@ -188,6 +188,7 @@ Create table "albums"
 	"createdAt" Timestamp NOT NULL Default now(),
 	"modifiedAt" Timestamp,
 	"metaInfo" Text NOT NULL,
+	"tagIds" Integer[],
 	"userId" Integer NOT NULL,
 	"statusId" Integer NOT NULL,
  primary key ("albumId")
@@ -210,6 +211,21 @@ Create table "photos"
 	"photoDate" Timestamp,
 	"statusId" Integer NOT NULL,
  primary key ("photoId")
+) Without Oids;
+
+
+Create table "tags"
+(
+	"tagId" Serial NOT NULL,
+	"title" Varchar(255) NOT NULL,
+	"alias" Varchar(255) NOT NULL,
+	"description" Text,
+	"orderNumber" Integer,
+	"photoPath" Text,
+	"photoId" Integer,
+	"parentTagId" Integer,
+	"statusId" Integer NOT NULL,
+ primary key ("tagId")
 ) Without Oids;
 
 
@@ -251,6 +267,8 @@ Create index "IX_FK_albums_statusId_albums" on "albums" ("statusId");
 Alter table "albums" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
 Create index "IX_FK_photos_statusId_photos" on "photos" ("statusId");
 Alter table "photos" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
+Create index "IX_FK_tags_statusId_tags" on "tags" ("statusId");
+Alter table "tags" add  foreign key ("statusId") references "statuses" ("statusId") on update restrict on delete restrict;
 Create index "IX_FK_objectImages_smallImageId_objectImages" on "objectImages" ("smallImageId");
 Alter table "objectImages" add  foreign key ("smallImageId") references "vfsFiles" ("fileId") on update restrict on delete restrict;
 Create index "IX_FK_objectImages_bigImageId_objectImages" on "objectImages" ("bigImageId");
@@ -271,6 +289,10 @@ Create index "IX_FK_navigations_navigationTypeId_navigations" on "navigations" (
 Alter table "navigations" add  foreign key ("navigationTypeId") references "navigationTypes" ("navigationTypeId") on update restrict on delete restrict;
 Create index "IX_FK_photos_albumId_photos" on "photos" ("albumId");
 Alter table "photos" add  foreign key ("albumId") references "albums" ("albumId") on update restrict on delete restrict;
+Create index "IX_FK_tags_photoId_tags" on "tags" ("photoId");
+Alter table "tags" add  foreign key ("photoId") references "photos" ("photoId") on update restrict on delete restrict;
+Create index "IX_FK_tags_parentTagId_tags" on "tags" ("parentTagId");
+Alter table "tags" add  foreign key ("parentTagId") references "tags" ("tagId") on update restrict on delete restrict;
 
 
 /* Create Procedures */

@@ -147,6 +147,14 @@
           <AttributeParameter Key="controlId" Value="metaInfo" />
         </Parameters>
       </TemplateAttribute>
+      <TemplateAttribute Name="tagIds" TitleKey="vt.album.tagIds" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="tagIds" />
+          <AttributeParameter Key="value" Value="tagIds" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="tagIds" />
+        </Parameters>
+      </TemplateAttribute>
     </Search>
     <Attributes>
       <TemplateAttribute Name="albumId" TitleKey="vt.album.albumId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
@@ -293,6 +301,14 @@
           <AttributeParameter Key="value" Value="metaInfo" />
           <AttributeParameter Key="size" Value="80" />
           <AttributeParameter Key="controlId" Value="metaInfo" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="tagIds" TitleKey="vt.album.tagIds" TitleValue="tagIds" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="tagIds" />
+          <AttributeParameter Key="value" Value="tagIds" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="tagIds" />
         </Parameters>
       </TemplateAttribute>
     </Attributes>
@@ -527,6 +543,193 @@
           <AttributeParameter Key="value" Value="fileSizeHd" />
           <AttributeParameter Key="size" Value="80" />
           <AttributeParameter Key="controlId" Value="fileSizeHd" />
+        </Parameters>
+      </TemplateAttribute>
+    </Attributes>
+  </EazeEntity>
+  <EazeEntity Name="Tag">
+    <TerminalPath>tags</TerminalPath>
+    <CacheTime>0</CacheTime>
+    <CacheDependencies>photos tags</CacheDependencies>
+    <Search>
+      <TemplateAttribute Name="tagId" TitleKey="vt.tag.tagId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="tagId" />
+          <AttributeParameter Key="value" Value="tagId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="tagId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.tag.title" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.tag.alias" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="description" TitleKey="vt.tag.description" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="description" />
+          <AttributeParameter Key="value" Value="description" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="description" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.tag.orderNumber" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="photoPath" TitleKey="vt.tag.photoPath" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoPath" />
+          <AttributeParameter Key="value" Value="photoPath" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="photoPath" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="photoId" TitleKey="vt.tag.photoId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoId" />
+          <AttributeParameter Key="values" Value="$photos" />
+          <AttributeParameter Key="dataKey" Value="photoId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="photoId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentTagId" TitleKey="vt.tag.parentTagId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentTagId" />
+          <AttributeParameter Key="values" Value="$parentTags" />
+          <AttributeParameter Key="dataKey" Value="parentTagId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentTagId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.tag.statusId" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="true">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+    </Search>
+    <Attributes>
+      <TemplateAttribute Name="tagId" TitleKey="vt.tag.tagId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="tagId" />
+          <AttributeParameter Key="value" Value="tagId" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="tagId" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="title" TitleKey="vt.tag.title" TitleValue="Название" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="title" />
+          <AttributeParameter Key="value" Value="title" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="title" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="alias" TitleKey="vt.tag.alias" TitleValue="Системное имя" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="alias" />
+          <AttributeParameter Key="value" Value="alias" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="alias" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="description" TitleKey="vt.tag.description" TitleValue="Описание" Type="HTML_TEXT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="description" />
+          <AttributeParameter Key="value" Value="description" />
+          <AttributeParameter Key="rows" Value="5" />
+          <AttributeParameter Key="cols" Value="80" />
+          <AttributeParameter Key="controlId" Value="description" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="orderNumber" TitleKey="vt.tag.orderNumber" TitleValue="Порядковый номер" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="orderNumber" />
+          <AttributeParameter Key="value" Value="orderNumber" />
+          <AttributeParameter Key="size" Value="80" />
+          <AttributeParameter Key="controlId" Value="orderNumber" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="photoPath" TitleKey="vt.tag.photoPath" TitleValue="Путь до фотографии" Type="HTML_EDITOR" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoPath" />
+          <AttributeParameter Key="value" Value="photoPath" />
+          <AttributeParameter Key="rows" Value="5" />
+          <AttributeParameter Key="cols" Value="80" />
+          <AttributeParameter Key="controlId" Value="photoPath" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="photoId" TitleKey="vt.tag.photoId" TitleValue="Фотография" Type="HTML_SELECT" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoId" />
+          <AttributeParameter Key="values" Value="$photos" />
+          <AttributeParameter Key="dataKey" Value="photoId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="photoId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="photo.title" TitleKey="vt.tag.photoId" TitleValue="" Type="HTML_INPUT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="photoId" />
+          <AttributeParameter Key="values" Value="$photos" />
+          <AttributeParameter Key="dataKey" Value="photoId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="photoId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentTagId" TitleKey="vt.tag.parentTagId" TitleValue="Родительский тэг" Type="HTML_SELECT" CanEdit="true" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentTagId" />
+          <AttributeParameter Key="values" Value="$parentTags" />
+          <AttributeParameter Key="dataKey" Value="parentTagId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentTagId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="parentTag.title" TitleKey="vt.tag.parentTagId" TitleValue="" Type="HTML_INPUT" CanEdit="false" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="parentTagId" />
+          <AttributeParameter Key="values" Value="$parentTags" />
+          <AttributeParameter Key="dataKey" Value="parentTagId" />
+          <AttributeParameter Key="dataValue" Value="title" />
+          <AttributeParameter Key="value" Value="parentTagId" />
+          <AttributeParameter Key="nullValue" Value="true" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="statusId" TitleKey="vt.tag.statusId" TitleValue="Статус" Type="HTML_SELECT" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="statusId" />
+          <AttributeParameter Key="values" Value="StatusUtility::$Common[$__currentLang]" />
+          <AttributeParameter Key="dataKey" Value="" />
+          <AttributeParameter Key="dataValue" Value="" />
+          <AttributeParameter Key="value" Value="statusId" />
+          <AttributeParameter Key="nullValue" Value="false" />
         </Parameters>
       </TemplateAttribute>
     </Attributes>
