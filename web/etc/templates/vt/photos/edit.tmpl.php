@@ -25,7 +25,7 @@
 <main role="main">
     {increal:tmpl://vt/elements/menu/breadcrumbs.tmpl.php}
     <div class="container"><a href="{web:vt://photos/}" class="linkBlock cLink fsBigX floatRight">← <span class="link">{lang:vt.common.back}</span></a>
-        <h1>{$__pageTitle}</h1>
+        <h1>{$__pageTitle} №{$object.photoId}</h1>
         <form method="post" action="{web:vt://photos/}edit/{$objectId}" enctype="multipart/form-data" id="data-form" data-object-id="{$objectId}" >
             <?= FormHelper::FormHidden( 'action', BaseSaveAction::UpdateAction ); ?>
             <?= FormHelper::FormHidden( 'redirect', '', 'redirect' ); ?>

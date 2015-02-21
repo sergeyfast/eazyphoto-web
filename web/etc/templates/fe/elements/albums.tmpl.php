@@ -27,3 +27,4 @@
         </div>
         <hr/>
     <? } ?>
+    <div class="row">{increal:tmpl://fe/elements/paginator.tmpl.php}</div>

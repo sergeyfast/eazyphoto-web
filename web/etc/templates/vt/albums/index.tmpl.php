@@ -89,7 +89,7 @@
             $editPath = $grid['basePath'] . 'edit/' . $id;
     ?>
                 <tr data-object-id="{$id}">
-                    <td><strong>{$object.title}</strong></td>
+                    <td><strong><a href="<?= LinkUtility::GetAlbumUrl( $object, true)?>" target="_blank">{$object.title}</a></strong> <? if ( $object->description ) { ?><i class="fsText cFade foundicon-page" title="{form:$object.description}"></i><? } ?></td>
                     <td><?= VtHelper::GetBoolTemplate( $object->isPrivate ) ?></td>
                     <td class="alignCenter"><?= $object->startDate ? $object->startDate->DefaultDateFormat() : '' ?></td>
                     <td>{form:$object.roSecret}</td>

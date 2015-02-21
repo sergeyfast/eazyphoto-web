@@ -43,7 +43,7 @@
             }
 
             if ( $object->photoId ) {
-                $object->photoPath = LinkUtility::GetPhotoHd( $object->photo, false );
+                $object->photoPath = LinkUtility::GetPhotoThumb( $object->photo, false );
             }
 
             return $object;

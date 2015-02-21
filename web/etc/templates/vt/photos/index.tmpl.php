@@ -21,7 +21,7 @@
             T( 'vt.photo.photoDate' ),
             T( 'vt.photo.statusId' ),
         ],
-        'colspans'    => [],
+        'colspans'    => [ 0 => 2 ],
         'sorts'       => [ 0 => 'album.title', 1 => 'originalName', 2 => 'orderNumber', 3 => 'photoDate', 4 => 'statusId', ],
         'operations'  => true,
         'allowAdd'    => true,
@@ -93,8 +93,9 @@
             $editPath = $grid['basePath'] . 'edit/' . $id;
     ?>
                 <tr data-object-id="{$id}">
+                    <td><img src="<?= LinkUtility::GetPhotoThumb( $object, true ) ?>" width="30"></td>
                     <td>{$object.album.title}</td>
-                    <td>{form:$object.originalName}</td>
+                    <td>{form:$object.originalName} <? if ( $object->afterText ) { ?><i class="fsText cFade foundicon-page" title="{form:$object.afterText}"></i><? } ?></td>
                     <td class="alignRight"><? if ( $object->orderNumber !== null ) { ?>{num:$object.orderNumber}<? } ?></td>
                     <td class="alignCenter"><?= $object->photoDate ? $object->photoDate->DefaultFormat() : '' ?></td>
                     <td><?= StatusUtility::GetStatusTemplate( $object->statusId ) ?></td>
