@@ -1,1 +1,0 @@
-copy /b EazyPhoto.sql + Views\*.sql +  init.sql dump.sql
