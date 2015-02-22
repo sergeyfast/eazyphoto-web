@@ -66,7 +66,7 @@
                 <hostname>*</hostname>
                 <settings>
                     <modules>
-                        <eazyphotod class="EazyPhotoDaemon">
+                        <eazyphotod class="\EazyPhotoDaemon">
                             <param name="host">127.0.0.1</param>
                             <param name="port">8889</param>
                             <param name="enabled">true</param>
