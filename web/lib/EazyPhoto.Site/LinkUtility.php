@@ -44,8 +44,22 @@
         }
 
 
-        public static function GetAlbumsUrl( $year, $withWebPath = false ) {
+        public static function GetAlbumsUrl( $withWebPath = false ) {
+            return self::getBaseUrl( Context::Albums, $withWebPath );
+        }
+
+
+        public static function GetAlbumsYearUrl( $year = null, $withWebPath = false ) {
             return self::getBaseUrl( '/', $withWebPath ) . $year . '/';
         }
 
+
+        /**
+         * @param Tag  $tag
+         * @param bool $withWebPath
+         * @return string
+         */
+        public static function GetTagUrl( $tag, $withWebPath = false ) {
+            return self::getBaseUrl( '/albums/', $withWebPath ) . '?tag=' . $tag->alias;
+        }
     }

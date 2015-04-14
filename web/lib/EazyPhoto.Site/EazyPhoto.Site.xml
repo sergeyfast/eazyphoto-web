@@ -39,6 +39,8 @@
         </action>
     </group>
     <group name="Site">
+        <action name="GetMainPage" />
+        <action name="GetTags" />
         <action name="GetAlbums" />
         <action name="GetAlbum" />
     </group>

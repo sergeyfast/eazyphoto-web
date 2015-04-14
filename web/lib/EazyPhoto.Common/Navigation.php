@@ -67,4 +67,14 @@
             return $withWebPath ? \Eaze\Site\Site::GetWebPath( $url ) : $url;
         }
 
+
+        /**
+         * Image
+         * @return string
+         */
+        public function Image() {
+            $this->params = $this->params ?: [ ];
+            return \Eaze\Helpers\ArrayHelper::GetValue( $this->params, 'image' );
+        }
+
     }

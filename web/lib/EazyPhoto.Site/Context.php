@@ -12,6 +12,8 @@
     class Context {
 
         /** Site Section */
+        const Albums = '/albums/',
+            Tags = '/tags/';
 
         /**
          * Current Active Section From Menu
@@ -48,6 +50,12 @@
          * @var Navigation[]
          */
         public static $FooterNav = [ ];
+
+        /**
+         * Social Navigations
+         * @var Navigation[]
+         */
+        public static $SocialNav = [ ];
 
         /**
          * Current Context Navigations
@@ -111,6 +119,9 @@
                         break;
                     case NavigationUtility::FooterMenu:
                         self::$FooterNav[$n->navigationId] = $n;
+                        break;
+                    case NavigationUtility::SocialMenu:
+                        self::$SocialNav[$n->navigationId] = $n;
                         break;
                 }
             }

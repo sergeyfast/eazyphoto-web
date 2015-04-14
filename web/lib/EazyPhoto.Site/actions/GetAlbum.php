@@ -28,19 +28,24 @@
             ];
 
             $album = AlbumFactory::GetOne( $search );
-            if ( !$album ) {
+            if ( !$album || ( $album->isPrivate && $album->folderPath !== $key )  ) {
                 Response::HttpStatusCode( 404 );
             }
 
-            if ( $album->isPrivate && $album->folderPath !== $key ) {
-                Response::HttpStatusCode( 403 );
-            }
-
+            $tags   = TagUtility::GetAllTags();
             $photos = PhotoFactory::Get( [ 'albumId' => $album->albumId ]
                 , [ BaseFactory::WithoutPages => true, BaseFactory::OrderBy => '"orderNumber", "photoDate" ' . ( $album->isDescSort ? 'DESC' : 'ASC' ) ]
             );
 
+            AlbumUtility::FillTags( $tags, $album );
+
+            Context::$ActiveSection = Context::Albums;
+            Context::AddBreadcrumbT( 'albums', LinkUtility::GetAlbumsUrl() );
+            // Context::AddBreadcrumb( $album->startDate->format('Y'),  LinkUtility::GetAlbumsYearUrl( $album->startDate->format('Y')  ) );
+            Context::AddBreadcrumb( $album->title,  LinkUtility::GetAlbumUrl( $album ) );
+
             Response::setParameter( 'album', $album );
             Response::setArray( 'photos', $photos );
+            Response::setArray( 'tags', $tags );
         }
     }

@@ -13,6 +13,11 @@
     <null><![CDATA[Значение не может быть пустым]]></null>
     <unique><![CDATA[Значение должно быть уникальным]]></unique>
   </errors>
+  <fe>
+    <breadcrumbs>
+      <albums>Альбомы</albums>
+    </breadcrumbs>
+  </fe>
   <vt>
     <grid>
       <resultsCount>

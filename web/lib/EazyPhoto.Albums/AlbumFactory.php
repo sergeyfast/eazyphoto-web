@@ -133,30 +133,35 @@
             ],
             'lists'     => [],
             'search'    => [
-                'geStartDate' => [
+                'geStartDate'   => [
                     'name'       => 'startDate',
                     'type'       => TYPE_DATE,
                     'searchType' => SEARCHTYPE_GE,
                 ],
-                'leStartDate' => [
+                'leStartDate'   => [
                     'name'       => 'startDate',
                     'type'       => TYPE_DATE,
                     'searchType' => SEARCHTYPE_LE,
                 ],
-                '!albumId'    => [
+                '!albumId'      => [
                     'name'       => 'albumId',
                     'type'       => TYPE_INTEGER,
                     'searchType' => SEARCHTYPE_NOT_EQUALS,
                 ],
-                'page'        => [
+                'page'          => [
                     'name'       => 'page',
                     'type'       => TYPE_INTEGER,
                     'default'    => 0,
                 ],
-                'pageSize'    => [
+                'pageSize'      => [
                     'name'       => 'pageSize',
                     'type'       => TYPE_INTEGER,
                     'default'    => 25,
+                ],
+                'nnOrderNumber' => [
+                    'name'       => 'orderNumber',
+                    'type'       => TYPE_BOOLEAN,
+                    'searchType' => SEARCHTYPE_NOT_NULL,
                 ],
             ],
         ];

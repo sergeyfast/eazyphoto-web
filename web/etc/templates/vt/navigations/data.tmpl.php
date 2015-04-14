@@ -51,6 +51,10 @@
             <div class="col2 required"><label for="statusId" class="blockLabel">{lang:vt.navigation.statusId}</label></div>
             <div class="col6"><?= FormHelper::FormSelect( $prefix . '[statusId]', StatusUtility::$Common[$__currentLang], '', '', $object->statusId, null, null, false ); ?></div>
         </div>
+        <div class="row _fluid _p" data-row="image">
+            <div class="col2"><label for="image" class="blockLabel">Картинка</label></div>
+            <div class="col6"><?= VfsHelper::FormVfsFilePath( $prefix . '[params][image]', 'image', $object->Image(),  'image' ); ?></div>
+        </div>
     </div>
 </div>
 

@@ -4,16 +4,20 @@
         <pages>
             <pageGroup name="fe" shutdown="EazyPhoto.Site.GetContext">
                 <page uri="/">
-                    <actions>EazyPhoto.Site.GetAlbums</actions>
+                    <actions>EazyPhoto.Site.GetMainPage</actions>
                     <template>tmpl://fe/index.tmpl.php</template>
                 </page>
-                <page uri="/([0-9]{4})/">
+                <page uri="/tags/">
+                    <actions>EazyPhoto.Site.GetTags</actions>
+                    <template>tmpl://fe/albums/tags.tmpl.php</template>
+                </page>
+                <page uri="/albums/">
                     <actions>EazyPhoto.Site.GetAlbums</actions>
-                    <template>tmpl://fe/index.tmpl.php</template>
+                    <template>tmpl://fe/albums/index.tmpl.php</template>
                 </page>
                 <page uri="/([0-9]{4})/([^?]+)/">
                     <actions>EazyPhoto.Site.GetAlbum</actions>
-                    <template>tmpl://fe/album.tmpl.php</template>
+                    <template>tmpl://fe/albums/details.tmpl.php</template>
                 </page>
             </pageGroup>
             <pageGroup name="vt" boot="EazyPhoto.Common.CheckAuth">

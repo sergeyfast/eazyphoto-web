@@ -47,4 +47,16 @@
 
         # user defined code goes below
 
+        /**
+         * Path
+         * @var int[]
+         */
+        public $path;
+
+        /**
+         * Level
+         * @var int
+         */
+        public $depth;
+
     }

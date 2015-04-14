@@ -91,6 +91,11 @@
                     'name'       => 'title',
                     'type'       => TYPE_STRING,
                 ],
+                'nnOrderNumber'   => [
+                    'name'       => 'orderNumber',
+                    'type'       => TYPE_BOOLEAN,
+                    'searchType' => SEARCHTYPE_NOT_NULL,
+                ],
             ],
         ];
     }

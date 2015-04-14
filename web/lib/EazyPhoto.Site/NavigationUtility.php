@@ -16,6 +16,11 @@
          */
         const FooterMenu = 'footer-menu';
 
+        /**
+         * Social Menu
+         */
+        const SocialMenu = 'social-menu';
+
 
         /**
          * Get Navigations by alias

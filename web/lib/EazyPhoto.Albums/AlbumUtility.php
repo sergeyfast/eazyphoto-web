@@ -263,7 +263,7 @@
             );
 
             $album->metaInfo = [
-                'count'      => $count,
+                'count'    => $count,
                 'size'     => $fs,
                 'sizeHd'   => $fh,
                 'photoIds' => array_keys( $photos ),
@@ -294,5 +294,76 @@ sql;
             }
 
             return [ 0, 0 ];
+        }
+
+
+        /**
+         * Get With Tag Ids
+         * @param int[] $ids
+         * @return string
+         */
+        public static function GetWithTagIdSql( $ids ) {
+            if ( !$ids ) {
+                return '';
+            }
+
+            return ' AND "tagIds" && ' . ConnectionFactory::Get()->GetComplexType( 'int[]')->ToDatabase( $ids );
+        }
+
+
+        /**
+         * Fill First Photo
+         * @param Album[] $albums
+         * @param Album[] $_
+         * @return array
+         */
+        public static function FillFirstPhoto( $albums, $_ = null ) {
+            $ids  = [];
+            $list = func_get_args();
+            /** @var Album[] $aa */
+            foreach( $list as $aa ) {
+                foreach( $aa as $a ) {
+                    $ids[$a->albumId] = $a->PhotoId();
+                }
+            }
+
+            if ( $ids ) {
+                $photos = PhotoFactory::Get( [ '_photoId' => $ids ], [ BaseFactory::WithoutPages => true ] );
+                foreach( $list as $aa ) {
+                    foreach( $aa as $a ) {
+                        $a->Photo = ArrayHelper::GetValue( $photos, $ids[$a->albumId] );
+                    }
+                }
+            }
+
+            return $ids;
+        }
+
+
+        /**
+         * Fill Tags for Album
+         * @param Tag[] $tags tag map
+         * @param Album $album
+         */
+        public static function FillTags( $tags, $album ) {
+            if ( !$album->tagIds ) {
+                return;
+            }
+
+            foreach( $album->tagIds as $tagId ) {
+                $tag = ArrayHelper::GetValue( $tags, $tagId );
+                if ( $tag ) {
+                    $album->Tags[$tagId] = $tag;
+                }
+
+                if ( $tag->path ) {
+                    foreach( $tag->path as $tId ) {
+                        $t = ArrayHelper::GetValue( $tags, $tId );
+                        if ( $t && !in_array( $tId, $album->tagIds, true ) )  {
+                            $album->AllTags[$tId] = $t;
+                        }
+                    }
+                }
+            }
         }
     }

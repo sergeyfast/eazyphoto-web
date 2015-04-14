@@ -27,7 +27,7 @@
 
     if ( $pageCount > 1 ) {
         ?>
-        <ul class="pagination">
+        <ul class="metaList fsSmall cont">
 				<li class="arrow"><a href="?page=0">&laquo;</a></li>
 <?php
         for( $i = $startPosition;  $i <= $endPosition; $i ++ ) {
@@ -42,7 +42,6 @@
         ?>
 				<li class="arrow"><a href="?page=<?= $pageCount - 1?>">&raquo;</a></li>
 			</ul>
-		</div>
 <?php
     }
     $page --;

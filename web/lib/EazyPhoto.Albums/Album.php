@@ -74,4 +74,44 @@
 
         # user defined code goes below
 
+        /**
+         * @var Photo
+         */
+        public $Photo;
+
+        /**
+         * @var Tag[]
+         */
+        public $Tags = [];
+
+        /**
+         * @var Tag[]
+         */
+        public $AllTags = [];
+
+        /**
+         * Get Main Photo Id
+         * @return mixed
+         */
+        public function PhotoId() {
+            if ( $this->metaInfo && !empty( $this->metaInfo['photoIds'] ) ) {
+                return reset( $this->metaInfo['photoIds'] );
+            }
+
+            return null;
+        }
+
+
+        /**
+         * Get Count
+         * @return int
+         */
+        public function Count() {
+            if ( $this->metaInfo && !empty( $this->metaInfo['count'] ) ) {
+                return $this->metaInfo['count'];
+            }
+
+            return null;
+        }
+
     }

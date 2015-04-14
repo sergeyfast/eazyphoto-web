@@ -1,102 +1,84 @@
 <?php
     /** @var SiteParamHelper $sph */
 
-    use Eaze\Helpers\AssetHelper;
     use Eaze\Helpers\CssHelper;
     use Eaze\Helpers\JsHelper;
+    use Eaze\Modules\LocaleLoader;
     use Eaze\Site\Site;
 
-    if ( !isset( $__activeElement ) ) {
-        $__activeElement = NULL;
-    }
+    $__isMainPage = Context::GetUrl() === '/';
+    $__metaDetail = Context::$MetaDetail;
+    $__ogImage    = !empty( $__ogImage ) ? $__ogImage : null;
 
-    if ( !isset( $__isMainPage ) ) {
-        $__isMainPage = false;
-    }
-
-    /**
-     * Manual set meta or reset of meta
-     */
+    /** Manual set meta or reset of meta */
     $__sitePageTitle    = $sph->GetSiteHeader();
     $__pageTitle        = !empty( $__pageTitle ) ? $__pageTitle : '';
     $__metaDescription  = !empty( $__metaDescription ) ? $__metaDescription : '';
     $__metaKeywords     = !empty( $__metaKeywords ) ? $__metaKeywords : '';
     $__imageAlt         = !empty( $__imageAlt ) ? $__imageAlt : '';
+    $__canonicalUrl     = !empty( $__canonicalUrl ) ? $__canonicalUrl : '';
 
-	/*
-	 * Meta tags from MetaDetail object or Page object
-	*/
-	if ( !empty( $__metaDetail ) ) {
-        if ( !empty( $__metaDetail->pageTitle ) )       $__pageTitle       = $__metaDetail->pageTitle;
-        if ( !empty( $__metaDetail->metaDescription ) ) $__metaDescription = $__metaDetail->metaDescription;
-        if ( !empty( $__metaDetail->metaKeywords) )     $__metaKeywords    = $__metaDetail->metaKeywords;
-        if ( !empty( $__metaDetail->alt) )         		$__imageAlt        = $__metaDetail->alt;
+    /** Priority: meta, page, variables */
+    if ( $__metaDetail ) {
+        $__pageTitle       = $__metaDetail->pageTitle ?: $__pageTitle;
+        $__metaDescription = $__metaDetail->metaDescription ?: $__metaDescription;
+        $__metaKeywords    = $__metaDetail->metaKeywords ?: $__metaKeywords;
+        $__imageAlt        = $__metaDetail->alt ?: $__imageAlt;
+        $__canonicalUrl    = $__metaDetail->canonicalUrl ?: $__canonicalUrl;
     } else if( !empty( $__page ) ) {
-        $__pageTitle = !empty( $__page->pageTitle ) ? $__page->pageTitle : ( $__page->title . ' | ' . $__sitePageTitle );
-        
-        if ( !empty( $__page->metaDescription ) ) $__metaDescription = $__page->metaDescription;
-        if ( !empty( $__page->metaKeywords) )     $__metaKeywords    = $__page->metaKeywords;
+        $__pageTitle = $__page->title . ' | ' . $__sitePageTitle;
     }
 
-    /**
-     * Default page title
-     */
-    $__pageTitle = !empty( $__pageTitle ) ? $__pageTitle : $__sitePageTitle;
-	
-    $cssFiles = [
-        AssetHelper::AnyBrowser => [
-            'css://fe/foundation.min.css'
-            , 'css://fe/custom.css'
-        ]
-        , AssetHelper::IE7 => []
-    ];
-
-    $jsFiles = [
-        'js://fe/modernizr.foundation.js'
-        , 'js://fe/jquery.js'
-        //, 'js://fe/foundation.min.js'
-        , 'js://fe/scripts.js'
-    ];
+    /** Default page title */
+    $__pageTitle = $__pageTitle ?: $__sitePageTitle;
 
     CssHelper::Init( !Site::IsDevel() );
     JsHelper::Init( !Site::IsDevel() );
 
-    CssHelper::PushGroups( $cssFiles );
-    JsHelper::PushFiles( $jsFiles );
-?>
-<!DOCTYPE html>
-<!--[if IE 8]>
-<html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en"> <!--<![endif]-->
+    CssHelper::PushFiles([
+        'css://styles.css',
+        'css://fancybox/jquery.fancybox.css',
+    ]);
+
+    JsHelper::PushFiles([
+        'js://fe/locale/'. LocaleLoader::$CurrentLanguage . '.js',
+        'js://fe/jquery.js',
+        'js://fe/jquery.easing.js',
+        'js://fe/jquery.fancybox.js',
+    ]);
+?><!DOCTYPE html>
+<html lang="ru">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <title><?=$__pageTitle?></title>
+    <meta charset="UTF-8">
+    <title>{$__pageTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="{form:$__metaKeywords}" />
     <meta name="description" content="{form:$__metaDescription}" />
+    <? if (  $__ogImage ) { ?><meta property="og:image" content="{$__ogImage}" /><? } ?>
     <? if ( $__isMainPage ) { ?>
-        <? if (!empty( $__params[SiteParamHelper::YandexMeta] ) ) { ?>
-            <meta name='yandex-verification' content='<?= $__params[SiteParamHelper::YandexMeta]->value ?>' />
-        <? } ?>
-        <? if (!empty( $__params[SiteParamHelper::GoogleMeta] ) ) { ?>
-            <meta name='google-site-verification' content='<?= $__params[SiteParamHelper::GoogleMeta]->value ?>' />
-        <? } ?>
+    <? if ( $sph->HasYandexMeta() ) { ?><meta name="yandex-verification" content="{$sph.GetYandexMeta()}" /><? } ?>
+    <? if ( $sph->HasGoogleMeta() ) { ?><meta name="google-site-verification" content="{$sph.GetGoogleMeta()}" /><? } ?>
+    <? if ( $sph->HasBingMeta() ) { ?><meta name="msvalidate.01" content="<?= $sph->GetBingMeta() ?>" /><? } ?>
     <? } ?>
-    <link rel="icon" href="{web:/favicon.ico}" type="image/x-icon" />
-    <link rel="shortcut icon" href="{web:/favicon.ico}" type="image/x-icon" />
     <?= CssHelper::Flush(); ?>
-    <script type="text/javascript">
-        document.documentElement.id = "js";
-        var root = '{web:/}';
-        var controlsRoot = '{web:controls://}';
-    </script>
+    <link rel="shortcut icon" href="{web:img://}favicon.png">
+    <script>var root = '{web:/}';</script>
 </head>
 <body>
-<nav class="top-bar">
-    <ul class="title-area">
-        <li class="name">
-            <h1><a href="{web:/}"><?= $sph->GetSiteHeader() ?></a></h1>
-        </li>
-    </ul>
-</nav>
+<div class="wrapper">
+    <header role="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col3 headerLogo"><? $ct = ''; if ( !$__isMainPage ) { $ct = '</a>'; ?><a href="{web:/}"><? } ?><img src="{web:img://}logo.png" alt="<?= $sph->GetSiteHeader() ?>">{$ct}</div>
+                <nav role="navigation" class="col8">
+                    <? if ( Context::$HeaderNav ) { ?>
+                        <ul class="metaList">
+                            <? foreach( Context::$HeaderNav as $n ) { ?>
+                                <li<?= Context::$Navigation && $n->navigationId === Context::$Navigation->navigationId ? ' class="_active"' : '' ?>><a href="{$n.GetLink(true)}"><span>{$n.title}</span></a></li>
+                            <? } ?>
+                        </ul>
+                    <? } ?>
+                </nav>
+            </div>
+        </div>
+    </header>

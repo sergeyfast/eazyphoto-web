@@ -13,4 +13,9 @@ $(document).ready(function () {
             }
         });
     }
+
+    $('a.copy-to-clipboard').click(function(e) {
+        e.preventDefault();
+        window.prompt("Скопировать в буфер обмена: Ctrl+C, Enter", $(this).text());
+    });
 });
