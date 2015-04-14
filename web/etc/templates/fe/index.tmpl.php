@@ -34,7 +34,7 @@
     <ul class="objList alignCenter">
         <? foreach( $albums as $a ) { ?>
             <? if ( !$a->Photo ) continue; ?>
-        <li><a href="<?= LinkUtility::GetAlbumUrl( $a, true )?>"><img src="<?= LinkUtility::GetPhotoThumb( $a->Photo, true ) ?>" alt=""><span class="_hoverOverlay"><span class="_text"><strong>{$a.title}</strong> {$a.Count()} фото<?= $a->description ? ', рассказ' : '' ?></span></span></a></li>
+        <li><a href="<?= LinkUtility::GetAlbumUrl( $a, true )?>"><img width="178" height="178" src="<?= LinkUtility::GetPhotoThumb( $a->Photo, true ) ?>" alt=""><span class="_hoverOverlay"><span class="_text"><strong>{$a.title}</strong> {$a.Count()} фото<?= $a->description ? ', рассказ' : '' ?></span></span></a></li>
         <? } ?>
     </ul>
 <? } ?>
