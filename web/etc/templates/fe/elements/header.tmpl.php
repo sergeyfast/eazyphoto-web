@@ -61,7 +61,7 @@
     <? if ( $sph->HasBingMeta() ) { ?><meta name="msvalidate.01" content="<?= $sph->GetBingMeta() ?>" /><? } ?>
     <? } ?>
     <?= CssHelper::Flush(); ?>
-    <link rel="shortcut icon" href="{web:img://}favicon.png">
+    <link rel="shortcut icon" href="{web:/favicon.ico}">
     <script>var root = '{web:/}';</script>
 </head>
 <body>
