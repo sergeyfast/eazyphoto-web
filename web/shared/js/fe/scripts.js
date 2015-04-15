@@ -166,10 +166,17 @@ $(document).ready(function () {
 		$(this).parent().next('.sliderBody').toggle();
 	});
 
-	var mainMenu = $('nav ul.metaList');
-	$('.mobileMenu').click(function () {
-		$(this).toggleClass('_active');
-		mainMenu.toggleClass('_active');
+	$('div.tabs').each(function () {
+		var heads, conts;
+		heads = $(this).find('div.tabs_head > ul > li');
+		conts = $(this).find('div.tabs_cont');
+		heads.click(function (e) {
+			e.preventDefault();
+			if (!$(this).hasClass('_active')) {
+				heads.add(conts).removeClass('_active');
+				$(this).add(conts.eq($(this).index())).addClass('_active');
+			}
+		});
 	});
 
 });

@@ -138,8 +138,8 @@
                 return $maxId;
             }
 
-            foreach( $photos as $photo ) {
-                $t = ltrim( $photo->filename,  '0' );
+            foreach ( $photos as $photo ) {
+                $t = ltrim( $photo->filename, '0' );
                 $t = str_replace( '.jpg', '', $t );
                 $t = Convert::ToInt( $t );
 
@@ -150,7 +150,6 @@
 
             return $maxId;
         }
-
 
 
         /**
@@ -168,8 +167,8 @@
             $changed = false;
 
 
-            foreach( $fileDir->GetFiles() as $f ) {
-                $maxId ++;
+            foreach ( $fileDir->GetFiles() as $f ) {
+                $maxId++;
 
                 $name = $f['filename'];
                 if ( mb_strpos( mb_strtolower( $name ), 'sync' ) !== false ) {
@@ -181,7 +180,7 @@
                     continue;
                 }
 
-                if ( !exif_imagetype( $f['path'] )  ) {
+                if ( !exif_imagetype( $f['path'] ) ) {
                     Logger::Warning( '%s is not an image', $f['filename'] );
                     continue;
                 }
@@ -196,13 +195,13 @@
                 $p->fileSize     = filesize( $f['path'] );
                 $p->originalName = $f['filename'];
 
-                $photoDate       = $p->exif && !empty( $p->exif['EXIF'] ) ? ArrayHelper::GetValue( $p->exif['EXIF'], 'DateTimeOriginal', null ): null;
+                $photoDate = $p->exif && !empty( $p->exif['EXIF'] ) ? ArrayHelper::GetValue( $p->exif['EXIF'], 'DateTimeOriginal', null ) : null;
                 if ( $photoDate ) {
-                    $p->photoDate    = $photoDate ? DateTime::createFromFormat( 'Y:m:d G:i:s', $photoDate ) : null;
-                    $p->statusId     = StatusUtility::Enabled;
+                    $p->photoDate = $photoDate ? DateTime::createFromFormat( 'Y:m:d G:i:s', $photoDate ) : null;
+                    $p->statusId  = StatusUtility::Enabled;
                 }
 
-                $hdPath = self::GetRealPath( $album, self::HD ) .  $p->filename;
+                $hdPath = self::GetRealPath( $album, self::HD ) . $p->filename;
                 if ( !ImageHelper::Resize( $f['path'], $hdPath, $sph->GetBigImageSize(), $sph->GetBigImageSize(), $sph->GetBigImageQuality(), true ) ) {
                     Logger::Warning( 'Failed to create hd image %s', $hdPath );
                     continue;
@@ -217,7 +216,7 @@
                 }
 
                 if ( !$p->exif ) {
-                    $p->exif = [];
+                    $p->exif = [ ];
                 }
 
                 if ( !PhotoFactory::Add( $p ) ) {
@@ -232,7 +231,7 @@
                 $album->modifiedAt = DateTimeWrapper::Now();
                 self::FillMetaInfo( $album );
 
-                if (!AlbumFactory::Update( $album ) ) {
+                if ( !AlbumFactory::Update( $album ) ) {
                     Logger::Error( 'Failed to update Album metainfo' );
                 }
             }
@@ -259,7 +258,7 @@
             list( $fs, $fh ) = self::GetFileSize( $album );
 
             $photos = PhotoFactory::Get( [ 'albumId' => $album->albumId, 'pageSize' => self::DefaultPreviewCount ]
-                , [ BaseFactory::WithColumns => '"photoId"', BaseFactory::OrderBy => '"orderNumber", "photoDate" ' . ( $album->isDescSort ? 'DESC' : 'ASC' )  ]
+                , [ BaseFactory::WithColumns => '"photoId"', BaseFactory::OrderBy => '"orderNumber", "photoDate" ' . ( $album->isDescSort ? 'DESC' : 'ASC' ) ]
             );
 
             $album->metaInfo = [
@@ -279,7 +278,7 @@
         public static function GetFileSize( Album $album ) {
             $conn = ConnectionFactory::Get();
             $sql  = <<<sql
-                SELECT sum( "fileSize" ) as fs, sum( "fileSizeHd" ) as fh
+                SELECT sum( "fileSize" ) AS fs, sum( "fileSizeHd" ) AS fh
                 FROM "photos"
                 WHERE "statusId" = 1 AND "albumId" = @albumId
 sql;
@@ -307,7 +306,7 @@ sql;
                 return '';
             }
 
-            return ' AND "tagIds" && ' . ConnectionFactory::Get()->GetComplexType( 'int[]')->ToDatabase( $ids );
+            return ' AND "tagIds" && ' . ConnectionFactory::Get()->GetComplexType( 'int[]' )->ToDatabase( $ids );
         }
 
 
@@ -318,19 +317,19 @@ sql;
          * @return array
          */
         public static function FillFirstPhoto( $albums, $_ = null ) {
-            $ids  = [];
+            $ids  = [ ];
             $list = func_get_args();
             /** @var Album[] $aa */
-            foreach( $list as $aa ) {
-                foreach( $aa as $a ) {
+            foreach ( $list as $aa ) {
+                foreach ( $aa as $a ) {
                     $ids[$a->albumId] = $a->PhotoId();
                 }
             }
 
             if ( $ids ) {
                 $photos = PhotoFactory::Get( [ '_photoId' => $ids ], [ BaseFactory::WithoutPages => true ] );
-                foreach( $list as $aa ) {
-                    foreach( $aa as $a ) {
+                foreach ( $list as $aa ) {
+                    foreach ( $aa as $a ) {
                         $a->Photo = ArrayHelper::GetValue( $photos, $ids[$a->albumId] );
                     }
                 }
@@ -350,20 +349,48 @@ sql;
                 return;
             }
 
-            foreach( $album->tagIds as $tagId ) {
+            foreach ( $album->tagIds as $tagId ) {
                 $tag = ArrayHelper::GetValue( $tags, $tagId );
                 if ( $tag ) {
                     $album->Tags[$tagId] = $tag;
                 }
 
                 if ( $tag->path ) {
-                    foreach( $tag->path as $tId ) {
+                    foreach ( $tag->path as $tId ) {
                         $t = ArrayHelper::GetValue( $tags, $tId );
-                        if ( $t && !in_array( $tId, $album->tagIds, true ) )  {
+                        if ( $t && !in_array( $tId, $album->tagIds, true ) ) {
                             $album->AllTags[$tId] = $t;
                         }
                     }
                 }
             }
+        }
+
+
+        /**
+         * Fill Albums
+         * @param AlbumByTag[] $albumsByTag
+         * @return Album[]
+         */
+        public static function FillAlbums( $albumsByTag ) {
+            $ids = [ ];
+            foreach ( $albumsByTag as $at ) {
+                $ids = array_merge( $ids, $at->AlbumIds );
+            }
+            //unset( $at );
+
+            $ids = array_unique( $ids );
+            if ( !$ids ) {
+                return [];
+            }
+
+            $albums = AlbumFactory::Get( [ '_albumId' => $ids ], [ BaseFactory::WithoutPages => true ] );
+            foreach ( $albumsByTag as $at ) {
+                foreach ( $at->AlbumIds as $id ) {
+                    $at->Albums[] = $albums[$id]; // possible null index?
+                }
+            }
+
+            return $albums;
         }
     }

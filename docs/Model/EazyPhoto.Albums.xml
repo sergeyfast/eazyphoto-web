@@ -28,9 +28,10 @@
         <Attribute Name="geStartDate" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="startDate" FieldType="TYPE_DATE" Nullable="Yes" SearchType="SEARCHTYPE_GE" />
         <Attribute Name="leStartDate" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="startDate" FieldType="TYPE_DATE" Nullable="Yes" SearchType="SEARCHTYPE_LE" />
         <Attribute Name="!albumId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="albumId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_NOT_EQUALS" />
+        <Attribute Name="nnOrderNumber" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="orderNumber" FieldType="TYPE_BOOLEAN" Nullable="Yes" SearchType="SEARCHTYPE_NOT_NULL" />
         <Attribute Name="page" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="page" DefaultValue="0" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="pageSize" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="pageSize" DefaultValue="25" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
-        <Attribute Name="nnOrderNumber" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="orderNumber" FieldType="TYPE_BOOLEAN" Nullable="Yes" SearchType="SEARCHTYPE_NOT_NULL" />
+        <Attribute Name="_albumId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="albumId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_ARRAY" />
       </Search>
       <Flags>
         <EFlag>CanPages</EFlag>

@@ -1,15 +1,16 @@
 <?php
     use Eaze\Database\ConnectionFactory;
     use Eaze\Database\SqlCommand;
+    use Eaze\Helpers\ArrayHelper;
     use Eaze\Model\BaseFactory;
     use Eaze\Model\FactoryWrapper;
 
 
     /**
      * Tag Utility
-     * @package EazyPhoto
+     * @package    EazyPhoto
      * @subpackage Albums
-     * @author sergeyfast
+     * @author     sergeyfast
      */
     class TagUtility {
 
@@ -47,15 +48,66 @@ sql;
 
 
         /**
+         * Get Albums By Tags
+         * @param Tag[] $map
+         * @param Tag[] $tags $tagMap
+         * @return AlbumByTag[]
+         */
+        public static function GetAlbumsByTags( $map, $tags ) {
+            $conn    = ConnectionFactory::Get();
+            $result  = [ ];
+            $tagCond = '';
+            $intArr  = $conn->GetComplexType( 'int[]' );
+            foreach ( $tags as $t ) {
+                $all = self::FilterTags( $map, $t->tagId );
+                $tagCond .= sprintf( ' WHEN "tagIds" && %s THEN %d ' . PHP_EOL, $intArr->ToDatabase( array_keys( $all ) ), $t->tagId );
+            }
+
+            if ( !$tagCond ) {
+                return $result;
+            }
+
+            $sql = <<<sql
+            WITH t AS (
+              select "albumId", case {$tagCond} else null end as "tagId"
+              from "albums"
+              where "statusId" = 1
+            )
+            , v as (
+              SELECT "tagId", array_agg( "albumId" order by "albumId" desc ) as "ids", count(*)
+              FROM t
+              WHERE "tagId" IS NOT NULL
+              GROUP BY 1
+            )
+            SELECT "tagId", "ids"[0:11], "count" FROM v
+sql;
+
+            $cmd = new SqlCommand( $sql, $conn );
+            $ds  = $cmd->Execute();
+            while ( $ds->Next() ) {
+                $a           = new AlbumByTag();
+                $a->AlbumIds = $ds->GetComplexType( 'ids', 'int[]' );
+                $a->TagId    = $ds->GetInteger( 'tagId' );
+                $a->Tag      = $tags[$a->TagId];
+                $a->Count    = $ds->GetInteger( 'count' );
+
+                $result[$a->TagId] = $a;
+            }
+
+            return $result;
+        }
+
+
+        /**
          * Get All Parent & Child Tags for specific parentTagId
          * @param Tag[] $map
          * @param int   $tagId main tag id
          * @return Tag[]
          */
         public static function FilterTags( $map, $tagId ) {
-            $result = [];
+            $result = [ ];
 
-            foreach( $map as $t ) {
+            foreach ( $map as $t ) {
                 if ( $t->path && in_array( $tagId, $t->path, true ) ) {
                     $result[$t->tagId] = $t->tagId;
                 }

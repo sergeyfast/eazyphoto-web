@@ -852,8 +852,8 @@ nav .metaList {
 }
 nav .metaList a {
   display: inline-block;
-  padding: 1.5rem 0 1.05rem;
-  border-bottom: 0.45rem solid transparent;
+  padding: 1.5rem 0 1rem;
+  border-bottom: 4px solid transparent;
 }
 nav .metaList li:before {
   margin: 0 1.2em 0 1em;
@@ -906,10 +906,67 @@ nav .metaList li em {
   text-decoration: none !important;
   color: #999;
 }
+.tag._active,
+a.tag:hover {
+  color: #3c9;
+  border-color: #3c9;
+}
+.sortNav {
+  float: right;
+  max-width: 11em;
+  margin-top: 2.15rem;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #999;
+  cursor: default;
+}
+.sortNav > span {
+  display: inline-block;
+}
+.sortNav > span + span:before {
+  content: "|";
+  margin: 0 0.5em 0 0.3em;
+  color: #ccc;
+}
+.sortNav b {
+  font-weight: normal;
+  color: #171717;
+}
+.tabs {
+  position: relative;
+  margin: -4px 0 0;
+}
+.tabs_head li {
+  padding: 2rem 0 1rem;
+  border-top: 4px solid transparent;
+  margin: 0;
+}
+.tabs_head li._active {
+  border-color: #3c9;
+}
+.tabs_head li a:hover {
+  color: #3c9;
+  text-decoration: none;
+}
+.tabs_cont {
+  display: none;
+}
+.tabs_cont._active {
+  display: block;
+}
 .present {
   position: relative;
   max-width: 1900px;
   margin: 0 auto;
+}
+.present:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url("../img/shade.png") repeat-x 0 100%;
 }
 .present a {
   color: inherit;
@@ -1102,7 +1159,7 @@ a:hover .imageTextHead {
   bottom: 0;
   left: 0;
   padding: 0.5rem 1rem;
-  line-height: 178px;
+  line-height: 172px;
   color: #3c9;
   background: rgba(0,0,0,0.6);
 }
@@ -1117,6 +1174,25 @@ a:hover .imageTextHead {
   display: block;
   font-size: 1.8rem;
   color: #fff;
+}
+.objList > li._special a {
+  display: block;
+  width: 178px;
+  height: 178px;
+  color: #fff;
+  background: #3c9;
+}
+.objList > li._special a:hover {
+  color: #3c9;
+  background: #171717;
+}
+.objList > li._special a ._hoverOverlay {
+  display: block;
+  color: inherit;
+  background: transparent;
+}
+.objList > li._special a ._hoverOverlay strong {
+  color: inherit;
 }
 .objList a:hover ._hoverOverlay {
   display: block;

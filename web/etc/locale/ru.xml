@@ -17,6 +17,11 @@
     <breadcrumbs>
       <albums>Альбомы</albums>
     </breadcrumbs>
+    <albums>
+        <a1>альбом</a1>
+        <a2>альбома</a2>
+        <a5>альбомов</a5>
+    </albums>
   </fe>
   <vt>
     <grid>

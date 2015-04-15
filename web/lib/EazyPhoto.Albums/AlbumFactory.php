@@ -148,6 +148,11 @@
                     'type'       => TYPE_INTEGER,
                     'searchType' => SEARCHTYPE_NOT_EQUALS,
                 ],
+                'nnOrderNumber' => [
+                    'name'       => 'orderNumber',
+                    'type'       => TYPE_BOOLEAN,
+                    'searchType' => SEARCHTYPE_NOT_NULL,
+                ],
                 'page'          => [
                     'name'       => 'page',
                     'type'       => TYPE_INTEGER,
@@ -158,10 +163,10 @@
                     'type'       => TYPE_INTEGER,
                     'default'    => 25,
                 ],
-                'nnOrderNumber' => [
-                    'name'       => 'orderNumber',
-                    'type'       => TYPE_BOOLEAN,
-                    'searchType' => SEARCHTYPE_NOT_NULL,
+                '_albumId'      => [
+                    'name'       => 'albumId',
+                    'type'       => TYPE_INTEGER,
+                    'searchType' => SEARCHTYPE_ARRAY,
                 ],
             ],
         ];

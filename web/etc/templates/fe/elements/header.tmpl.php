@@ -45,6 +45,7 @@
         'js://fe/jquery.js',
         'js://fe/jquery.easing.js',
         'js://fe/jquery.fancybox.js',
+        'js://fe/scripts.js',
     ]);
 ?><!DOCTYPE html>
 <html lang="ru">
