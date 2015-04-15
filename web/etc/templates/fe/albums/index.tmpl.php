@@ -1,64 +1,41 @@
 <?php
     use Eaze\Helpers\ArrayHelper;
+    use Eaze\Helpers\JsHelper;
 
+    /** @var AlbumSearch $as */
     /** @var Album[] $albums */
     /** @var Photo[] $photos */
-    /** @var Tag[] $tagMap */
-    /** @var Tag $tag */
 ?>
 {increal:tmpl://fe/elements/header.tmpl.php}
+<? JsHelper::PushFile( 'js://fe/albums.js' ); ?>
 <div class="container">
     {increal:tmpl://fe/elements/breadcrumbs.tmpl.php}
     <div class="row">
         <div class="col2">
-            <? if ( false ) { ?>
-            <h3 class="fsBigX">Год и месяц</h3>
-            <p>
-                <select style="max-width: 4.8em">
-                    <option>2015</option>
-                    <option>2014</option>
-                    <option>2013</option>
-                </select>
-                <select style="max-width: 4.8em">
-                    <option>Янв</option>
-                    <option>Фев</option>
-                    <option>Мрт</option>
-                    <option>Снт</option>
-                </select>
-            </p>
+            <h3 class="fsBigX">Год съёмки</h3>
+            <p><?= \Eaze\Helpers\FormHelper::FormSelect( 'year', $as->Years, null, null, $as->Year, 'year', null, true, null, [ 'style' => 'max-width: 4.8em', 'data-url' => $as->GetUrl( true ) ]  ); ?></p>
             <h3 class="fsBigX">Рассказ</h3>
-            <p>
-                <label class="noWrap marginRightBase">
-                    <input type="radio" name="ff03" checked> Есть
-                </label>
-                <label class="noWrap">
-                    <input type="radio" name="ff03"> Нет
-                </label>
-            </p>
-            <? } ?>
+            <p><label class="noWrap marginRightBase"><?= \Eaze\Helpers\FormHelper::FormCheckBox( 'story', 1, 'story', null, $as->IsStory, [ 'data-url' => $as->GetUrl( false, true ) ] ); ?> Пост</label></p>
             <h3 class="fsBigX">Категории</h3>
             <ul class="flatList">
-                <? foreach( $tagMap as $t ) { ?>
+                <? foreach( $as->TagMap as $t ) { ?>
                     <? if ( !$t->parentTagId ) { ?>
-                <li<?= $tag && $tag->tagId === $t->tagId ? ' class="_active"' : '' ?>><a href="<?= LinkUtility::GetTagUrl( $t, true )?>">{$t.title}</a></li>
+                <li<?= $as->Tag && ( $as->Tag->tagId === $t->tagId || $as->Tag->parentTagId === $t->tagId  ) ? ' class="_active"' : '' ?>><a href="<?= $as->GetUrlV( null, null, $t->alias  )?>">{$t.title}</a></li>
                     <? } ?>
                 <? } ?>
             </ul>
             <h3 class="fsBigX">Теги</h3>
-            <p><? foreach( $tagMap as $t ) { ?>
-                <? if ( $t->parentTagId ) { ?><a class="tag<?= $tag && $tag->tagId === $t->tagId ? ' _active' : '' ?>" href="<?= LinkUtility::GetTagUrl( $t, true )?>">{$t.title}</a> <? } ?>
+            <p><? foreach( $as->TagMap as $t ) { ?>
+                <? if ( ( $t->parentTagId && !$as->Tag)  || ( $t->parentTagId && $as->Tag && ( $as->Tag->tagId === $t->parentTagId || $as->Tag->parentTagId === $t->parentTagId ) ) ) { ?><a class="tag<?= $as->Tag && $as->Tag->tagId === $t->tagId ? ' _active' : '' ?>" href="<?= $as->GetUrlV( null, null, $t->alias )?>">{$t.title}</a> <? } ?>
             <? }?></p>
         </div>
         <div class="col10">
-            <h1>Альбомы</h1>
-            <? if ( false ) { ?>
-            <ul class="metaList _nosep fsMedium">
-                <li>Сортировать по:</li>
-                <li><b>дате</b></li>
-                <li><a href="#">названию</a></li>
-                <li><a href="#">альбому</a></li>
-            </ul>
+            <? if ( $as->Sort === 'event' ) { ?>
+            <div class="sortNav">Сортировать по дате:<span><b>события</b></span> <span><a href="{$as.GetSortUrl()}created">добавления</a></span></div>
+            <? } else { ?>
+            <div class="sortNav">Сортировать по дате:<span><a href="{$as.GetSortUrl()}event">события</a></span> <span><b>добавления</b></span></div>
             <? } ?>
+            <h1>Альбомы</h1>
 <?php
     foreach ( $albums as $a ) {
         if ( !$a->metaInfo || empty( $a->metaInfo['count'] ) || empty( $a->metaInfo['photoIds'] ) ) {
@@ -106,6 +83,7 @@
         <? } ?>
         </ul>
     <? } ?>
+            <? $pageCount = $__pageCount; $page = $__pageNumber; $pagesUrl = $as->GetPagesUrl(); ?>
             {increal:tmpl://fe/elements/paginator.tmpl.php}
         </div>
     </div>

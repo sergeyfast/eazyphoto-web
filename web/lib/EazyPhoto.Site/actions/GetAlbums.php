@@ -15,59 +15,38 @@
     class GetAlbums {
 
         /**
-         * Is Logged
-         * @return object
-         */
-        private function isLogged() {
-            $user = AuthUtility::GetCurrentUser( 'User' );
-            return ( $user );
-        }
-
-
-        /**
          * Entry Point
          */
         public function Execute() {
-            $year     = ArrayHelper::GetValue( Page::$RequestData, 1 );
-            $tagAlias = Request::GetString( 'tag' );
-            $options  = [ BaseFactory::OrderBy => '"albumId" DESC' ];
-            $search   = [
-                'isPrivate'   => $this->isLogged() ? null : false,
-                'geStartDate' => $year ? Convert::ToDate( '01.01.' . $year ) : null,
-                'leStartDate' => $year ? Convert::ToDate( '31.12.' . $year ) : null,
-                'page'        => abs( Request::getInteger( 'page' ) ),
-                'pageSize'    => 15
-            ];
+            $page   = Request::getInteger( 'page' );
+            $count  = Request::getInteger( 'ga_Count' );
+            $search = [ 'pageSize' => $count ];
+            $as     = AlbumSearch::GetFromRequest();
+            $search += $as->GetSearch();
+            $options = [ BaseFactory::CustomSql => $as->GetCustomSql(), BaseFactory::OrderBy => $as->GetOrderBySql() ];
 
-            // tag filter
-            $tag = $tagAlias ? TagFactory::GetOne( [ 'alias' => $tagAlias ] ) : null;
-            $map = TagUtility::GetAllTags();
-            if ( $tag ) {
-                $tagIds                          = array_keys( TagUtility::FilterTags( $map, $tag->tagId ) );
-                $options[BaseFactory::CustomSql] = AlbumUtility::GetWithTagIdSql( $tagIds );
-            }
+            $objectsCount   = AlbumFactory::Count( $search, [ BaseFactory::CustomSql => $options[BaseFactory::CustomSql], BaseFactory::WithoutPages => true ] );
+            $pagesCount     = ceil( $objectsCount / $count );
+            $page           = ( ( $page + 1 > $pagesCount || $page < 0 ) && $objectsCount > 0 ) ? 0 : $page;
+            $search['page'] = $page;
 
-            $pageCount      = AlbumFactory::Count( $search, $options );
-            $search['page'] = $search['page'] > $pageCount ? 0 : $search['page'];
-            $albums         = AlbumFactory::Get( $search, $options );
-            $photos         = $albums ? $this->getPhotos( $albums ) : null;
+            $list   = AlbumFactory::Get( $search, $options );
+            $photos = $list ? $this->getPhotos( $list ) : null;
 
-
-            AlbumUtility::FillFirstPhoto( $albums );
-            foreach ( $albums as $a ) {
-                AlbumUtility::FillTags( $map, $a );
+            AlbumUtility::FillFirstPhoto( $list );
+            foreach ( $list as $a ) {
+                AlbumUtility::FillTags( $as->TagMap, $a );
             }
 
             Context::$ActiveSection = Context::Albums;
             Context::AddBreadcrumbT( 'albums', LinkUtility::GetAlbumsUrl() );
 
-            Response::setArray( 'albums', $albums );
+            Response::setParameter( 'as', $as );
+            Response::setArray( 'albums', $list );
             Response::setArray( 'photos', $photos );
-            Response::setArray( 'tagMap', $map );
-            Response::setInteger( 'year', $year );
-            Response::setParameter( 'tag', $tag );
-            Response::setParameter( 'page', $search['page'] );
-            Response::setParameter( 'pageCount', $pageCount );
+            Response::setInteger( '__pageNumber', $page );
+            Response::setInteger( '__pageCount', $pagesCount );
+            Response::setInteger( '__objectsCount', $objectsCount );
         }
 
 

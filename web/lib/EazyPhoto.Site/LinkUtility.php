@@ -60,6 +60,6 @@
          * @return string
          */
         public static function GetTagUrl( $tag, $withWebPath = false ) {
-            return self::getBaseUrl( '/albums/', $withWebPath ) . '?tag=' . $tag->alias;
+            return self::GetAlbumsUrl( $withWebPath ) . '?tag=' . $tag->alias;
         }
     }

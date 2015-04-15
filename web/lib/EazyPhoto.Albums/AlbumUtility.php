@@ -393,4 +393,25 @@ sql;
 
             return $albums;
         }
+
+
+        /**
+         * Get Search Custom Sql for AlbumFactory
+         * @param int[] $tagIds
+         * @param bool $isStory
+         * @return string
+         */
+        public static function GetSearchCustomSql( $tagIds, $isStory ) {
+            $sql = '';
+
+            if ( $tagIds ) {
+                $sql .= self::GetWithTagIdSql( $tagIds );
+            }
+
+            if ( $isStory ) {
+                $sql .= ' AND ( "description" IS NOT NULL AND "description" != \'\' ) ';
+            }
+
+            return $sql;
+        }
     }

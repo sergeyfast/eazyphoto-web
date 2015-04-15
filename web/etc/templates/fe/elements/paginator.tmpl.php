@@ -28,19 +28,19 @@
     if ( $pageCount > 1 ) {
         ?>
         <ul class="metaList fsSmall cont">
-				<li class="arrow"><a href="?page=0">&laquo;</a></li>
+				<li class="arrow"><a href="{web:$pagesUrl}0">&laquo;</a></li>
 <?php
         for( $i = $startPosition;  $i <= $endPosition; $i ++ ) {
             if  ($i == $page ) {
                 ?>
                 <li class="current">{$i}</li>
             <?          } else  { ?>
-                <li><a href="?page=<?= $i - 1 ?>" title="{$i}">{$i}</a></li>
+                <li><a href="{web:$pagesUrl}<?= $i - 1 ?>" title="{$i}">{$i}</a></li>
             <?php
             }
         }
         ?>
-				<li class="arrow"><a href="?page=<?= $pageCount - 1?>">&raquo;</a></li>
+				<li class="arrow"><a href="{web:$pagesUrl}<?= $pageCount - 1?>">&raquo;</a></li>
 			</ul>
 <?php
     }

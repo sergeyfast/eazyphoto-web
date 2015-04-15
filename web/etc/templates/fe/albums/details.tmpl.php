@@ -71,7 +71,7 @@
         <? if ( $album->metaInfo && !empty( $album->metaInfo['size'] ) ) { ?>
         <div class="col8">
             <h3>Скачать через BitTorrent Sync</h3>
-            <p><a href="#" class="copy-to-clipboard">{$album.roSecret}</a> — Оригиналы (({$album.metaInfo[count]} фото, <?= round( $album->metaInfo['size'] / 1024 / 1024  ) ?> МБ)<br>
+            <p><a href="#" class="copy-to-clipboard">{$album.roSecret}</a> — Оригиналы ({$album.metaInfo[count]} фото, <?= round( $album->metaInfo['size'] / 1024 / 1024  ) ?> МБ)<br>
             <? if ( $album->roSecretHd ) { ?><a href="#" class="copy-to-clipboard">{$album.roSecretHd}</a> &mdash; HD-качество ({$album.metaInfo[count]} фото, <?= round( $album->metaInfo['sizeHd'] / 1024 / 1024  ) ?> МБ)<? } ?>
             </p>
         </div>

@@ -41,7 +41,13 @@
     <group name="Site">
         <action name="GetMainPage" />
         <action name="GetTags" />
-        <action name="GetAlbums" />
         <action name="GetAlbum" />
+        <action name="GetAlbums">
+            <parameters>
+                <request>
+                    <param name="ga_Count">15</param>
+                </request>
+            </parameters>
+        </action>
     </group>
 </actions>
