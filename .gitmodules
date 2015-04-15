@@ -1,3 +1,6 @@
 [submodule "web/lib.eaze"]
 	path = web/lib.eaze
 	url = https://git.1adw.com/eaze/lib.git
+[submodule "html"]
+	path = html
+	url = git@git.1adw.com:ilya/eazyphoto.git
