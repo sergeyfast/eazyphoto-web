@@ -39,14 +39,14 @@
             <h3 class="fsBigX">Категории</h3>
             <ul class="flatList">
                 <? foreach( $tagMap as $t ) { ?>
-                    <? if ( $t->orderNumber && !$t->parentTagId ) { ?>
+                    <? if ( !$t->parentTagId ) { ?>
                 <li<?= $tag && $tag->tagId === $t->tagId ? ' class="_active"' : '' ?>><a href="<?= LinkUtility::GetTagUrl( $t, true )?>">{$t.title}</a></li>
                     <? } ?>
                 <? } ?>
             </ul>
             <h3 class="fsBigX">Теги</h3>
             <p><? foreach( $tagMap as $t ) { ?>
-                <? if ( !$t->orderNumber ) { ?><a class="tag<?= $tag && $tag->tagId === $t->tagId ? ' _active' : '' ?>" href="<?= LinkUtility::GetTagUrl( $t, true )?>">{$t.title}</a> <? } ?>
+                <? if ( $t->parentTagId ) { ?><a class="tag<?= $tag && $tag->tagId === $t->tagId ? ' _active' : '' ?>" href="<?= LinkUtility::GetTagUrl( $t, true )?>">{$t.title}</a> <? } ?>
             <? }?></p>
         </div>
         <div class="col10">
