@@ -17,6 +17,11 @@ Admin Panel
 Open http://eazyphoto/vt/ (admin:admin)
 PHP Indexer (w/o eazyphotod): http://eazyphoto/int/daemons/sync-photos
 
+Requirements
+------
+ * PostgreSQL 9.3+
+ * PHP 5.4+
+
 Changelog
 ------
 

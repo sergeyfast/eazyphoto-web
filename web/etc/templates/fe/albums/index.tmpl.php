@@ -46,7 +46,7 @@
             </ul>
             <h3 class="fsBigX">Теги</h3>
             <p><? foreach( $tagMap as $t ) { ?>
-                <? if ( !$t->orderNumber ) { ?><a class="tag<?= $tag && $tag->tagId === $t->tagId ? ' cFirm' : '' ?>" href="<?= LinkUtility::GetTagUrl( $t, true )?>">{$t.title}</a> <? } ?>
+                <? if ( !$t->orderNumber ) { ?><a class="tag<?= $tag && $tag->tagId === $t->tagId ? ' _active' : '' ?>" href="<?= LinkUtility::GetTagUrl( $t, true )?>">{$t.title}</a> <? } ?>
             <? }?></p>
         </div>
         <div class="col10">

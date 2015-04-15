@@ -54,29 +54,30 @@ sql;
          * @return AlbumByTag[]
          */
         public static function GetAlbumsByTags( $map, $tags ) {
-            $conn    = ConnectionFactory::Get();
-            $result  = [ ];
-            $tagCond = '';
-            $intArr  = $conn->GetComplexType( 'int[]' );
+            $conn     = ConnectionFactory::Get();
+            $result   = [ ];
+            $tagConds = [ ];
+            $intArr   = $conn->GetComplexType( 'int[]' );
             foreach ( $tags as $t ) {
-                $all = self::FilterTags( $map, $t->tagId );
-                $tagCond .= sprintf( ' WHEN "tagIds" && %s THEN %d ' . PHP_EOL, $intArr->ToDatabase( array_keys( $all ) ), $t->tagId );
+                $all        = self::FilterTags( $map, $t->tagId );
+                $tagConds[] = sprintf( ' CASE WHEN "tagIds" && %s THEN %d END' . PHP_EOL, $intArr->ToDatabase( array_keys( $all ) ), $t->tagId );
             }
 
-            if ( !$tagCond ) {
+            if ( !$tagConds ) {
                 return $result;
             }
 
-            $sql = <<<sql
+            $tagCond = implode( ',', $tagConds );
+            $sql     = <<<sql
             WITH t AS (
-              select "albumId", case {$tagCond} else null end as "tagId"
+              select "albumId", array_remove( ARRAY[{$tagCond}], null ) "tagId"
               from "albums"
               where "statusId" = 1
             )
             , v as (
-              SELECT "tagId", array_agg( "albumId" order by "albumId" desc ) as "ids", count(*)
+              SELECT unnest("tagId") as "tagId", array_agg( "albumId" order by "albumId" desc ) as "ids", count(*)
               FROM t
-              WHERE "tagId" IS NOT NULL
+              WHERE array_length("tagId",1) > 0
               GROUP BY 1
             )
             SELECT "tagId", "ids"[0:11], "count" FROM v
