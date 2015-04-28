@@ -191,6 +191,7 @@
                 $p->albumId      = $album->albumId;
                 $p->album        = $album;
                 $p->createdAt    = $now;
+                $p->isFavorite   = false;
                 $p->filename     = sprintf( '%04d.jpg', $maxId );
                 $p->fileSize     = filesize( $f['path'] );
                 $p->originalName = $f['filename'];
