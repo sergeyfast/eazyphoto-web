@@ -13,6 +13,7 @@
 
         /** Site Section */
         const Albums = '/albums/',
+            Favorites = '/favorites/',
             Tags = '/tags/';
 
         /**

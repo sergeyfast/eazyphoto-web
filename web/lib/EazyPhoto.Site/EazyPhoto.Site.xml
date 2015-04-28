@@ -41,6 +41,7 @@
     <group name="Site">
         <action name="GetMainPage" />
         <action name="GetTags" />
+        <action name="GetFavorites" />
         <action name="GetAlbum" />
         <action name="GetAlbums">
             <parameters>

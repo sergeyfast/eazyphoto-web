@@ -16,12 +16,16 @@
   <fe>
     <breadcrumbs>
       <albums><![CDATA[Альбомы]]></albums>
+      <favorites><![CDATA[Избранное]]></favorites>
     </breadcrumbs>
     <albums>
       <a1><![CDATA[альбом]]></a1>
       <a2><![CDATA[альбома]]></a2>
       <a5><![CDATA[альбомов]]></a5>
     </albums>
+      <favorites>
+          <title>Избранные фотографии</title>
+      </favorites>
   </fe>
   <vt>
     <grid>

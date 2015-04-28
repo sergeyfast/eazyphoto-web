@@ -11,6 +11,10 @@
                     <actions>EazyPhoto.Site.GetTags</actions>
                     <template>tmpl://fe/albums/tags.tmpl.php</template>
                 </page>
+                <page uri="/favorites/">
+                    <actions>EazyPhoto.Site.GetFavorites</actions>
+                    <template>tmpl://fe/albums/favorites.tmpl.php</template>
+                </page>
                 <page uri="/albums/">
                     <actions>EazyPhoto.Site.GetAlbums</actions>
                     <template>tmpl://fe/albums/index.tmpl.php</template>

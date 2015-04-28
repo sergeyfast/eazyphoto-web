@@ -49,6 +49,11 @@
         }
 
 
+        public static function GetFavoritesUrl( $withWebPath = false ) {
+            return self::getBaseUrl( Context::Favorites, $withWebPath );
+        }
+
+
         public static function GetAlbumsYearUrl( $year = null, $withWebPath = false ) {
             return self::getBaseUrl( '/', $withWebPath ) . $year . '/';
         }
