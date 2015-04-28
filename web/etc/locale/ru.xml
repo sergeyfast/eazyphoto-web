@@ -15,12 +15,12 @@
   </errors>
   <fe>
     <breadcrumbs>
-      <albums>Альбомы</albums>
+      <albums><![CDATA[Альбомы]]></albums>
     </breadcrumbs>
     <albums>
-        <a1>альбом</a1>
-        <a2>альбома</a2>
-        <a5>альбомов</a5>
+      <a1><![CDATA[альбом]]></a1>
+      <a2><![CDATA[альбома]]></a2>
+      <a5><![CDATA[альбомов]]></a5>
     </albums>
   </fe>
   <vt>
@@ -273,7 +273,7 @@
       <userId><![CDATA[Пользователь]]></userId>
       <statusId><![CDATA[Статус]]></statusId>
       <metaInfo><![CDATA[metaInfo]]></metaInfo>
-      <tagIds>Теги</tagIds>
+      <tagIds><![CDATA[Теги]]></tagIds>
     </album>
     <photo>
       <deleteString><![CDATA[Вы действительно хотите удалить фотографию?]]></deleteString>
@@ -290,6 +290,7 @@
       <createdAt><![CDATA[Дата создания]]></createdAt>
       <photoDate><![CDATA[Дата снимка]]></photoDate>
       <statusId><![CDATA[Статус]]></statusId>
+      <isFavorite><![CDATA[Избранное]]></isFavorite>
     </photo>
     <tag>
       <deleteString><![CDATA[Вы действительно хотите удалить тег?]]></deleteString>

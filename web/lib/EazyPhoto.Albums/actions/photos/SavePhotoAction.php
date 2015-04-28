@@ -136,6 +136,6 @@
          */
         protected function setForeignLists() {
             $albums = AlbumFactory::Get( [ 'statusId' => StatusUtility::Enabled ], [ BaseFactory::WithoutPages => true, BaseFactory::WithColumns => ' "albumId", "title" ' ] );
-            Response::setArray( 'albums', $albums );
+            Response::SetArray( 'albums', $albums );
         }
     }

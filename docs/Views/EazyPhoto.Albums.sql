@@ -40,6 +40,7 @@ CREATE OR REPLACE VIEW "getPhotos" AS
         , "photos"."exif"
         , "photos"."createdAt"
         , "photos"."photoDate"
+        , "photos"."isFavorite"
         , "photos"."statusId"
         , "album"."albumId" AS "album.albumId"
         , "album"."title" AS "album.title"

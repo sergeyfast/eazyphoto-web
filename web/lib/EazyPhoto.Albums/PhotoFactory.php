@@ -100,6 +100,11 @@
                     'nullable'    => 'CheckEmpty',
                     'foreignKey'  => 'Status',
                 ],
+                'isFavorite'   => [
+                    'name'        => 'isFavorite',
+                    'type'        => TYPE_BOOLEAN,
+                    'nullable'    => 'No',
+                ],
             ],
             'lists'     => [],
             'search'    => [

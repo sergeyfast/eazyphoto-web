@@ -1,6 +1,6 @@
 /*
 Created		16.08.2008
-Modified		20.02.2015
+Modified		28.04.2015
 Project		
 Model			
 Company		
@@ -209,6 +209,7 @@ Create table "photos"
 	"exif" Text,
 	"createdAt" Timestamp NOT NULL Default now(),
 	"photoDate" Timestamp,
+	"isFavorite" Boolean Default false,
 	"statusId" Integer NOT NULL,
  primary key ("photoId")
 ) Without Oids;
@@ -240,6 +241,7 @@ Create unique index "IX_daemonLock" on "daemonLocks" using btree ("title","packa
 Create index "IX_vfsFoldersTreeTreePath" on "vfsFoldersTree" using gist ("path");
 Create index "IX_vfsFoldersTreeTreeRKey" on "vfsFoldersTree" using btree ("rKey");
 Create index "IX_vfsFoldersTreeTreeLKey" on "vfsFoldersTree" using btree ("lKey");
+Create index "IX_photos_isFavorite" on "photos" using btree ("isFavorite");
 
 
 /* Create Foreign Keys */

@@ -425,6 +425,13 @@
           <AttributeParameter Key="controlId" Value="fileSizeHd" />
         </Parameters>
       </TemplateAttribute>
+      <TemplateAttribute Name="isFavorite" TitleKey="vt.photo.isFavorite" Type="HTML_CHECKBOX" CanEdit="false" CanShow="false" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isFavorite" />
+          <AttributeParameter Key="value" Value="isFavorite" />
+          <AttributeParameter Key="controlId" Value="isFavorite" />
+        </Parameters>
+      </TemplateAttribute>
     </Search>
     <Attributes>
       <TemplateAttribute Name="photoId" TitleKey="vt.photo.photoId" Type="HTML_INPUT" CanEdit="false" CanShow="false" CanSearch="false">
@@ -543,6 +550,13 @@
           <AttributeParameter Key="value" Value="fileSizeHd" />
           <AttributeParameter Key="size" Value="80" />
           <AttributeParameter Key="controlId" Value="fileSizeHd" />
+        </Parameters>
+      </TemplateAttribute>
+      <TemplateAttribute Name="isFavorite" TitleKey="vt.photo.isFavorite" TitleValue="isFavorite" Type="HTML_CHECKBOX" CanEdit="true" CanShow="true" CanSearch="false">
+        <Parameters>
+          <AttributeParameter Key="name" Value="isFavorite" />
+          <AttributeParameter Key="value" Value="isFavorite" />
+          <AttributeParameter Key="controlId" Value="isFavorite" />
         </Parameters>
       </TemplateAttribute>
     </Attributes>

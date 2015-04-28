@@ -15,14 +15,13 @@
     JsHelper::PushLine( sprintf( 'var jsonErrors = %s;', !empty( $jsonErrors ) ? $jsonErrors : '{}' ) );
     JsHelper::PushFile( 'js://vt/edit.js' );
 ?>
-<? if ( !empty( $errors["fatal"] ) ) { ?>
-<h4 class="_error"><?= T( 'errors.fatal.%s', $errors['fatal'] ); ?></h4>
-<? } ?>
+<? if ( !empty( $errors['fatal'] ) ) { ?><h4 class="cWarn"><?= T( 'errors.fatal.' . $errors['fatal'] ); ?></h4><? } ?>
 <div class="tabs">
     <?= FormHelper::FormHidden( 'selectedTab', !empty( $selectedTab ) ? $selectedTab : 0, 'selectedTab' ); ?>
     <div class="tabs_head">
         <ul>
             <li><span>{lang:vt.common.commonInfo}</span></li>
+            <? if ( $object->exif ) { ?><li><span>EXIF</span></li><? } ?>
         </ul>
     </div>
     <div class="tabs_cont fsMedium">
@@ -41,6 +40,9 @@
         <div class="row _fluid _p" data-row="orderNumber">
             <div class="col2"><label for="orderNumber" class="blockLabel">{lang:vt.photo.orderNumber}</label></div>
             <div class="col6"><?= FormHelper::FormInput( $prefix . '[orderNumber]', $object->orderNumber, 'orderNumber' ); ?></div>
+        </div>
+        <div class="row _fluid _p" data-row="isFavorite">
+            <div class="col6 offset2"><?= FormHelper::FormCheckbox( $prefix . '[isFavorite]', null, 'isFavorite', null, $object->isFavorite ); ?> <label for="isFavorite" class="blockLabel">{lang:vt.photo.isFavorite}</label></div>
         </div>
         <h3>Параметры файла</h3>
     	<div class="row _fluid _p" data-row="originalName">
@@ -72,5 +74,23 @@
             <div class="col6"><?= FormHelper::FormSelect( $prefix . '[statusId]', StatusUtility::$Common[$__currentLang], '', '', $object->statusId, null, null, false ); ?></div>
         </div>
     </div>
+    <? if ( $object->exif ) { ?>
+    <div class="tabs_cont fsMedium">
+        <? foreach( $object->exif as $k => $v ) { ?>
+        <div class="row _fluid">
+            <div class="col3">{$k}</div>
+            <div class="col6">
+            <? if ( is_array( $v ) && !array_key_exists( 0, $v ) ) { ?>
+                <? foreach( $v as $vk => $vv ) { ?>
+                    <div class="row _fluid">
+                        <div class="col5">{$vk}</div>
+                        <div class="col7"><?= is_array( $vv ) ? implode( ', ', $vv ) : $vv ?></div>
+                    </div>
+                <? } ?>
+            <? } else { ?><?= is_array( $v ) ? implode( ', ', $v ) : $v ?><? } ?>
+            </div>
+        </div>
+        <? } ?>
+    </div>
+    <? } ?>
 </div>
-

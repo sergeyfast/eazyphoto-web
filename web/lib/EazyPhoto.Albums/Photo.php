@@ -54,6 +54,9 @@
         /** @var Status */
         public $status;
 
+        /** @var bool */
+        public $isFavorite;
+
         # user defined code goes below
 
     }

@@ -54,6 +54,7 @@
         <Attribute Name="createdAt" Key="false" Addable="false" Updatable="false" MinValue="0" MaxValue="0" DbName="createdAt" FieldType="TYPE_DATETIME" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="photoDate" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="photoDate" FieldType="TYPE_DATETIME" Nullable="Yes" SearchType="SEARCHTYPE_EQUALS" />
         <Attribute Name="statusId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="status" ForeignKey="Status" FieldType="TYPE_INTEGER" Nullable="CheckEmpty" SearchType="SEARCHTYPE_EQUALS" />
+        <Attribute Name="isFavorite" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="isFavorite" FieldType="TYPE_BOOLEAN" Nullable="No" SearchType="SEARCHTYPE_EQUALS" />
       </Attributes>
       <Search>
         <Attribute Name="_photoId" Key="false" Addable="true" Updatable="true" MinValue="0" MaxValue="0" DbName="photoId" FieldType="TYPE_INTEGER" Nullable="Yes" SearchType="SEARCHTYPE_ARRAY" />
