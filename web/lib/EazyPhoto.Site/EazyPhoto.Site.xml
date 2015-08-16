@@ -9,6 +9,9 @@
                     <param name="gsp_With404">false</param>
                 </request>
             </parameters>
+            <redirects>
+                <redirect name="url" path="{url}?success"></redirect>
+            </redirects>
         </action>
         <action name="GetForceStaticPage">
             <path>GetStaticPage</path>
@@ -17,6 +20,9 @@
                     <param name="gsp_With404">true</param>
                 </request>
             </parameters>
+            <redirects>
+                <redirect name="url" path="{url}?success"></redirect>
+            </redirects>
         </action>
     </group>
     <group name="Daemons">

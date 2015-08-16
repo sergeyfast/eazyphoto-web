@@ -223,7 +223,7 @@
                     </page>
                 </pageGroup>
             </pageGroup>
-            <page name="fe" shutdown="EazyPhoto.Site.GetContext">
+            <page uri="([^?]*)" shutdown="EazyPhoto.Site.GetContext">
                 <actions>EazyPhoto.Site.GetForceStaticPage</actions>
                 <template>tmpl://fe/template.tmpl.php</template>
             </page>
